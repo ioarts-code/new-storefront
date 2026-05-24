@@ -43,7 +43,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       }}
     >
       {/* Left Column */}
-      <div className="flex flex-col justify-between w-full lg:w-[55%] p-4 sm:p-6 md:p-8 lg:p-12 bg-transparent">
+      <div className="flex flex-col justify-between w-full lg:w-[55%] p-4 sm:p-6 md:p-8 lg:p-12 pt-12 sm:pt-16 lg:pt-20 bg-transparent">
         {/* Product Content */}
         <div className="flex flex-col gap-4">
           {/* Title and Price */}
