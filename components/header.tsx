@@ -18,7 +18,7 @@ export default function Header() {
         </Link>
 
         {/* Navigation */}
-        <nav className="absolute font-bold leading-[0] right-[28px] rounded-[4px] tracking-[-0.24px] uppercase px-[12px] flex items-center gap-[16px] top-1/2 -translate-y-1/2">
+        <nav className="absolute font-bold leading-[0] right-[28px] rounded-[4px] tracking-[-0.24px] uppercase px-[12px] flex items-center gap-[16px] top-1/2 -translate-y-1/2 z-40">
           <Link
             href="/"
             className="text-[13.6px] leading-[19.2px] hover:opacity-80 transition-opacity text-black"
@@ -35,7 +35,7 @@ export default function Header() {
           {/* Cart Icon */}
           <Link
             href="/cart"
-            className="relative text-[13.6px] leading-[19.2px] hover:opacity-80 transition-opacity mb-2 text-black flex items-center gap-2 hidden sm:flex"
+            className="relative text-[13.6px] leading-[19.2px] hover:opacity-80 transition-opacity mb-2 text-black flex items-center gap-2"
           >
             <svg
               className="w-5 h-5"

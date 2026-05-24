@@ -74,7 +74,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               {/* View Cart Button */}
               <Link
                 href="/cart"
-                className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase hover:bg-white/10 transition-colors relative flex items-center justify-center flex-1 sm:flex-initial pointer-events-auto z-10"
+                className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase hover:bg-white/10 transition-colors relative flex items-center justify-center flex-1 sm:flex-initial"
               >
                 View Cart
               </Link>
