@@ -71,7 +71,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <button
               onClick={handleDownload}
               disabled={!product.download?.url}
-              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-stone-300 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Download size={20} />
               DOWNLOAD
