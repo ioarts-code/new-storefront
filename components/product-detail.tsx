@@ -91,21 +91,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               )}
             </div>
 
-            {/* Etsy Button - Full Width */}
-            <a
-              href="https://www.etsy.com/shop/ioartseu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="h-10 sm:h-11 lg:h-[45px] rounded-lg lg:rounded-[6px] hover:bg-white/30 transition-colors relative flex items-center justify-center w-full"
-            >
-              <div
-                aria-hidden="true"
-                className="absolute border-2 border-white border-solid inset-0 pointer-events-none rounded-lg lg:rounded-[6px]"
-              />
-              <div className="font-['Inter:Extra_Bold',sans-serif] font-extrabold text-white text-sm sm:text-base lg:text-[16px] uppercase">
-                Etsy
-              </div>
-            </a>
+
           </div>
 
           {/* Category */}
