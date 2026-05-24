@@ -14,32 +14,23 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const copyright = 'Unofficial: Rightsholder permits fanart on merch in small scale';
 
   const handleDownload = async () => {
-    console.log('[v0] Download button clicked');
-    console.log('[v0] Product download:', product.download);
-    
     if (!product.download?.url) {
-      console.log('[v0] No download URL available');
       return;
     }
     
     try {
-      console.log('[v0] Fetching from:', product.download.url);
       const response = await fetch(product.download.url);
-      console.log('[v0] Fetch response:', response.status);
       const blob = await response.blob();
-      console.log('[v0] Blob created:', blob.size, blob.type);
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.download = product.download.fileName || `${product.name}.svg`;
-      console.log('[v0] Starting download as:', link.download);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
-      console.log('[v0] Download complete');
     } catch (error) {
-      console.error('[v0] Download failed:', error);
+      console.error('Download failed:', error);
     }
   };
 
@@ -88,7 +79,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
         </div>
 
-          {/* Category */}
+        {/* Category */}
           <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px] mt-4 lg:mt-[20px] pt-2 lg:pt-[11px] pb-0">
             Category: {category}
           </p>
