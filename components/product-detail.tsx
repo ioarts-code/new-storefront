@@ -87,21 +87,20 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <Coffee size={20} />
               Buy me coffee
             </a>
+          </div>
 
+          {/* Category and Copyright */}
+          <div className="flex flex-col gap-1 mt-6">
+            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
+              Category: {category}
+            </p>
 
+            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
+              Copyright: {copyright}
+            </p>
           </div>
         </div>
 
-        {/* Category and Copyright */}
-        <div className="flex flex-col gap-1">
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
-            Category: {category}
-          </p>
-
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
-            Copyright: {copyright}
-          </p>
-        </div>
       </div>
 
       {/* Right Column - Product Image */}
