@@ -3,7 +3,6 @@
 import { Product, ProductImage } from '@/lib/types';
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Download } from 'lucide-react';
 import { useCart } from '@/lib/cart-context';
 
@@ -73,22 +72,13 @@ export function ProductDetail({ product }: ProductDetailProps) {
               </button>
 
               {/* Download Button */}
-              {product.download?.url ? (
-                <a
-                  href={product.download.url}
-                  download={product.download.fileName || product.name}
-                  className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase hover:bg-yellow-400 hover:border-yellow-400 transition-colors relative flex items-center justify-center flex-1 sm:flex-initial"
-                >
-                  <Download size={20} className="text-white hover:text-black" />
-                </a>
-              ) : (
-                <Link
-                  href="/cart"
-                  className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase hover:bg-white/10 transition-colors relative flex items-center justify-center flex-1 sm:flex-initial"
-                >
-                  View Cart
-                </Link>
-              )}
+              <a
+                href={product.download?.url || '#'}
+                download={product.download?.fileName || product.name}
+                className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center flex-1 sm:flex-initial hover:bg-yellow-400 hover:text-black hover:border-yellow-400"
+              >
+                <Download size={20} />
+              </a>
             </div>
 
 
