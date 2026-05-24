@@ -2,7 +2,7 @@
 
 import { Product, ProductImage } from '@/lib/types';
 import Image from 'next/image';
-import { Download } from 'lucide-react';
+import { Download, Coffee, DollarSign } from 'lucide-react';
 
 interface ProductDetailProps {
   product: Product;
@@ -66,16 +66,36 @@ export function ProductDetail({ product }: ProductDetailProps) {
             {product.description}
           </p>
 
-          {/* Download Button */}
-          <div className="mt-4 lg:mt-[10px]">
+          {/* Download and Support Buttons */}
+          <div className="mt-4 lg:mt-[10px] flex flex-col sm:flex-row gap-3">
             <button
               onClick={handleDownload}
               disabled={!product.download?.url}
-              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-stone-300 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-stone-300 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-initial"
             >
               <Download size={20} />
               DOWNLOAD
             </button>
+
+            {/* Buy Me Coffee Link */}
+            <a
+              href="https://buymeacoffee.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 flex-1 sm:flex-initial"
+            >
+              <Coffee size={20} />
+              COFFEE
+            </a>
+
+            {/* PayPal Placeholder Link */}
+            <a
+              href="#paypal"
+              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-blue-500 hover:text-white hover:border-blue-500 flex-1 sm:flex-initial opacity-60"
+            >
+              <DollarSign size={20} />
+              PAYPAL
+            </a>
           </div>
         </div>
 
