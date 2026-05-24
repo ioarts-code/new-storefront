@@ -23,6 +23,25 @@ export function ProductDetail({ product }: ProductDetailProps) {
     setTimeout(() => setAddedToCart(false), 2000);
   };
 
+  const handleDownload = async () => {
+    if (!product.download?.url) return;
+    
+    try {
+      const response = await fetch(product.download.url);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = product.download.fileName || `${product.name}.svg`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
+  };
+
   return (
     <div
       className="flex flex-col lg:flex-row min-h-screen w-full gap-6 lg:gap-0"
@@ -72,13 +91,13 @@ export function ProductDetail({ product }: ProductDetailProps) {
               </button>
 
               {/* Download Button */}
-              <a
-                href={product.download?.url || '#'}
-                download={product.download?.fileName || product.name}
-                className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center flex-1 sm:flex-initial hover:bg-yellow-400 hover:text-black hover:border-yellow-400"
+              <button
+                onClick={handleDownload}
+                disabled={!product.download?.url}
+                className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 rounded-lg lg:rounded-[6px] border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center flex-1 sm:flex-initial hover:bg-yellow-400 hover:text-black hover:border-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Download size={20} />
-              </a>
+              </button>
             </div>
 
 
