@@ -82,7 +82,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               href="https://buymeacoffee.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-yellow-400 hover:text-black hover:border-yellow-400 flex-1 sm:flex-initial"
+              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-yellow-300 hover:text-black hover:border-yellow-300 flex-1 sm:flex-initial"
             >
               <Coffee size={20} />
               Buy me coffee
