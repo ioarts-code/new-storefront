@@ -57,7 +57,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[96px] text-white"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >
-              {product.price ? `$${product.price}` : 'Contact for price'}
+              ${product.price || 0}
             </div>
           </div>
 
@@ -71,7 +71,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <button
               onClick={handleDownload}
               disabled={!product.download?.url}
-              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-stone-300 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-initial"
+              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-green-300 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-initial"
             >
               <Download size={20} />
               DOWNLOAD
@@ -82,7 +82,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               href="https://buymeacoffee.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-yellow-300 hover:text-black hover:border-yellow-300 flex-1 sm:flex-initial"
+              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-yellow-200 hover:text-black hover:border-yellow-300 flex-1 sm:flex-initial"
             >
               <Coffee size={20} />
               Buy me coffee
@@ -92,15 +92,16 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
         </div>
 
-        {/* Category */}
-        <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px] mt-8 lg:mt-6 pt-2 lg:pt-[11px] pb-0">
-          Category: {category}
-        </p>
+        {/* Category and Copyright */}
+        <div className="flex flex-col gap-1">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
+            Category: {category}
+          </p>
 
-        {/* Copyright */}
-        <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
-          Copyright: {copyright}
-        </p>
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
+            Copyright: {copyright}
+          </p>
+        </div>
       </div>
 
       {/* Right Column - Product Image */}
