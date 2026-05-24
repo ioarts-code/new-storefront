@@ -84,6 +84,7 @@ export function CheckoutForm() {
           confirmParams: {
             return_url: `${typeof window !== 'undefined' ? window.location.origin : ''}/checkout/success`,
           },
+          redirect: 'if_required',
         });
 
         if (result.error) {
