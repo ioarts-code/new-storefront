@@ -53,14 +53,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </h1>
 
             {/* Price */}
-            {product.price && (
-              <div
-                className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[96px] text-white"
-                style={{ fontVariationSettings: "'wdth' 100" }}
-              >
-                ${product.price}
-              </div>
-            )}
+            <div
+              className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[96px] text-white"
+              style={{ fontVariationSettings: "'wdth' 100" }}
+            >
+              ${product.price || 0}
+            </div>
           </div>
 
           {/* Description */}
@@ -94,15 +92,16 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
         </div>
 
-        {/* Category */}
-        <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px] mt-8 lg:mt-6 pt-2 lg:pt-[11px] pb-0">
-          Category: {category}
-        </p>
+        {/* Category and Copyright */}
+        <div className="flex flex-col gap-1">
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
+            Category: {category}
+          </p>
 
-        {/* Copyright */}
-        <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
-          Copyright: {copyright}
-        </p>
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
+            Copyright: {copyright}
+          </p>
+        </div>
       </div>
 
       {/* Right Column - Product Image */}
