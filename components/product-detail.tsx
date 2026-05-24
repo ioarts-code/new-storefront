@@ -80,15 +80,14 @@ export function ProductDetail({ product }: ProductDetailProps) {
         </div>
 
         {/* Category */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px] mt-4 lg:mt-[20px] pt-2 lg:pt-[11px] pb-0">
-            Category: {category}
-          </p>
+        <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px] mt-4 lg:mt-[20px] pt-2 lg:pt-[11px] pb-0">
+          Category: {category}
+        </p>
 
-          {/* Copyright */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
-            Copyright: {copyright}
-          </p>
-        </div>
+        {/* Copyright */}
+        <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
+          Copyright: {copyright}
+        </p>
       </div>
 
       {/* Right Column - Product Image */}
