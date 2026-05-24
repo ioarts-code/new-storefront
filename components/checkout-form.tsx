@@ -1,14 +1,11 @@
 'use client';
 
-import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/lib/cart-context';
 import Link from 'next/link';
 
 export function CheckoutForm() {
-  const stripe = useStripe();
-  const elements = useElements();
   const router = useRouter();
   const { state, dispatch } = useCart();
 
@@ -23,102 +20,63 @@ export function CheckoutForm() {
   const [city, setCity] = useState('');
   const [postalCode, setPostalCode] = useState('');
   const [country, setCountry] = useState('SE');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvc, setCvc] = useState('');
+
+  const handleCardNumberChange = (value: string) => {
+    // Only allow numbers and spaces
+    const formatted = value.replace(/\s/g, '').replace(/(\d{4})/g, '$1 ').trim();
+    setCardNumber(formatted.slice(0, 19)); // 16 digits + 3 spaces
+  };
+
+  const handleExpiryChange = (value: string) => {
+    const formatted = value.replace(/\D/g, '').slice(0, 4);
+    if (formatted.length >= 2) {
+      setExpiryDate(formatted.slice(0, 2) + '/' + formatted.slice(2, 4));
+    } else {
+      setExpiryDate(formatted);
+    }
+  };
+
+  const handleCvcChange = (value: string) => {
+    setCvc(value.replace(/\D/g, '').slice(0, 3));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage(null);
     setSuccessMessage(null);
 
-    if (!stripe || !elements) {
-      setErrorMessage('Stripe not loaded');
+    if (state.items.length === 0) {
+      setErrorMessage('Cart is empty');
       return;
     }
 
-    if (state.items.length === 0) {
-      setErrorMessage('Cart is empty');
+    if (!cardNumber || !expiryDate || !cvc) {
+      setErrorMessage('Please fill in all card details');
       return;
     }
 
     setIsProcessing(true);
 
     try {
-      // Create payment intent
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: state.total,
-          email,
-          metadata: {
-            customerName: fullName,
-            address,
-            city,
-            postalCode,
-            country,
-            itemCount: state.items.length,
-          },
-        }),
-      });
+      // Demo mode - simulate payment processing
+      await new Promise(resolve => setTimeout(resolve, 1500));
 
-      const { clientSecret, paymentIntentId } = await response.json();
+      setSuccessMessage('Payment successful! Your order has been placed.');
+      dispatch({ type: 'CLEAR_CART' });
 
-      if (!clientSecret) {
-        setErrorMessage('Failed to create payment intent');
-        setIsProcessing(false);
-        return;
-      }
+      // Generate a demo order ID
+      const demoOrderId = 'ORDER-' + Math.random().toString(36).substr(2, 9).toUpperCase();
 
-      // Submit elements first as required by Stripe
-      const submitResult = await elements.submit();
-      if (submitResult.error) {
-        setErrorMessage(submitResult.error.message || 'Payment validation failed');
-        setIsProcessing(false);
-        return;
-      }
-
-      // Confirm payment with PaymentElement (supports Card and PayPal)
-      try {
-        const result = await stripe.confirmPayment({
-          elements,
-          clientSecret,
-          confirmParams: {
-            return_url: `${typeof window !== 'undefined' ? window.location.origin : ''}/checkout/success`,
-          },
-          redirect: 'if_required',
-        });
-
-        if (result.error) {
-          setErrorMessage(result.error.message || 'Payment failed');
-          setIsProcessing(false);
-        } else if (result.paymentIntent) {
-          if (result.paymentIntent.status === 'succeeded') {
-            setSuccessMessage('Payment successful! Your order has been placed.');
-            dispatch({ type: 'CLEAR_CART' });
-            // Use Next.js router to navigate
-            setTimeout(() => {
-              router.push(`/checkout/success?orderId=${result.paymentIntent?.id}`);
-            }, 1500);
-          } else if (result.paymentIntent.status === 'processing') {
-            setSuccessMessage('Payment is processing. You will be redirected shortly...');
-            dispatch({ type: 'CLEAR_CART' });
-            setTimeout(() => {
-              router.push(`/checkout/success?orderId=${result.paymentIntent?.id}`);
-            }, 2000);
-          }
-        }
-      } catch (paymentError: any) {
-        // Handle SecurityError from PayPal redirects - only occurs in restricted environments
-        if (paymentError?.name === 'SecurityError') {
-          setErrorMessage('PayPal requires a production environment. Please use a card to complete your purchase, or deploy to production for PayPal support.');
-        } else {
-          setErrorMessage(paymentError?.message || 'Payment failed');
-        }
-        setIsProcessing(false);
-      }
+      // Use Next.js router to navigate
+      setTimeout(() => {
+        router.push(`/checkout/success?orderId=${demoOrderId}`);
+      }, 1500);
     } catch (error) {
       setErrorMessage('An error occurred. Please try again.');
       console.error(error);
-    } finally {
       setIsProcessing(false);
     }
   };
@@ -205,23 +163,50 @@ export function CheckoutForm() {
       {/* Payment Information */}
       <div className="space-y-6">
         <h2 className="text-2xl font-bold text-white">Payment Information</h2>
+        <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-lg text-blue-300 text-sm">
+          Demo Mode: This is a demonstration checkout. Enter any valid card number format below.
+        </div>
 
         <div>
           <label className="block text-sm font-semibold text-gray-300 mb-2">
-            Payment Method *
+            Card Number *
           </label>
-          <div className="px-4 py-3 bg-white/5 border border-gray-700 rounded-lg">
-            <PaymentElement
-              options={{
-                layout: 'tabs',
-                defaultValues: {
-                  billingDetails: {
-                    address: {
-                      country: 'SE',
-                    },
-                  },
-                },
-              }}
+          <input
+            type="text"
+            required
+            value={cardNumber}
+            onChange={(e) => handleCardNumberChange(e.target.value)}
+            className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none font-mono"
+            placeholder="4242 4242 4242 4242"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">
+              Expiry Date *
+            </label>
+            <input
+              type="text"
+              required
+              value={expiryDate}
+              onChange={(e) => handleExpiryChange(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none font-mono"
+              placeholder="MM/YY"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">
+              CVC *
+            </label>
+            <input
+              type="text"
+              required
+              value={cvc}
+              onChange={(e) => handleCvcChange(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:border-white focus:outline-none font-mono"
+              placeholder="123"
             />
           </div>
         </div>
@@ -264,7 +249,7 @@ export function CheckoutForm() {
       {/* Submit Button */}
       <button
         type="submit"
-        disabled={isProcessing || !stripe}
+        disabled={isProcessing}
         className="w-full py-4 bg-white text-black font-bold text-lg rounded-lg hover:bg-gray-200 disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors"
       >
         {isProcessing ? 'Processing...' : `Pay $${state.total.toFixed(2)} USD`}
