@@ -53,12 +53,14 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </h1>
 
             {/* Price */}
-            <div
-              className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[96px] text-white"
-              style={{ fontVariationSettings: "'wdth' 100" }}
-            >
-              {product.price ? `$${product.price}` : 'Contact for price'}
-            </div>
+            {product.price && (
+              <div
+                className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[96px] text-white"
+                style={{ fontVariationSettings: "'wdth' 100" }}
+              >
+                ${product.price}
+              </div>
+            )}
           </div>
 
           {/* Description */}
