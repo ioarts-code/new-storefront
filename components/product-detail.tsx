@@ -2,7 +2,7 @@
 
 import { Product, ProductImage } from '@/lib/types';
 import Image from 'next/image';
-import { Download, Coffee, DollarSign } from 'lucide-react';
+import { Download, Coffee } from 'lucide-react';
 
 interface ProductDetailProps {
   product: Product;
@@ -88,14 +88,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               COFFEE
             </a>
 
-            {/* PayPal Placeholder Link */}
-            <a
-              href="#paypal"
-              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-blue-500 hover:text-white hover:border-blue-500 flex-1 sm:flex-initial opacity-60"
-            >
-              <DollarSign size={20} />
-              PAYPAL
-            </a>
+
           </div>
         </div>
 
