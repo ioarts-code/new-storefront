@@ -86,9 +86,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               DOWNLOAD
             </button>
           </div>
-
-
-          </div>
+        </div>
 
           {/* Category */}
           <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px] mt-4 lg:mt-[20px] pt-2 lg:pt-[11px] pb-0">
