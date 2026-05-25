@@ -82,8 +82,8 @@ export default function ProductPage() {
 
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
-      <div className="max-w-full lg:max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-8">
-        <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-6 sm:mb-8 text-sm sm:text-base">
+      <div className="max-w-full lg:max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-10 md:py-12">
+        <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-12 sm:mb-16 md:mb-20 text-sm sm:text-base">
           <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           Back to Home
         </Link>
