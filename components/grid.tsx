@@ -63,6 +63,18 @@ function GridItem({ product }: GridItemProps) {
   );
 }
 
+function MoreItem() {
+  return (
+    <div className="content-stretch flex flex-col aspect-[3/4] tablet:aspect-auto tablet:h-[450px] desktop:h-[650px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-visible pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer bg-[rgba(255,255,255,0.05)] rounded-lg hover:bg-[rgba(255,255,255,0.1)] transition-colors duration-200">
+      <div className="content-stretch flex flex-col items-center w-full h-full relative justify-center">
+        <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 mobile:text-[24px] tablet:text-[32px] desktop:text-[48px] text-center text-white mobile:tracking-[-0.48px] tablet:tracking-[-0.64px] desktop:tracking-[-0.96px] uppercase whitespace-nowrap">
+          <p className="mobile:leading-[34px] tablet:leading-[45px] desktop:leading-[67px]">More</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface GridProps {
   products: Product[];
   isLoading?: boolean;
@@ -104,7 +116,7 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
 
   return (
     <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16 bg-transparent">
-      {categoryEntries.map(([categoryName, categoryProducts]) => (
+      {categoryEntries.map(([categoryName, categoryProducts], index) => (
         <div key={categoryName} className="w-full bg-transparent">
           {/* Category Title */}
           <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] text-white tracking-[-0.64px] mb-8 block desktop:block tablet:hidden mobile:hidden bg-transparent">
@@ -117,6 +129,15 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
               <GridItem key={product.id} product={product} />
             ))}
           </div>
+
+          {/* More item between categories (max 3 columns on desktop) */}
+          {index < categoryEntries.length - 1 && (
+            <div className="mt-16 w-full">
+              <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-32 tablet:gap-y-16 w-full bg-transparent">
+                <MoreItem />
+              </div>
+            </div>
+          )}
         </div>
       ))}
     </div>
