@@ -120,7 +120,7 @@ function A3() {
 
 function DivAbsolute1() {
   return (
-    <div className="absolute content-stretch flex mobile:flex-wrap mobile:gap-y-2 tablet:gap-[16px] h-auto mobile:h-auto tablet:h-[20px] items-start left-[44px] mobile:top-[380px] tablet:top-[464px] mobile:w-[calc(100%-88px)] mobile:flex-col tablet:flex-row" data-name="div.absolute">
+    <div className="absolute content-stretch flex mobile:flex-wrap mobile:gap-y-2 tablet:gap-[16px] h-auto mobile:h-auto tablet:h-[20px] items-start left-[44px] mobile:top-[380px] tablet:top-[490px] mobile:w-[calc(100%-88px)] mobile:flex-col tablet:flex-row" data-name="div.absolute">
       <A />
       <A1 />
       <A2 />
@@ -131,7 +131,7 @@ function DivAbsolute1() {
 
 function DivAbsolute2() {
   return (
-    <div className="absolute content-stretch flex flex-col items-end right-[44px] mobile:right-[32px] mobile:bottom-[16px] tablet:top-[472px] mobile:w-auto" data-name="div.absolute">
+    <div className="absolute content-stretch flex flex-col items-end right-[44px] mobile:right-[32px] mobile:bottom-[16px] tablet:top-[498px] mobile:w-auto" data-name="div.absolute">
       <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[14.8px] text-white tracking-[-0.24px] text-right mobile:rotate-90 mobile:origin-bottom-right">
         <p className="leading-[19.2px]">2026© — All rights reserved</p>
       </div>
