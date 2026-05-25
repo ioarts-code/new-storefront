@@ -35,7 +35,7 @@ export default function Header() {
           {/* Cart Icon */}
           <Link
             href="/cart"
-            className="relative text-[13.6px] leading-[19.2px] hover:opacity-80 transition-opacity mb-2 text-black flex items-center gap-2"
+            className="relative text-[13.6px] leading-[19.2px] hover:opacity-80 transition-opacity mb-2 text-black flex items-center gap-2 hidden"
           >
             <svg
               className="w-5 h-5"
