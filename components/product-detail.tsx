@@ -40,7 +40,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
     >
       {/* Left Column */}
-      <div className="flex flex-col justify-between w-full lg:w-[55%] xl:w-1/2 p-4 sm:p-6 md:p-8 lg:p-12 xl:px-16 2xl:px-20 bg-transparent">
+      <div className="flex flex-col justify-between w-full lg:w-[85%] xl:w-[100%] bg-transparent">
         {/* Product Content */}
         <div className="flex flex-col gap-4">
           {/* Title and Price */}
@@ -79,7 +79,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               href="https://buymeacoffee.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-yellow-200 hover:text-black hover:border-yellow-300 flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 hover:bg-yellow-200 hover:text-black hover:border-yellow-300 flex-1 sm:flex-initial"
             >
               <Coffee size={20} />
               Buy me coffee
