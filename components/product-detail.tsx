@@ -43,7 +43,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       }}
     >
       {/* Left Column */}
-      <div className="flex flex-col lg:justify-start w-full lg:w-[55%] p-4 sm:p-6 md:p-8 lg:p-12 bg-transparent">
+      <div className="flex flex-col justify-between w-full lg:w-[55%] p-4 sm:p-6 md:p-8 lg:p-12 bg-transparent">
         {/* Product Content */}
         <div className="flex flex-col gap-4">
           {/* Title and Price */}
@@ -90,7 +90,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </div>
 
           {/* Category and Copyright */}
-          <div className="flex flex-col gap-1 mt-6 lg:mt-4">
+          <div className="flex flex-col gap-1 mt-6">
             <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
               Category: {category}
             </p>
