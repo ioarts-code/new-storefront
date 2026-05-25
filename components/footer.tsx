@@ -43,7 +43,7 @@ function SpanFontBold() {
 function ShopOnEtsy() {
   return (
     <a
-      className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
+      className="content-stretch flex items-center hover:bg-red-300 hover:text-black justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
       href="https://www.etsy.com/shop/ioartseu"
       target="_blank"
       rel="noreferrer"
