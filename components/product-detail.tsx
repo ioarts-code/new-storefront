@@ -71,7 +71,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <button
               onClick={handleDownload}
               disabled={!product.download?.url}
-              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-green-300 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-green-300 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-initial"
             >
               <Download size={20} />
               DOWNLOAD
@@ -82,7 +82,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               href="https://buymeacoffee.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="h-10 sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-yellow-200 hover:text-black hover:border-yellow-300 flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-yellow-200 hover:text-black hover:border-yellow-300 flex-1 sm:flex-initial"
             >
               <Coffee size={20} />
               Buy me coffee
