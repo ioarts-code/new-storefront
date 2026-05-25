@@ -51,7 +51,7 @@ function GridItem({ product }: GridItemProps) {
               <div className="relative shrink-0">
                 <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-center relative size-full">
                   <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 mobile:text-[12px] tablet:text-[14px] desktop:text-[20px] text-center text-white mobile:tracking-[-0.24px] tablet:tracking-[-0.28px] desktop:tracking-[-0.36px] uppercase whitespace-nowrap">
-                    <p className="mobile:leading-[17px] tablet:leading-[20px] desktop:leading-[28.8px]">Shop</p>
+                    <p className="mobile:leading-[17px] tablet:leading-[20px] desktop:leading-[28.8px]">View</p>
                   </div>
                 </div>
               </div>
