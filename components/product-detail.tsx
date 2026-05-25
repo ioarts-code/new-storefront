@@ -104,7 +104,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       </div>
 
       {/* Right Column - Product Image */}
-      <div className="w-full lg:w-[80%] flex lg:items-start items-center justify-center p-4 lg:p-4 lg:pr-8 order-first lg:order-last lg:pt-12">
+      <div className="w-full lg:w-[45%] flex lg:items-start items-center justify-center p-4 lg:p-4 lg:pr-8 order-first lg:order-last lg:pt-12">
         {imageUrl ? (
           <Image
             alt={product.name}
