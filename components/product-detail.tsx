@@ -37,10 +37,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
   return (
     <div
       className="flex flex-col lg:flex-row min-h-screen w-full gap-6 lg:gap-0"
-      style={{
-        backgroundImage:
-          'linear-gradient(90deg, rgb(15, 15, 15) 0%, rgb(15, 15, 15) 100%), linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%)',
-      }}
+
     >
       {/* Left Column */}
       <div className="flex flex-col justify-between w-full lg:w-[55%] xl:w-1/2 p-4 sm:p-6 md:p-8 lg:p-12 xl:px-16 2xl:px-20 bg-transparent">
@@ -104,7 +101,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       </div>
 
       {/* Right Column - Product Image */}
-      <div className="w-full lg:w-[45%] xl:w-1/2 flex lg:items-start items-center justify-center p-4 lg:p-4 lg:pr-8 xl:pr-16 2xl:pr-20 order-first lg:order-last lg:pt-12">
+      <div className="w-full lg:w-[45%] xl:w-[85%] flex lg:items-start items-center justify-center p-4 lg:p-4 lg:pr-8 xl:pr-16 2xl:pr-0 order-first lg:order-last lg:pt-12">
         {imageUrl ? (
           <Image
             alt={product.name}
