@@ -2,7 +2,7 @@
 
 import { Product, ProductImage } from '@/lib/types';
 import Image from 'next/image';
-import { Download, Coffee } from 'lucide-react';
+import { Download, Coffee, ShoppingBagIcon } from 'lucide-react';
 
 interface ProductDetailProps {
   product: Product;
@@ -73,16 +73,18 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <Download size={20} />
               SVG
             </button>
+            {/* Search Store */}
             <a
               href="https://www.google.com/maps/search/t-shirt+printing+near+me"
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 hover:bg-blue-200 hover:text-black hover:border-blue-300 flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 hover:bg-blue-200 hover:text-black hover:border-blue-200 flex-1 sm:flex-initial"
             >
-              <Coffee size={20} />
-              Buy me coffee
+              <ShoppingBagIcon size={20} />
+              Search
             </a>
-            {/* Search */}
+
+            {/* Buy me coffee */}
             <a
               href="https://buymeacoffee.com"
               target="_blank"
