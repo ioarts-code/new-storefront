@@ -2,7 +2,7 @@
 
 import { Product, ProductImage } from '@/lib/types';
 import Image from 'next/image';
-import { Download, Coffee, ShoppingBagIcon } from 'lucide-react';
+import { Download, Coffee, ShoppingBagIcon, SearchIcon } from 'lucide-react';
 
 interface ProductDetailProps {
   product: Product;
@@ -82,7 +82,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 hover:bg-green-300 hover:text-black flex-1 sm:flex-initial"
             >
               Search
-              <ShoppingBagIcon size={20} />
+              <SearchIcon size={20} />
               
             </a>
 
