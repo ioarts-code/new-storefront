@@ -79,7 +79,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               href="https://www.google.com/maps/search/t-shirt+printing+near+me"
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 hover:bg-green-300 hover:text-black flex-1 sm:flex-initial"
             >
               Search
               <ShoppingBagIcon size={20} />
