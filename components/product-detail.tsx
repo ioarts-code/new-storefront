@@ -86,6 +86,18 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </a>
           </div>
 
+          {/* Buy Me Coffee Link */}
+            <a
+              href="https://buymeacoffee.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 hover:bg-yellow-200 hover:text-black hover:border-yellow-300 flex-1 sm:flex-initial"
+            >
+              <Coffee size={20} />
+              Buy me coffee
+            </a>
+          </div>
+
           {/* Category and Copyright */}
           <div className="flex flex-col gap-1 mt-6">
             <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
