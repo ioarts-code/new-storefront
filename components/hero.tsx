@@ -20,7 +20,7 @@ const truncateDescription = (text: string, maxLength: number = 60): string => {
 
 export default function Hero({
   showFeaturedCard = true,
-  featuredCardSlug = 'hoodie-elden',
+  featuredCardSlug = 't-shirt-stray',
 }: HeroProps) {
   const router = useRouter();
   const [backgroundImage, setBackgroundImage] = useState<string>('');
@@ -34,7 +34,7 @@ export default function Hero({
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(
           GET_PRODUCT_BY_SLUG,
-          { slug: 'hoodie-elden' }
+          { slug: 't-shirt-stray' }
         );
 
         const product = data?.products?.[0];
