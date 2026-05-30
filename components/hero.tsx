@@ -20,7 +20,7 @@ const truncateDescription = (text: string, maxLength: number = 60): string => {
 
 export default function Hero({
   showFeaturedCard = true,
-  featuredCardSlug = 'hoodie-elden',
+  featuredCardSlug = 't-shirt-stray',
 }: HeroProps) {
   const router = useRouter();
   const [backgroundImage, setBackgroundImage] = useState<string>('');
@@ -34,7 +34,7 @@ export default function Hero({
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(
           GET_PRODUCT_BY_SLUG,
-          { slug: 'hoodie-elden' }
+          { slug: 't-shirt-stray' }
         );
 
         const product = data?.products?.[0];
@@ -82,7 +82,7 @@ export default function Hero({
 
   return (
     <div className="relative">
-      <div className="relative lg:h-[1000px] mobile:h-[650px] flex items-start justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
+      <div className="relative lg:h-[800px] mobile:h-[650px] flex items-start justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
         {/* Background image - hidden on screens smaller than 1024px */}
         {backgroundImage && (
           <img
@@ -147,7 +147,7 @@ export default function Hero({
           {featuredCardLoading ? (
             <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 w-56 sm:w-72 md:w-80 lg:w-96 h-auto bg-white/20 rounded-lg animate-pulse" />
           ) : featuredProduct ? (
-            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-transparent rounded-lg gap-2 sm:gap-4 z-10">
+            <div className="absolute hidden top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-transparent rounded-lg gap-2 sm:gap-4 z-10">
               <div className="absolute border-l-3 border-white inset-0 pointer-events-none " />
 
               {/* Badge */}
