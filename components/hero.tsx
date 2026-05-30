@@ -82,11 +82,11 @@ export default function Hero({
 
   return (
     <div className="relative">
-      <div className="relative lg:h-[1500px] mobile:h-[650px] flex items-center justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
+      <div className="relative lg:h-[1500px] mobile:h-[650px] flex items-center justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/t-shirt-stray')}>
         {/* Background image - hidden on screens smaller than 1024px */}
         {backgroundImage && (
           <img
-            alt="Hoodie Elden"
+            alt="T-Shirt-Stray"
             src={backgroundImage}
             loading="eager"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none lg:block hover:opacity-90 transition-opacity"
