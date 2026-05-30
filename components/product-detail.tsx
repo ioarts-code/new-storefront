@@ -88,7 +88,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
             {/* Buy me coffee */}
             <a
-              href="buymeacoffee.com/ioartseu"
+              href="https://buymeacoffee.com/ioartseu"
               target="_blank"
               rel="noopener noreferrer"
               className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 hover:bg-yellow-200 hover:text-black flex-1 sm:flex-initial"
