@@ -82,7 +82,7 @@ export default function Hero({
 
   return (
     <div className="relative">
-      <div className="relative lg:h-[1500px] mobile:h-[650px] flex items-center justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
+      <div className="relative lg:h-[1000px] mobile:h-[600px] flex items-center justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
         {/* Background image - hidden on screens smaller than 1024px */}
         {backgroundImage && (
           <img
