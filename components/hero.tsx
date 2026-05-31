@@ -82,7 +82,7 @@ export default function Hero({
 
   return (
     <div className="relative">
-      <div className="relative lg:h-[1500px] mobile:h-[650px] flex items-center justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
+      <div className="relative lg:h-[1000px] mobile:h-[600px] flex items-center justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
         {/* Background image - hidden on screens smaller than 1024px */}
         {backgroundImage && (
           <img
@@ -169,7 +169,7 @@ export default function Hero({
               {/* Button */}
               <Link
                 href={`/products/${featuredProduct.slug}`}
-                className="flex items-center justify-center hidden px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white hover:bg-green-300 hover:text-black font-bold text-xs sm:text-sm uppercase"
+                className="flex items-center justify-center px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white hover:bg-green-300 hover:text-black font-bold text-xs sm:text-sm uppercase"
               >
                 View
               </Link>
