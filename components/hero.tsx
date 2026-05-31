@@ -95,7 +95,7 @@ export default function Hero({
 
       {/* Horizontal Stripe Divider - Bottom */}
       <div
-        className="absolute bottom-0 top-200 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none overflow-hidden"
+        className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none overflow-hidden"
         style={{
           height: '160px',
         }}
