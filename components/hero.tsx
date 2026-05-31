@@ -20,7 +20,7 @@ const truncateDescription = (text: string, maxLength: number = 60): string => {
 
 export default function Hero({
   showFeaturedCard = true,
-  featuredCardSlug = 't-shirt-stray',
+  featuredCardSlug = 'hoodie-elden',
 }: HeroProps) {
   const router = useRouter();
   const [backgroundImage, setBackgroundImage] = useState<string>('');
@@ -34,7 +34,7 @@ export default function Hero({
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(
           GET_PRODUCT_BY_SLUG,
-          { slug: 't-shirt-stray' }
+          { slug: 'hoodie-elden' }
         );
 
         const product = data?.products?.[0];
@@ -43,7 +43,7 @@ export default function Hero({
           setBackgroundImage(product.images[0].url);
         }
       } catch (error) {
-        console.error('Failed to fetch hoodie product:', error);
+        console.error('Failed to fetch product:', error);
       } finally {
         setIsLoading(false);
       }
@@ -82,11 +82,11 @@ export default function Hero({
 
   return (
     <div className="relative">
-      <div className="relative lg:h-[1500px] mobile:h-[650px] flex items-center justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/t-shirt-stray')}>
+      <div className="relative lg:h-[1500px] mobile:h-[650px] flex items-center justify-center overflow-hidden w-screen cursor-pointer" onClick={() => router.push('/products/hoodie-elden')}>
         {/* Background image - hidden on screens smaller than 1024px */}
         {backgroundImage && (
           <img
-            alt="T-Shirt-Stray"
+            alt="hoodie-elden"
             src={backgroundImage}
             loading="eager"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none lg:block hover:opacity-90 transition-opacity"
@@ -95,7 +95,7 @@ export default function Hero({
 
       {/* Horizontal Stripe Divider - Bottom */}
       <div
-        className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none overflow-hidden"
         style={{
           height: '160px',
         }}
@@ -145,7 +145,7 @@ export default function Hero({
       {showFeaturedCard && (
         <>
           {featuredCardLoading ? (
-            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 w-56 sm:w-72 md:w-80 lg:w-96 h-auto bg-white/20 rounded-lg animate-pulse" />
+            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 w-56 sm:w-72 md:w-80 lg:w-96 h-auto bg-white/20 rounded-lg" />
           ) : featuredProduct ? (
             <div className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-10 md:right-10 lg:top-20 lg:right-20 flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-transparent rounded-lg gap-2 sm:gap-4 z-10">
               <div className="absolute border-l-3 border-white inset-0 pointer-events-none " />
@@ -169,7 +169,7 @@ export default function Hero({
               {/* Button */}
               <Link
                 href={`/products/${featuredProduct.slug}`}
-                className="flex items-center justify-center px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white hover:bg-green-300 hover:text-black font-bold text-xs sm:text-sm uppercase"
+                className="flex items-center justify-center hidden px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white hover:bg-green-300 hover:text-black font-bold text-xs sm:text-sm uppercase"
               >
                 View
               </Link>
