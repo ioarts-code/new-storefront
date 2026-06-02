@@ -28,9 +28,29 @@ export function createHygraphClient() {
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
+        let errorData: any = {};
+        try {
+          errorData = await response.json();
+        } catch {
+          errorData = { error: `HTTP ${response.status} - Could not parse error response` };
+        }
+        
+        const errorMessage = 
+          errorData?.errors?.[0]?.message || 
+          errorData?.error || 
+          errorData?.message || 
+          `API request failed with status ${response.status}`;
+        
         console.error('[v0] GraphQL error response:', errorData);
-        throw new Error(`API request failed with status ${response.status}: ${errorData.errors?.[0]?.message || 'Unknown error'}`);
+        console.error('[v0] Error details:', {
+          status: response.status,
+          statusText: response.statusText,
+          endpoint: origin + '/api/hygraph',
+          errorMessage,
+          fullResponse: JSON.stringify(errorData),
+        });
+        
+        throw new Error(`GraphQL request failed: ${errorMessage}`);
       }
 
       const data = await response.json();

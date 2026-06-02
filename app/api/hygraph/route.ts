@@ -9,10 +9,20 @@ export async function POST(request: NextRequest) {
   const AUTH_TOKEN =
     process.env.HYGRAPH_AUTH_TOKEN || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
 
+  // Log environment for debugging (first request only to avoid spam)
+  if (Math.random() < 0.05) {
+    console.log('[API] Hygraph config check:', {
+      endpoint: ENDPOINT ? '✓ Set' : '✗ Missing',
+      token: AUTH_TOKEN ? '✓ Set' : '✗ Missing (optional if content is public)',
+    });
+  }
+
   try {
     if (!ENDPOINT) {
+      const error = 'Hygraph configuration missing. Set NEXT_PUBLIC_HYGRAPH_ENDPOINT env var.';
+      console.error('[API]', error);
       return NextResponse.json(
-        { error: 'Hygraph configuration missing. Check HYGRAPH_ENDPOINT env var.' },
+        { errors: [{ message: error }] },
         { status: 500 }
       );
     }
@@ -60,10 +70,38 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({ query, variables }),
     });
 
-    const data = await response.json();
+    // Read response body once
+    const responseBody = await response.text();
+    
+    let data: any;
+    try {
+      data = responseBody ? JSON.parse(responseBody) : {};
+    } catch (parseError) {
+      console.error('[API] Failed to parse Hygraph response:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: responseBody.slice(0, 500), // First 500 chars
+        endpoint: ENDPOINT,
+      });
+      const errorMsg = `Hygraph returned invalid JSON (status ${response.status}): ${responseBody.slice(0, 200)}`;
+      return NextResponse.json(
+        { errors: [{ message: errorMsg }] },
+        { status: response.status || 500 }
+      );
+    }
 
     if (!response.ok) {
-      return NextResponse.json(data, { status: response.status });
+      console.error('[API] Hygraph returned error status:', {
+        status: response.status,
+        statusText: response.statusText,
+        data: data,
+      });
+      // Ensure we always return a proper error structure
+      const errors = data.errors || data.error || { message: `HTTP ${response.status}` };
+      return NextResponse.json(
+        { errors: Array.isArray(errors) ? errors : [{ message: String(errors) }] },
+        { status: response.status }
+      );
     }
 
     return NextResponse.json(data);

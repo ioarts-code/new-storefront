@@ -151,7 +151,7 @@ export default function Hero({
               <div className="absolute border-l-3 border-white inset-0 pointer-events-none " />
 
               {/* Badge */}
-              <div className="flex items-center px-2 py-0.5 sm:px-4 mobile:py-2 mobile:px-4 sm:py-1 border-2 border-white rounded-full">
+              <div className="flex items-center px-2 py-0.5 sm:px-4 mobile:py-1 mobile:px-4 sm:py-1 border-2 border-white rounded-full">
                 <span className="text-[10px] sm:text-xs mobile:text-[8px] font-bold text-white uppercase tracking-tight">Top Pick</span>
               </div>
 
@@ -166,10 +166,10 @@ export default function Hero({
                 <span className="hidden sm:block">{truncateDescription(featuredProduct.description, 60)}</span>
               </p>
 
-              {/* Button */}
+              {/* Button - Hidden on mobile */}
               <Link
                 href={`/products/${featuredProduct.slug}`}
-                className="flex px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white hover:bg-green-300 hover:text-black font-bold text-xs sm:text-sm uppercase"
+                className="hidden sm:flex px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white hover:bg-green-300 hover:text-black font-bold text-xs sm:text-sm uppercase"
               >
                 View
               </Link>

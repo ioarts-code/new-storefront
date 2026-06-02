@@ -29,9 +29,13 @@ export default function Home() {
           const fieldName = match ? match[1] : 'unknown field';
           message = `Hygraph schema missing: "${fieldName}"`;
         } else if (message.includes('401') || message.includes('Unauthorized')) {
-          message = 'Invalid API token. Check your Vercel environment variables.';
+          message = 'Invalid or missing Hygraph API token. Check HYGRAPH_AUTH_TOKEN env var.';
         } else if (message.includes('404') || message.includes('Not Found')) {
-          message = 'API endpoint not found. Verify NEXT_PUBLIC_HYGRAPH_ENDPOINT.';
+          message = 'Hygraph endpoint not found. Verify NEXT_PUBLIC_HYGRAPH_ENDPOINT env var.';
+        } else if (message.includes('Invalid response body') || message.includes('Invalid JSON')) {
+          message = 'Hygraph API returned an invalid response. Check your endpoint configuration.';
+        } else if (message.includes('ECONNREFUSED') || message.includes('connect')) {
+          message = 'Cannot reach Hygraph API. Check your internet connection and endpoint URL.';
         }
 
         setError(message);
