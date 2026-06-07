@@ -15,6 +15,10 @@ export const GET_PRODUCTS = /* GraphQL */ `
         name
         slug
       }
+      tags {
+        id
+        name
+      }
       images {
         id
         url
@@ -24,9 +28,9 @@ export const GET_PRODUCTS = /* GraphQL */ `
   }
 `;
 
-export const GET_PRODUCTS_BY_CATEGORY = /* GraphQL */ `
-  query GetProductsByCategory($categoryId: ID!) {
-    products(first: 100, where: { categories_some: { id: $categoryId } }) {
+export const GET_PRODUCTS_BY_TAG = /* GraphQL */ `
+  query GetProductsByTag($tagId: ID!) {
+    products(first: 100, where: { tags_some: { id: $tagId } }) {
       id
       name
       slug
@@ -36,26 +40,15 @@ export const GET_PRODUCTS_BY_CATEGORY = /* GraphQL */ `
         url
         fileName
       }
-      categories {
+      tags {
         id
         name
-        slug
       }
       images {
         id
         url
         fileName
       }
-    }
-  }
-`;
-
-export const GET_CATEGORIES = /* GraphQL */ `
-  query GetCategories {
-    categories(first: 50) {
-      id
-      name
-      slug
     }
   }
 `;
@@ -72,10 +65,9 @@ export const SEARCH_PRODUCTS = /* GraphQL */ `
         url
         fileName
       }
-      categories {
+      tags {
         id
         name
-        slug
       }
       images {
         id
@@ -102,6 +94,10 @@ export const GET_PRODUCT_BY_SLUG = /* GraphQL */ `
         id
         name
         slug
+      }
+      tags {
+        id
+        name
       }
       images {
         id

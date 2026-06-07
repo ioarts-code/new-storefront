@@ -1,25 +1,25 @@
 'use client';
 
-import { Category } from '@/lib/types';
+import { Tag } from '@/lib/types';
 import { useState } from 'react';
 
 interface FilterProps {
-  categories: Category[];
-  onCategoryChange: (categoryId: string | null) => void;
+  tags: Tag[];
+  onTagChange: (tagId: string | null) => void;
   isLoading?: boolean;
 }
 
 export function Filter({
-  categories,
-  onCategoryChange,
+  tags,
+  onTagChange,
   isLoading = false,
 }: FilterProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  const handleCategoryClick = (categoryId: string) => {
-    const newSelected = selectedCategory === categoryId ? null : categoryId;
-    setSelectedCategory(newSelected);
-    onCategoryChange(newSelected);
+  const handleTagClick = (tagId: string) => {
+    const newSelected = selectedTag === tagId ? null : tagId;
+    setSelectedTag(newSelected);
+    onTagChange(newSelected);
   };
 
   return (
@@ -30,19 +30,18 @@ export function Filter({
           <h2 className="text-3xl font-black text-white uppercase tracking-tight">
             All Products
           </h2>
-          <p className="text-white mt-2">Products inventory - please choose</p>
+          <p className="text-white mt-2">Filter by tags below</p>
         </div>
 
-        {/* Category Filter */}
+        {/* Tag Filter */}
         <div className="flex flex-wrap gap-3">
-          {/* Show All button */}
           <button
             onClick={() => {
-              setSelectedCategory(null);
-              onCategoryChange(null);
+              setSelectedTag(null);
+              onTagChange(null);
             }}
             className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
-              selectedCategory === null
+              selectedTag === null
                 ? 'bg-white text-black border-3 border-white'
                 : 'bg-transparent text-white border-3 border-white hover:bg-white/20'
             }`}
@@ -50,19 +49,18 @@ export function Filter({
             All
           </button>
 
-          {/* Category buttons */}
-          {categories.map((category) => (
+          {tags.map((tag) => (
             <button
-              key={category.id}
-              onClick={() => handleCategoryClick(category.id)}
+              key={tag.id}
+              onClick={() => handleTagClick(tag.id)}
               disabled={isLoading}
               className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
-                selectedCategory === category.id
+                selectedTag === tag.id
                   ? 'bg-white text-black border-3 border-white'
                   : 'text-white border-3 border-white hover:bg-gray-700'
               } disabled:opacity-50 disabled:cursor-not-allowed`}
             >
-              {category.name}
+              {tag.name}
             </button>
           ))}
         </div>

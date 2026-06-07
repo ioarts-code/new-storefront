@@ -178,6 +178,7 @@ export default function Hero({
         </>
       )}
       </div>
+      <div className="h-12 lg:h-20" />
     </div>
   );
 }

@@ -1,8 +1,7 @@
 'use client';
 
-import { Product, ProductImage } from '@/lib/types';
+import { Product } from '@/lib/types';
 import Image from 'next/image';
-import { Download, Coffee, ShoppingBagIcon, SearchIcon } from 'lucide-react';
 
 interface ProductDetailProps {
   product: Product;
@@ -10,7 +9,7 @@ interface ProductDetailProps {
 
 export function ProductDetail({ product }: ProductDetailProps) {
   const imageUrl = product.images?.[0]?.url || '';
-  const category = product.categories?.[0]?.name || 'Product';
+  const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = 'Unofficial: Rightsholder permits fanart on merch in small scale';
 
   const handleDownload = async () => {
@@ -99,10 +98,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </a>
           </div>
 
-          {/* Category and Copyright */}
+          {/* Tags and Copyright */}
           <div className="flex flex-col gap-1 mt-6">
             <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
-              Category: {category}
+              Tags: {tags}
             </p>
 
             <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">

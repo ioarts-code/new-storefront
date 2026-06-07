@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import { Product } from '@/lib/types';
+import { useMemo, useState } from 'react';
+import { Product, Tag } from '@/lib/types';
 
 interface GridItemProps {
   product: Product;
@@ -70,6 +70,33 @@ interface GridProps {
 }
 
 export function Grid({ products, isLoading = false, isEmpty = false }: GridProps) {
+  const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
+  const selectedTagId = selectedTagIds.length === 1 ? selectedTagIds[0] : null;
+
+  const allTags = useMemo(() => {
+    const tagMap = new Map<string, Tag>();
+
+    products.forEach((product) => {
+      (product.tags ?? []).forEach((tag) => {
+        if (!tagMap.has(tag.id)) {
+          tagMap.set(tag.id, tag);
+        }
+      });
+    });
+
+    return Array.from(tagMap.values());
+  }, [products]);
+
+  const filteredProducts = useMemo(
+    () =>
+      selectedTagIds.length > 0
+        ? products.filter((product) =>
+            (product.tags ?? []).some((tag) => selectedTagIds.includes(tag.id))
+          )
+        : products,
+    [products, selectedTagIds]
+  );
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-20">
@@ -87,38 +114,55 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
     );
   }
 
-  // Group products by category
-  const groupedByCategory = products.reduce(
-    (acc, product) => {
-      const categoryName = product.categories?.[0]?.name || 'Uncategorized';
-      if (!acc[categoryName]) {
-        acc[categoryName] = [];
-      }
-      acc[categoryName].push(product);
-      return acc;
-    },
-    {} as Record<string, Product[]>
-  );
-
-  const categoryEntries = Object.entries(groupedByCategory);
-
   return (
     <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16 bg-transparent">
-      {categoryEntries.map(([categoryName, categoryProducts]) => (
-        <div key={categoryName} className="w-full bg-transparent">
-          {/* Category Title */}
-          <h2 className="font-['Inter:Bold',sans-serif] font-bold text-[32px] text-white tracking-[-0.64px] mb-8 block desktop:block tablet:hidden mobile:hidden bg-transparent">
-            {categoryName}
-          </h2>
-
-          {/* Category Grid - 1 per row on desktop, responsive on smaller screens */}
-          <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-32 tablet:gap-y-16 w-full bg-transparent">
-            {categoryProducts.map((product) => (
-              <GridItem key={product.id} product={product} />
-            ))}
-          </div>
+      {/* Tag Filter */}
+      <div className="w-full flex justify-center mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 justify-center items-center max-w-4xl w-full">
+          <button
+            onClick={() => setSelectedTagIds([])}
+            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all w-full ${
+              selectedTagIds.length === 0
+                ? 'bg-white text-black border-2 border-white'
+                : 'text-white border-2 border-white hover:bg-white/10'
+            }`}
+          >
+            All
+          </button>
+          {allTags.map((tag) => (
+            <button
+              key={tag.id}
+              onClick={() =>
+                setSelectedTagIds((current) =>
+                  current.includes(tag.id)
+                    ? current.filter((id) => id !== tag.id)
+                    : [...current, tag.id]
+                )
+              }
+              className={`px-4 py-2 rounded-lg font-bold text-sm transition-all w-full ${
+                selectedTagIds.includes(tag.id)
+                  ? 'bg-white text-black border-2 border-white'
+                  : 'text-white border-2 border-white hover:bg-white/10'
+              }`}
+            >
+              {tag.name}
+            </button>
+          ))}
         </div>
-      ))}
+      </div>
+
+      {filteredProducts.length === 0 ? (
+        <div className="text-center py-20 w-full">
+          <h3 className="text-lg font-semibold text-white mb-2">No products found</h3>
+          <p className="text-gray-400">Try selecting a different tag or clear the filter.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-32 tablet:gap-y-16 w-full bg-transparent">
+          {filteredProducts.map((product) => (
+            <GridItem key={product.id} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

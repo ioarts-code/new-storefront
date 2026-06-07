@@ -9,11 +9,23 @@ export interface Product {
     fileName?: string;
   } | null;
   categories?: Category[];
+  tags?: Tag[];
   images?: ProductImage[];
   variants?: ProductVariant[];
   reviews?: Review[];
   collections?: Collection[];
   orderItems?: OrderItem[];
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  slug?: string;
+}
+
+export interface Tag {
+  id: string;
+  name: string;
 }
 
 export interface ProductImage {
@@ -41,12 +53,6 @@ export interface Collection {
 export interface OrderItem {
   id: string;
   [key: string]: any;
-}
-
-export interface Category {
-  id: string;
-  name: string;
-  slug?: string;
 }
 
 export interface ProductsResponse {
