@@ -145,7 +145,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
   }
 
   return (
-    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full py-16 gap-16 bg-transparent">
+    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full pt-16 pb-32 tablet:pb-40 desktop:pb-48 gap-16 bg-transparent">
       {/* Tag Filter */}
       <div className="w-full flex justify-center mb-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 justify-center items-center max-w-4xl w-full">
