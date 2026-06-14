@@ -107,3 +107,33 @@ export const GET_PRODUCT_BY_SLUG = /* GraphQL */ `
     }
   }
 `;
+
+export const GET_PRODUCTS_BY_SLUGS = /* GraphQL */ `
+  query GetProductsBySlugs($slugs: [String!]) {
+    products(where: { slug_in: $slugs }, first: 10) {
+      id
+      name
+      slug
+      description
+      price
+      download {
+        url
+        fileName
+      }
+      categories {
+        id
+        name
+        slug
+      }
+      tags {
+        id
+        name
+      }
+      images {
+        id
+        url
+        fileName
+      }
+    }
+  }
+`;

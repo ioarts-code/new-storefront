@@ -28,29 +28,32 @@ function VisitDeviantArt() {
   );
 }
 
-function SpanFontBold() {
+function PinterestIcon() {
   return (
-    <div className="relative shrink-0" data-name="span.font-bold">
-      <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
-        <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[24px] text-left text-white whitespace-nowrap">
-          <p className="leading-[36px]">E</p>
-        </div>
-      </div>
+    <div className="relative shrink-0" data-name="PinterestIcon">
+      <svg
+        viewBox="0 0 24 24"
+        className="w-6 h-6 fill-white"
+        aria-hidden="true"
+        role="img"
+      >
+        <path d="M12 0C5.372 0 0 5.372 0 12c0 5.176 3.321 9.57 7.97 11.152-.11-.95-.21-2.421.04-3.463.23-.997 1.495-6.731 1.495-6.731s-.378-.76-.378-1.888c0-1.768 1.026-3.088 2.306-3.088 1.088 0 1.613.816 1.613 1.795 0 1.096-.703 2.735-1.059 4.255-.302 1.27.64 2.303 1.896 2.303 2.275 0 3.807-2.393 3.807-5.858 0-3.06-2.2-5.203-5.342-5.203-3.64 0-5.783 2.733-5.783 5.56 0 1.097.42 2.278.945 2.919.104.124.12.184.086.364-.095.402-.314 1.269-.357 1.444-.055.234-.184.284-.426.171-1.585-.738-2.562-3.048-2.562-4.91C2.22 6.83 5.122 3.156 10.592 3.156c4.39 0 7.796 3.135 7.796 7.323 0 4.369-2.748 7.89-6.566 7.89-1.281 0-2.486-.665-2.896-1.451 0 0-.615 2.326-.74 2.81-.269 1.085-.998 2.173-1.607 3.015C8.844 23.838 10.408 24 12 24c6.628 0 12-5.372 12-12S18.628 0 12 0z" />
+      </svg>
     </div>
   );
 }
 
-function ShopOnEtsy() {
+function ShopOnPinterest() {
   return (
     <a
       className="content-stretch flex items-center hover:bg-red-300 hover:text-black justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
-      href="https://www.etsy.com/shop/ioartseu"
+      href="https://se.pinterest.com/brevduva999/"
       target="_blank"
       rel="noreferrer"
-      data-name="Shop on Etsy"
+      data-name="Pinterest"
     >
       <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
-      <SpanFontBold />
+      <PinterestIcon />
     </a>
   );
 }
@@ -59,7 +62,7 @@ function DivAbsolute() {
   return (
     <div className="absolute content-stretch cursor-pointer flex gap-[8px] items-start right-[44px] top-[31px]" data-name="div.absolute">
       <VisitDeviantArt />
-      <ShopOnEtsy />
+      <ShopOnPinterest />
     </div>
   );
 }

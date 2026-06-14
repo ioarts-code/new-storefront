@@ -67,9 +67,11 @@ interface GridProps {
   products: Product[];
   isLoading?: boolean;
   isEmpty?: boolean;
+  groupByCategoryOnLoad?: boolean;
+  itemsPerCategory?: number;
 }
 
-export function Grid({ products, isLoading = false, isEmpty = false }: GridProps) {
+export function Grid({ products, isLoading = false, isEmpty = false, groupByCategoryOnLoad = true, itemsPerCategory = 3 }: GridProps) {
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
   const selectedTagId = selectedTagIds.length === 1 ? selectedTagIds[0] : null;
 
@@ -87,6 +89,20 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
     return Array.from(tagMap.values());
   }, [products]);
 
+  const allCategories = useMemo(() => {
+    const catMap = new Map<string, Tag | any>();
+
+    products.forEach((product) => {
+      (product.categories ?? []).forEach((cat) => {
+        if (!catMap.has(cat.id)) {
+          catMap.set(cat.id, cat);
+        }
+      });
+    });
+
+    return Array.from(catMap.values());
+  }, [products]);
+
   const filteredProducts = useMemo(
     () =>
       selectedTagIds.length > 0
@@ -96,6 +112,20 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
         : products,
     [products, selectedTagIds]
   );
+
+  const groupedByCategory = useMemo(() => {
+    if (selectedTagIds.length > 0) return [];
+
+    return allCategories
+      .map((category) => {
+        const items = products.filter((product) =>
+          (product.categories ?? []).some((c) => c.id === category.id)
+        );
+
+        return { category, products: items.slice(0, groupByCategoryOnLoad ? itemsPerCategory : items.length) };
+      })
+      .filter((g) => g.products.length > 0);
+  }, [allCategories, products, selectedTagIds]);
 
   if (isLoading) {
     return (
@@ -134,9 +164,7 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
               key={tag.id}
               onClick={() =>
                 setSelectedTagIds((current) =>
-                  current.includes(tag.id)
-                    ? current.filter((id) => id !== tag.id)
-                    : [...current, tag.id]
+                  current.length === 1 && current[0] === tag.id ? [] : [tag.id]
                 )
               }
               className={`px-4 py-2 rounded-lg font-bold text-sm transition-all w-full ${
@@ -157,10 +185,28 @@ export function Grid({ products, isLoading = false, isEmpty = false }: GridProps
           <p className="text-gray-400">Try selecting a different tag or clear the filter.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-32 tablet:gap-y-16 w-full bg-transparent">
-          {filteredProducts.map((product) => (
-            <GridItem key={product.id} product={product} />
-          ))}
+        <div className="w-full flex flex-col gap-12">
+          {selectedTagIds.length === 0
+            ? groupedByCategory.map(({ category, products: groupProducts }) => (
+                <div key={category.id} className="w-full">
+                  <div className="mb-6">
+                    <h4 className="text-white font-extrabold text-2xl tablet:text-3xl desktop:text-4xl tracking-tight">{category.name}</h4>
+                  </div>
+
+                  <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-24 w-full">
+                    {groupProducts.map((product) => (
+                      <GridItem key={product.id} product={product} />
+                    ))}
+                  </div>
+                </div>
+              ))
+            : (
+              <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-32 tablet:gap-y-16 w-full bg-transparent">
+                {filteredProducts.map((product) => (
+                  <GridItem key={product.id} product={product} />
+                ))}
+              </div>
+            )}
         </div>
       )}
     </div>

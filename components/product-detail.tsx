@@ -11,6 +11,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = 'Unofficial: Rightsholder permits fanart on merch in small scale';
+  const hasPrice = typeof product.price === 'number' && product.price > 0;
 
   const handleDownload = async () => {
     if (!product.download?.url) {
@@ -98,6 +99,21 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </a>
           </div>
 
+          {/* Buy Now button shown only when Price exists */}
+          {hasPrice && (
+            <div className="mt-3">
+              <button
+                onClick={() => {
+                  window.location.href = `/checkout?product=${product.id}`;
+                }}
+                className="w-full py-3 sm:py-4 lg:py-5 px-6 border-2 border-white bg-white text-black font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all hover:bg-green-400"
+                aria-label={`Buy ${product.name} now`}
+              >
+                Buy Now
+              </button>
+            </div>
+          )}
+
           {/* Tags and Copyright */}
           <div className="flex flex-col gap-1 mt-6">
             <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
@@ -117,7 +133,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
         {imageUrl ? (
           <Image
             alt={product.name}
-            className="object-contain object-center max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-none lg:scale-[1.8]"
+            className="object-contain object-center w-full max-w-full max-h-[300px] sm:max-h-[550px] md:max-h-[700px] lg:max-h-none lg:scale-[1.8]"
             src={imageUrl}
             width={900}
             height={1200}

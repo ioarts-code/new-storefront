@@ -33,9 +33,9 @@ function SpanFontBold() {
   );
 }
 
-function ShopOnEtsy() {
+function ShopOnPinterest() {
   return (
-    <a className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]" href="https://oats-iso-27040139.figma.site/" target="_blank" data-name="Shop on Etsy">
+    <a className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]" href="https://oats-iso-27040139.figma.site/" target="_blank" data-name="Pinterest">
       <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
       <SpanFontBold />
     </a>
@@ -46,7 +46,7 @@ function DivAbsolute() {
   return (
     <div className="absolute content-stretch cursor-pointer flex gap-[8px] items-start right-[44px] top-[31px]" data-name="div.absolute">
       <VisitDeviantArt />
-      <ShopOnEtsy />
+      <ShopOnPinterest />
     </div>
   );
 }
