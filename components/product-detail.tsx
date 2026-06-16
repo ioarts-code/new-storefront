@@ -64,11 +64,11 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </p>
 
           {/* Download and Support Buttons */}
-          <div className="mt-4 lg:mt-[10px] flex flex-col sm:flex-row gap-3">
+          <div className="mt-4 lg:mt-[10px] flex flex-col sm:flex-row gap-5">
             <button
               onClick={handleDownload}
               disabled={!product.download?.url}
-              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 hover:bg-green-300 hover:text-black disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
             >
               SVG
              
@@ -79,7 +79,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               href="https://www.google.com/maps/search/t-shirt+printing+near+me"
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 hover:bg-green-300 hover:text-black flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
             >
               Search
               
@@ -91,7 +91,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               href="https://buymeacoffee.com/ioartseu"
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 hover:bg-yellow-200 hover:text-black flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
             >
               Buy me coffee
              
@@ -106,7 +106,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 onClick={() => {
                   window.location.href = `/checkout?product=${product.id}`;
                 }}
-                className="w-full py-3 sm:py-4 lg:py-5 px-6 border-2 border-white bg-white text-black font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all hover:bg-green-400"
+                className="w-full py-3 sm:py-4 lg:py-5 px-6 border-2 border-white bg-white text-black font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all "
                 aria-label={`Buy ${product.name} now`}
               >
                 Buy Now

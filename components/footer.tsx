@@ -13,7 +13,7 @@ function Frame() {
 function VisitDeviantArt() {
   return (
     <a
-      className="content-stretch flex items-center hover:bg-green-300 hover:text-black justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
+      className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
       href="https://www.deviantart.com/ioartseu/"
       target="_blank"
       rel="noreferrer"
@@ -46,7 +46,7 @@ function PinterestIcon() {
 function ShopOnPinterest() {
   return (
     <a
-      className="content-stretch flex items-center hover:bg-red-300 hover:text-black justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
+      className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
       href="https://se.pinterest.com/brevduva999/"
       target="_blank"
       rel="noreferrer"
@@ -71,7 +71,7 @@ function A() {
   return (
     <a
       href="mailto:brevduva999@proton.me"
-      className="flex items-center shrink-0 hover:opacity-75 transition-opacity font-['Inter:Regular',sans-serif] font-normal text-[14.6px] text-white tracking-[-0.24px] leading-[19.2px]"
+      className="flex items-center shrink-0 font-['Inter:Regular',sans-serif] font-normal text-[14.6px] text-white tracking-[-0.24px] leading-[19.2px]"
       data-name="a"
     >
       Contact
@@ -83,7 +83,7 @@ function A1() {
   return (
     <a
       href="/terms-of-sale"
-      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
       <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15.1px] text-white tracking-[-0.24px] whitespace-nowrap">
@@ -97,7 +97,7 @@ function A2() {
   return (
     <a
       href="/privacy-policy"
-      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
       <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap">
@@ -111,7 +111,7 @@ function A3() {
   return (
     <a
       href="/copyright-attribution"
-      className="content-stretch flex flex-col items-start relative self-stretch shrink-0 hover:opacity-75 transition-opacity"
+      className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
       <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap">
