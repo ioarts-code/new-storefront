@@ -3,7 +3,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { Product, Tag } from '@/lib/types';
+import { Category, Product, Tag } from '@/lib/types';
+
+const EXCLUDED_CATEGORY_KEYS = new Set(['mugs', 'hoodie', 'polo-shirt']);
+
+function normalizeCategoryKey(value?: string | null) {
+  return (value ?? '').trim().toLowerCase().replace(/[\s_]+/g, '-');
+}
+
+function isExcludedCategory(category: Category) {
+  const normalizedName = normalizeCategoryKey(category.name);
+  const normalizedSlug = normalizeCategoryKey(category.slug);
+  return EXCLUDED_CATEGORY_KEYS.has(normalizedName) || EXCLUDED_CATEGORY_KEYS.has(normalizedSlug);
+}
 
 interface GridItemProps {
   product: Product;
@@ -75,10 +87,20 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
   const selectedTagId = selectedTagIds.length === 1 ? selectedTagIds[0] : null;
 
+  const visibleProducts = useMemo(
+    () =>
+      products.filter((product) => {
+        const productCategories = product.categories ?? [];
+        if (productCategories.length === 0) return true;
+        return productCategories.some((category) => !isExcludedCategory(category));
+      }),
+    [products]
+  );
+
   const allTags = useMemo(() => {
     const tagMap = new Map<string, Tag>();
 
-    products.forEach((product) => {
+    visibleProducts.forEach((product) => {
       (product.tags ?? []).forEach((tag) => {
         if (!tagMap.has(tag.id)) {
           tagMap.set(tag.id, tag);
@@ -87,30 +109,30 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     });
 
     return Array.from(tagMap.values());
-  }, [products]);
+  }, [visibleProducts]);
 
   const allCategories = useMemo(() => {
-    const catMap = new Map<string, Tag | any>();
+    const catMap = new Map<string, Category>();
 
-    products.forEach((product) => {
+    visibleProducts.forEach((product) => {
       (product.categories ?? []).forEach((cat) => {
-        if (!catMap.has(cat.id)) {
+        if (!catMap.has(cat.id) && !isExcludedCategory(cat)) {
           catMap.set(cat.id, cat);
         }
       });
     });
 
     return Array.from(catMap.values());
-  }, [products]);
+  }, [visibleProducts]);
 
   const filteredProducts = useMemo(
     () =>
       selectedTagIds.length > 0
-        ? products.filter((product) =>
+        ? visibleProducts.filter((product) =>
             (product.tags ?? []).some((tag) => selectedTagIds.includes(tag.id))
           )
-        : products,
-    [products, selectedTagIds]
+        : visibleProducts,
+    [visibleProducts, selectedTagIds]
   );
 
   const groupedByCategory = useMemo(() => {
@@ -118,14 +140,14 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
 
     return allCategories
       .map((category) => {
-        const items = products.filter((product) =>
+        const items = visibleProducts.filter((product) =>
           (product.categories ?? []).some((c) => c.id === category.id)
         );
 
         return { category, products: items.slice(0, groupByCategoryOnLoad ? itemsPerCategory : items.length) };
       })
       .filter((g) => g.products.length > 0);
-  }, [allCategories, products, selectedTagIds]);
+  }, [allCategories, visibleProducts, selectedTagIds, groupByCategoryOnLoad, itemsPerCategory]);
 
   if (isLoading) {
     return (
@@ -135,7 +157,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     );
   }
 
-  if (isEmpty || products.length === 0) {
+  if (isEmpty || visibleProducts.length === 0) {
     return (
       <div className="text-center py-20">
         <h3 className="text-lg font-semibold text-white mb-2">No products found</h3>
