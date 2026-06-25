@@ -31,7 +31,6 @@
 │  ┌─────────────────────────────────────────────────────────┐  │
 │  │           Runtime Env Vars (config)                    │  │
 │  │  - NEXT_PUBLIC_HYGRAPH_ENDPOINT                        │  │
-│  │  - NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN (optional)           │  │
 │  └─────────────────────────────────────────────────────────┘  │
 │    │                                                            │
 │    ↓                                                            │
@@ -408,13 +407,11 @@ No Runtime Errors
 ```
 Runtime config
 └─ NEXT_PUBLIC_HYGRAPH_ENDPOINT
-└─ NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN (optional)
 ```
 
 Example:
 ```env
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/c1a2b3d4/published
-NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 ```
 

@@ -14,19 +14,11 @@
    https://api-eu-central-1.hygraph.com/content/[project-id]/[api-stage]
    ```
 
-### Step 3: Optional - Create an Auth Token
-If your content is private or you want to restrict access:
-
-1. In **API Access**, click **Tokens**
-2. Click **Create Token** or use an existing one
-3. Copy the token value
-
-### Step 4: Configure in the App
+### Step 3: Configure in the App
 1. Create a `.env.local` file in the project root
-2. Add your Hygraph endpoint and optional token:
+2. Add your Hygraph endpoint:
 ```bash
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/...
-NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=your_token_here  # Optional
 ```
 3. Restart the app after saving `.env.local`
 
@@ -41,7 +33,6 @@ If you prefer to avoid entering credentials in the UI, you can set environment v
 ### 1. Create `.env.local` in your project root:
 ```bash
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/...
-NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=your_token_here  # Optional
 ```
 
 ### 2. The app will automatically use these values
@@ -100,7 +91,6 @@ After entering your credentials:
 4. If there's an error, check:
    - The endpoint URL is correct
    - Your Hygraph project is accessible
-   - The auth token (if provided) is valid
    - Your services have the required fields
 
 ---

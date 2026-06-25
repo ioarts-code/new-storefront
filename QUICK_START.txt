@@ -108,7 +108,6 @@ Option 1: UI Configuration (Recommended for testing)
 Option 2: Environment Variables (For production)
 └─ Create .env.local:
    NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-...
-   NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=your_token_here
 
 ═══════════════════════════════════════════════════════════════════════════════
 

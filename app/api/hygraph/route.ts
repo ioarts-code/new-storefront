@@ -2,18 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   // Read env vars inside the handler so they are always fresh after a reload.
-  // Prefer the private server-only names; fall back to NEXT_PUBLIC_ variants
-  // so existing deployments keep working during migration.
+  // Endpoint can be public for temporary keyless mode.
   const ENDPOINT =
     process.env.HYGRAPH_ENDPOINT || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
-  const AUTH_TOKEN =
-    process.env.HYGRAPH_AUTH_TOKEN || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
 
   // Log environment for debugging (first request only to avoid spam)
   if (Math.random() < 0.05) {
     console.log('[API] Hygraph config check:', {
       endpoint: ENDPOINT ? '✓ Set' : '✗ Missing',
-      token: AUTH_TOKEN ? '✓ Set' : '✗ Missing (optional if content is public)',
     });
   }
 
@@ -60,9 +56,6 @@ export async function POST(request: NextRequest) {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
     };
-    if (AUTH_TOKEN) {
-      headers.Authorization = `Bearer ${AUTH_TOKEN}`;
-    }
 
     const response = await fetch(ENDPOINT, {
       method: 'POST',

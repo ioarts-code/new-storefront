@@ -119,7 +119,6 @@ If you want to use environment variables instead of UI configuration:
 - [ ] Added to `.env.local`:
   ```
   NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/...
-  NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=your_token_here
   ```
 - [ ] Restarted dev server (`pnpm dev`)
 - [ ] Verified config is auto-loaded on page load

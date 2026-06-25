@@ -1,6 +1,6 @@
 # Storefront
 
-A product storefront built with **Next.js 16**, **React 19**, and **Hygraph CMS**, with **Stripe** checkout. Products, categories, and downloadable assets are managed in Hygraph and rendered through a server-side GraphQL proxy that keeps the auth token off the client.
+A product storefront built with **Next.js 16**, **React 19**, and **Hygraph CMS**. Products, categories, and downloadable assets are managed in Hygraph and rendered through a server-side GraphQL proxy that keeps the auth token off the client.
 
 ## Tech Stack
 
@@ -11,7 +11,6 @@ A product storefront built with **Next.js 16**, **React 19**, and **Hygraph CMS*
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 + shadcn/ui |
 | CMS | Hygraph (GraphQL) |
-| Payments | Stripe |
 | Icons | lucide-react |
 | Package manager | pnpm |
 
@@ -25,7 +24,7 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-See **[SETUP.md](./SETUP.md)** for the full Hygraph schema, environment variables, and Stripe configuration.
+See **[SETUP.md](./SETUP.md)** for the full Hygraph schema and environment configuration.
 
 ## Project Structure
 
@@ -35,17 +34,17 @@ app/
 ├─ layout.tsx                   Root layout & metadata
 ├─ globals.css                  Global styles / design tokens
 ├─ products/[slug]/page.tsx     Product detail (download + support links)
-├─ checkout/                    Stripe checkout flow + success page
+├─ checkout/                    Temporary checkout page + success page
 ├─ terms-of-sale/               Static legal page
 ├─ copyright-attribution/       Static legal page
 └─ api/
    ├─ hygraph/route.ts          Server-side GraphQL proxy (hides token)
-   └─ checkout/route.ts         Stripe payment-intent endpoint
+   └─ checkout/route.ts         Temporary disabled checkout endpoint
 
 components/
 ├─ header.tsx  footer.tsx  hero.tsx  grid.tsx
 ├─ product-detail.tsx           Product page UI + download handler
-├─ checkout-form.tsx  stripe-provider.tsx
+├─ checkout-form.tsx
 └─ ui/                          shadcn/ui primitives
 
 lib/
@@ -63,9 +62,7 @@ lib/
 
 ## Security
 
-- Hygraph auth token is read server-side (`HYGRAPH_AUTH_TOKEN`) and never shipped to the client.
 - The GraphQL proxy only forwards read queries.
-- Stripe secret key is server-only; only the publishable key is exposed to the browser.
 
 ## Deployment
 

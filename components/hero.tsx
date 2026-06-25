@@ -93,14 +93,14 @@ export default function Hero({
           />
         )}
 
-      {/* Horizontal Stripe Divider - Bottom */}
+      {/* Horizontal Divider - Bottom */}
       <div
         className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none overflow-hidden"
         style={{
           height: '160px',
         }}
       >
-        {/* Stripe Content */}
+        {/* Divider Content */}
         <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
           {/* Merch Text */}
           <div

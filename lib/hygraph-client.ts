@@ -69,16 +69,14 @@ export function createHygraphClient() {
 
 // ---------------------------------------------------------------------------
 // Server-only client — used in Route Handlers & Server Components
-// Uses HYGRAPH_AUTH_TOKEN (no NEXT_PUBLIC_ prefix) so it never reaches the browser.
+// Uses direct endpoint requests without API key headers in temporary keyless mode.
 // ---------------------------------------------------------------------------
 export function createServerHygraphClient() {
   return {
     request: async <T,>(query: string, variables?: Record<string, any>): Promise<T> => {
-      // Prefer the private server-side token; fall back to the public endpoint env var.
+      // Prefer private server endpoint var, then public endpoint env var.
       const endpoint =
         process.env.HYGRAPH_ENDPOINT || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
-      const token =
-        process.env.HYGRAPH_AUTH_TOKEN || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
 
       if (!endpoint) {
         throw new Error('Hygraph endpoint must be configured');
@@ -87,10 +85,6 @@ export function createServerHygraphClient() {
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
       };
-
-      if (token) {
-        headers.Authorization = `Bearer ${token}`;
-      }
 
       const response = await fetch(endpoint, {
         method: 'POST',

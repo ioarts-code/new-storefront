@@ -193,7 +193,7 @@ Support is handled via our official support channels during ioarts‘ standard 
           <section className="space-y-4">
             <h2 className="text-2xl font-bold text-white">4. Payment</h2>
             <p>
-              We accept payments through Stripe, including credit cards and Klarna. All payment information is processed securely. By providing payment information, you authorize us to charge your chosen payment method for your purchase.
+              We accept payments through secure third-party payment providers, including major card methods and other supported options shown at checkout. All payment information is processed securely. By providing payment information, you authorize us to charge your chosen payment method for your purchase.
             </p>
             <p>
               If your payment fails, we will not complete your order. You will be notified of any issues with your payment and given the opportunity to provide alternative payment information.

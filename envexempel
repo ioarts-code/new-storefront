@@ -1,7 +1,3 @@
 # Your unique Hygraph API endpoint.
 # Find it in Hygraph Project Settings > Access > API Access > Endpoints
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=
-
-# Permanent Auth Token (optional if your API is public)
-# Find it in Hygraph Project Settings > Access > API Access > Permanent Auth Tokens
-NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=

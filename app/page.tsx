@@ -29,7 +29,7 @@ export default function Home() {
           const fieldName = match ? match[1] : 'unknown field';
           message = `Hygraph schema missing: "${fieldName}"`;
         } else if (message.includes('401') || message.includes('Unauthorized')) {
-          message = 'Invalid or missing Hygraph API token. Check HYGRAPH_AUTH_TOKEN env var.';
+          message = 'Unauthorized Hygraph request. Ensure your endpoint allows public read access.';
         } else if (message.includes('404') || message.includes('Not Found')) {
           message = 'Hygraph endpoint not found. Verify NEXT_PUBLIC_HYGRAPH_ENDPOINT env var.';
         } else if (message.includes('Invalid response body') || message.includes('Invalid JSON')) {

@@ -29,14 +29,12 @@ This is a modern services showcase startpage powered by **Hygraph CMS** and buil
 
 1. In your Hygraph project, go to **API Access** → **Endpoints**
 2. You'll see your **Content API** endpoint - copy this URL
-3. Optionally, create an **Auth Token** if your content is private
 
 ### 3. Configure the Startpage
 
 1. Set the following variables in `.env.local`
 ```env
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/...
-NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=your_token_here
 ```
 2. Restart the app after updating `.env.local`
 3. The app will load Hygraph data from the environment configuration
@@ -84,7 +82,6 @@ You can optionally set environment variables for default configuration:
 
 ```env
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/...
-NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=your_token_here
 ```
 
 If these are set, the app will automatically load them as defaults.
@@ -128,7 +125,6 @@ If these are set, the app will automatically load them as defaults.
 ### "Invalid endpoint" error
 - Double-check your Hygraph API endpoint URL
 - Ensure the endpoint is publicly accessible
-- Verify your auth token (if using one) is correct
 
 ### Services not loading
 - Check browser console (F12) for detailed error messages

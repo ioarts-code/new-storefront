@@ -49,7 +49,7 @@ export default function PrivacyPolicy() {
                   <li>Name and email address</li>
                   <li>Billing and shipping address</li>
                   <li>Phone number (if provided)</li>
-                  <li>Payment information (processed securely through Stripe)</li>
+                  <li>Payment information (processed securely through approved payment providers)</li>
                   <li>Order history and preferences</li>
                 </ul>
               </div>
@@ -89,16 +89,7 @@ export default function PrivacyPolicy() {
           <section className="space-y-4">
             <h2 className="text-2xl font-bold text-white">Payment Processing</h2>
             <p className="text-gray-300 leading-relaxed">
-              We use Stripe to process payments securely. We do not store your credit card information on our servers. All payment data is encrypted and processed according to PCI DSS compliance standards. For more information about Stripe's privacy practices, please visit{' '}
-              <a 
-                href="https://stripe.com/privacy" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white hover:text-gray-300 underline transition-colors"
-              >
-                Stripe's Privacy Policy
-              </a>
-              .
+              We use secure third-party payment providers. We do not store your credit card information on our servers. All payment data is encrypted and processed according to applicable PCI DSS compliance standards.
             </p>
           </section>
 
@@ -110,7 +101,7 @@ export default function PrivacyPolicy() {
             </p>
             <ul className="list-disc list-inside text-gray-300 space-y-2 ml-2">
               <li>Service providers who assist with order fulfillment and shipping</li>
-              <li>Payment processors (Stripe)</li>
+              <li>Payment processors (when checkout is enabled)</li>
               <li>Content management systems (Hygraph)</li>
               <li>Analytics providers (Vercel Analytics)</li>
               <li>Law enforcement when required by law</li>
