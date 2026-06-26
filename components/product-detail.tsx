@@ -89,7 +89,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             <button
               onClick={handleDownload}
               disabled={!product.download?.url}
-              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 text-white hover:bg-green-200 hover:text-black lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
             >
               SVG
              
@@ -100,7 +100,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
               href="https://www.google.com/maps/search/t-shirt+printing+near+me"
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] text-white hover:bg-green-200 hover:text-black px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
             >
               Search
               
@@ -112,7 +112,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
               href="https://buymeacoffee.com/ioartseu"
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+              className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] text-white hover:bg-yellow-100 hover:text-black px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
             >
               Buy me coffee
              
@@ -197,7 +197,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
       {lightboxImageUrl && (
         <div
-          className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xl p-4 sm:p-8 flex items-center justify-center"
+          className="fixed inset-0 z-50 bg-black p-4 sm:p-8 flex items-center justify-center"
           onClick={closeLightbox}
           role="button"
           tabIndex={0}
