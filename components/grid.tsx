@@ -3,18 +3,43 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { Category, Product, Tag } from '@/lib/types';
+import { Product, Tag } from '@/lib/types';
 
-const EXCLUDED_CATEGORY_KEYS = new Set(['mugs', 'hoodie', 'polo-shirt']);
+const EXCLUDED_FILTER_KEYS = new Set([
+  'mug',
+  'mugs',
+  'hoodies',
+  'hoodie',
+  'polo-shirts',
+  'polo-shirt',
+  'poloshirt',
+  'poloshirts',
+]);
 
-function normalizeCategoryKey(value?: string | null) {
-  return (value ?? '').trim().toLowerCase().replace(/[\s_]+/g, '-');
+function normalizeFilterKey(value?: string | null) {
+  return (value ?? '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9\s_-]+/g, '')
+    .replace(/[_\s]+/g, '-');
 }
 
-function isExcludedCategory(category: Category) {
-  const normalizedName = normalizeCategoryKey(category.name);
-  const normalizedSlug = normalizeCategoryKey(category.slug);
-  return EXCLUDED_CATEGORY_KEYS.has(normalizedName) || EXCLUDED_CATEGORY_KEYS.has(normalizedSlug);
+function isExcludedFilterTag(tag: Tag) {
+  return EXCLUDED_FILTER_KEYS.has(normalizeFilterKey(tag.name));
+}
+
+function isExcludedProduct(product: Product) {
+  const hasExcludedTag = (product.tags ?? []).some((tag) =>
+    EXCLUDED_FILTER_KEYS.has(normalizeFilterKey(tag.name))
+  );
+
+  const hasExcludedCategory = (product.categories ?? []).some((category) => {
+    const normalizedName = normalizeFilterKey(category.name);
+    const normalizedSlug = normalizeFilterKey(category.slug);
+    return EXCLUDED_FILTER_KEYS.has(normalizedName) || EXCLUDED_FILTER_KEYS.has(normalizedSlug);
+  });
+
+  return hasExcludedTag || hasExcludedCategory;
 }
 
 interface GridItemProps {
@@ -83,17 +108,11 @@ interface GridProps {
   itemsPerCategory?: number;
 }
 
-export function Grid({ products, isLoading = false, isEmpty = false, groupByCategoryOnLoad = true, itemsPerCategory = 3 }: GridProps) {
+export function Grid({ products, isLoading = false, isEmpty = false, groupByCategoryOnLoad = false, itemsPerCategory = 3 }: GridProps) {
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
-  const selectedTagId = selectedTagIds.length === 1 ? selectedTagIds[0] : null;
 
   const visibleProducts = useMemo(
-    () =>
-      products.filter((product) => {
-        const productCategories = product.categories ?? [];
-        if (productCategories.length === 0) return true;
-        return productCategories.some((category) => !isExcludedCategory(category));
-      }),
+    () => products.filter((product) => !isExcludedProduct(product)),
     [products]
   );
 
@@ -102,27 +121,13 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
 
     visibleProducts.forEach((product) => {
       (product.tags ?? []).forEach((tag) => {
-        if (!tagMap.has(tag.id)) {
+        if (!tagMap.has(tag.id) && !isExcludedFilterTag(tag)) {
           tagMap.set(tag.id, tag);
         }
       });
     });
 
     return Array.from(tagMap.values());
-  }, [visibleProducts]);
-
-  const allCategories = useMemo(() => {
-    const catMap = new Map<string, Category>();
-
-    visibleProducts.forEach((product) => {
-      (product.categories ?? []).forEach((cat) => {
-        if (!catMap.has(cat.id) && !isExcludedCategory(cat)) {
-          catMap.set(cat.id, cat);
-        }
-      });
-    });
-
-    return Array.from(catMap.values());
   }, [visibleProducts]);
 
   const filteredProducts = useMemo(
@@ -135,20 +140,6 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     [visibleProducts, selectedTagIds]
   );
 
-  const groupedByCategory = useMemo(() => {
-    if (selectedTagIds.length > 0) return [];
-
-    return allCategories
-      .map((category) => {
-        const items = visibleProducts.filter((product) =>
-          (product.categories ?? []).some((c) => c.id === category.id)
-        );
-
-        return { category, products: items.slice(0, groupByCategoryOnLoad ? itemsPerCategory : items.length) };
-      })
-      .filter((g) => g.products.length > 0);
-  }, [allCategories, visibleProducts, selectedTagIds, groupByCategoryOnLoad, itemsPerCategory]);
-
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-20">
@@ -158,12 +149,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
   }
 
   if (isEmpty || visibleProducts.length === 0) {
-    return (
-      <div className="text-center py-20">
-        <h3 className="text-lg font-semibold text-white mb-2">No products found</h3>
-        <p className="text-gray-400">Try adjusting your search or filter criteria</p>
-      </div>
-    );
+    return null;
   }
 
   return (
@@ -202,33 +188,17 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
       </div>
 
       {filteredProducts.length === 0 ? (
-        <div className="text-center py-20 w-full">
-          <h3 className="text-lg font-semibold text-white mb-2">No products found</h3>
-          <p className="text-gray-400">Try selecting a different tag or clear the filter.</p>
-        </div>
+        selectedTagIds.length > 0 ? (
+          <div className="text-center py-20 w-full">
+            <h3 className="text-lg font-semibold text-white mb-2">No products found</h3>
+            <p className="text-gray-400">Try selecting a different tag or clear the filter.</p>
+          </div>
+        ) : null
       ) : (
-        <div className="w-full flex flex-col gap-12">
-          {selectedTagIds.length === 0
-            ? groupedByCategory.map(({ category, products: groupProducts }) => (
-                <div key={category.id} className="w-full">
-                  <div className="mb-6">
-                    <h4 className="text-white font-extrabold text-2xl tablet:text-3xl desktop:text-4xl tracking-tight">{category.name}</h4>
-                  </div>
-
-                  <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-24 w-full">
-                    {groupProducts.map((product) => (
-                      <GridItem key={product.id} product={product} />
-                    ))}
-                  </div>
-                </div>
-              ))
-            : (
-              <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-32 tablet:gap-y-16 w-full bg-transparent">
-                {filteredProducts.map((product) => (
-                  <GridItem key={product.id} product={product} />
-                ))}
-              </div>
-            )}
+        <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-x-6 gap-y-32 tablet:gap-y-16 w-full bg-transparent">
+          {filteredProducts.map((product) => (
+            <GridItem key={product.id} product={product} />
+          ))}
         </div>
       )}
     </div>

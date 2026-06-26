@@ -62,8 +62,6 @@ export default function ProductsPage() {
         products={products}
         isLoading={isLoading && products.length === 0}
         isEmpty={!isLoading && products.length === 0}
-        groupByCategoryOnLoad={true}
-        itemsPerCategory={3}
       />
     </div>
   );

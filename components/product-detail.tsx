@@ -2,16 +2,37 @@
 
 import { Product } from '@/lib/types';
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface ProductDetailProps {
   product: Product;
+  otherExamples?: Product[];
 }
 
-export function ProductDetail({ product }: ProductDetailProps) {
+export function ProductDetail({ product, otherExamples = [] }: ProductDetailProps) {
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = 'Unofficial: Rightsholder permits fanart on merch in small scale';
   const hasPrice = typeof product.price === 'number' && product.price > 0;
+  const [lightboxImageUrl, setLightboxImageUrl] = useState<string | null>(null);
+  const [lightboxImageAlt, setLightboxImageAlt] = useState('Example image');
+
+  const exampleImages = otherExamples
+    .map((item) => ({
+      id: item.id,
+      name: item.name,
+      imageUrl: item.images?.[0]?.url ?? '',
+    }))
+    .filter((item) => item.imageUrl);
+
+  const openLightbox = (imageUrlToOpen: string, alt: string) => {
+    setLightboxImageUrl(imageUrlToOpen);
+    setLightboxImageAlt(alt);
+  };
+
+  const closeLightbox = () => {
+    setLightboxImageUrl(null);
+  };
 
   const handleDownload = async () => {
     if (!product.download?.url) {
@@ -40,7 +61,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
     >
       {/* Left Column */}
-      <div className="flex flex-col justify-between w-full lg:w-[85%] xl:w-[100%] bg-transparent">
+      <div className="relative z-10 flex flex-col justify-between w-full lg:w-[85%] xl:w-[100%] bg-transparent">
         {/* Product Content */}
         <div className="flex flex-col gap-4">
           {/* Title and Price */}
@@ -124,16 +145,45 @@ export function ProductDetail({ product }: ProductDetailProps) {
               Copyright: {copyright}
             </p>
           </div>
+
+          {/* Other Examples */}
+          {exampleImages.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-white font-['Inter:Bold',sans-serif] font-bold text-sm sm:text-base uppercase tracking-wide mb-3">
+                Other Examples
+              </h3>
+
+              <div className="flex flex-wrap gap-2 max-w-[420px]">
+                {exampleImages.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => openLightbox(item.imageUrl, item.name)}
+                    className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-[6px] border border-white/30 hover:border-white transition-colors shrink-0"
+                    aria-label={`Open lightbox for ${item.name}`}
+                  >
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                      sizes="64px"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
       </div>
 
       {/* Right Column - Product Image */}
-      <div className="w-full lg:w-[45%] xl:w-[85%] flex lg:items-start items-center justify-center p-4 lg:p-4 lg:pr-8 xl:pr-16 2xl:pr-0 order-first lg:order-last lg:pt-12">
+      <div className="relative z-0 w-full lg:w-[45%] xl:w-[85%] flex lg:items-start items-center justify-center p-4 lg:p-4 lg:pr-8 xl:pr-16 2xl:pr-0 order-first lg:order-last lg:pt-12 pointer-events-none">
         {imageUrl ? (
           <Image
             alt={product.name}
-            className="object-contain object-center w-full max-w-full max-h-[300px] sm:max-h-[550px] md:max-h-[700px] lg:max-h-none lg:scale-[1.8]"
+            className="object-contain object-center w-full max-w-full max-h-[300px] sm:max-h-[550px] md:max-h-[700px] lg:max-h-none lg:scale-[1.8] pointer-events-none"
             src={imageUrl}
             width={900}
             height={1200}
@@ -144,6 +194,40 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <div className="text-gray-500 text-center">No image available</div>
         )}
       </div>
+
+      {lightboxImageUrl && (
+        <div
+          className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xl p-4 sm:p-8 flex items-center justify-center"
+          onClick={closeLightbox}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+              closeLightbox();
+            }
+          }}
+          aria-label="Close lightbox"
+        >
+          <div className="relative w-full max-w-6xl h-[84vh] rounded-2xl border border-white/20 bg-[linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] shadow-[0_24px_80px_rgba(0,0,0,0.55)]" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 z-10 h-12 w-12 rounded-full border border-white/40 bg-black/30 text-white text-3xl leading-none flex items-center justify-center hover:bg-white/15 hover:border-white transition-all"
+              aria-label="Close lightbox"
+            >
+              ×
+            </button>
+            <Image
+              src={lightboxImageUrl}
+              alt={lightboxImageAlt}
+              fill
+              className="object-contain rounded-2xl"
+              sizes="100vw"
+              priority
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
