@@ -169,7 +169,7 @@ export default function Hero({
               {/* Button - Hidden on mobile */}
               <Link
                 href={`/products/${featuredProduct.slug}`}
-                className="hidden sm:flex px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white hover:bg-green-300 hover:text-black font-bold text-xs sm:text-sm uppercase"
+                className="hidden sm:flex px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white text-white hover:bg-green-200 hover:text-black font-bold text-xs sm:text-sm uppercase"
               >
                 View
               </Link>

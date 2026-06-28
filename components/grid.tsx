@@ -8,12 +8,6 @@ import { Product, Tag } from '@/lib/types';
 const EXCLUDED_FILTER_KEYS = new Set([
   'mug',
   'mugs',
-  'hoodies',
-  'hoodie',
-  'polo-shirts',
-  'polo-shirt',
-  'poloshirt',
-  'poloshirts',
 ]);
 
 function normalizeFilterKey(value?: string | null) {
@@ -83,7 +77,7 @@ function GridItem({ product }: GridItemProps) {
               <p className="truncate">{truncatedName}</p>
             </div>
 
-            <div className="content-stretch flex mobile:h-[36px] tablet:h-[42px] desktop:h-[48px] desktop-wide:h-[58px] items-center justify-center mobile:p-[2px] desktop:p-[3px] relative rounded-[6px] shrink-0 mobile:w-[70px] tablet:w-[85px] desktop:w-[106px] desktop-wide:w-[126px] ml-3 bg-transparent text-white">
+            <div className="content-stretch flex mobile:h-[36px] text-white hover:bg-green-200 hover:text-black tablet:h-[42px] desktop:h-[48px] desktop-wide:h-[58px] items-center justify-center mobile:p-[2px] desktop:p-[3px] relative rounded-[6px] shrink-0 mobile:w-[70px] tablet:w-[85px] desktop:w-[106px] desktop-wide:w-[126px] ml-3 bg-transparent text-white">
               <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
               <div className="relative shrink-0">
                 <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-center relative size-full">
@@ -178,7 +172,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
               className={`px-4 py-2 rounded-lg font-bold text-sm transition-all w-full ${
                 selectedTagIds.includes(tag.id)
                   ? 'bg-white text-black border-2 border-white'
-                  : 'text-white border-2 border-white hover:bg-white/10'
+                  : 'text-white border-2 border-white text-white hover:bg-green-200 hover:text-black'
               }`}
             >
               {tag.name}

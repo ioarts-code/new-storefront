@@ -13,7 +13,7 @@ function Frame() {
 function VisitDeviantArt() {
   return (
     <a
-      className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
+      className="group content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
       href="https://www.deviantart.com/ioartseu/"
       target="_blank"
       rel="noreferrer"
@@ -21,7 +21,7 @@ function VisitDeviantArt() {
     >
       <div
         aria-hidden="true"
-        className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"
+        className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow"
       />
       <Frame />
     </a>
@@ -46,13 +46,13 @@ function PinterestIcon() {
 function ShopOnPinterest() {
   return (
     <a
-      className="content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
+      className="group content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
       href="https://se.pinterest.com/brevduva999/"
       target="_blank"
       rel="noreferrer"
       data-name="Pinterest"
     >
-      <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
+      <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8)] transition-shadow" />
       <PinterestIcon />
     </a>
   );
@@ -71,7 +71,7 @@ function A() {
   return (
     <a
       href="mailto:brevduva999@proton.me"
-      className="flex items-center shrink-0 font-['Inter:Regular',sans-serif] font-normal text-[14.6px] text-white tracking-[-0.24px] leading-[19.2px]"
+      className="flex items-center shrink-0 font-['Inter:Regular',sans-serif] font-normal text-[14.6px] text-white tracking-[-0.24px] leading-[19.2px] hover:text-gray-400 transition-colors"
       data-name="a"
     >
       Contact
@@ -86,7 +86,7 @@ function A1() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15.1px] text-white tracking-[-0.24px] whitespace-nowrap">
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15.1px] text-white tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
         <p className="leading-[19.2px]">Terms of Sale</p>
       </div>
     </a>
@@ -100,7 +100,7 @@ function A2() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap">
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
         <p className="leading-[19.2px]">Privacy Policy</p>
       </div>
     </a>
@@ -114,7 +114,7 @@ function A3() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap">
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
         <p className="leading-[19.2px]">Copyright & Attribution</p>
       </div>
     </a>

@@ -20,7 +20,10 @@ export default function Home() {
       try {
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(GET_PRODUCTS);
-        setProducts(data.products);
+        const filteredProducts = data.products.filter((product) =>
+          product.categories?.some((category) => category.name === 'T-Shirt')
+        );
+        setProducts(filteredProducts);
       } catch (err) {
         let message = err instanceof Error ? err.message : 'Failed to fetch data';
 

@@ -18,6 +18,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
   const [lightboxImageAlt, setLightboxImageAlt] = useState('Example image');
 
   const exampleImages = otherExamples
+    .filter((item) => item.categories?.some((cat) => cat.name === 'Examples'))
     .map((item) => ({
       id: item.id,
       name: item.name,

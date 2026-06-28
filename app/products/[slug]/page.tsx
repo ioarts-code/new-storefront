@@ -68,6 +68,7 @@ export default function ProductPage() {
               if (item.id === currentProduct.id) return false;
               if (!item.images || item.images.length === 0) return false;
               return (item.categories ?? []).some((category) => {
+                if (category.name === 'Examples') return true;
                 const nameKey = normalizeKey(category.name);
                 const slugKey = normalizeKey(category.slug);
                 return EXAMPLE_CATEGORY_KEYS.has(nameKey) || EXAMPLE_CATEGORY_KEYS.has(slugKey);
