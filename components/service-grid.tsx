@@ -1,4 +1,4 @@
-now it opens to the left but the image isnt showing can you just make it mucj smaller and put the three header objects menu, search and image in a vertical manner only much smallernow it opens to the left but the image isnt showing can you just make it mucj smaller and put the three header objects menu, search and image in a vertical manner only much smaller'use client';
+'use client';
 
 import { Product } from '@/lib/types';
 import { ServiceCard } from './service-card';
