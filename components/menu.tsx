@@ -190,11 +190,10 @@ export default function Menu() {
       </div>
 
       <div className="hidden lg:block">
-        <div className="absolute left-[10px] top-[34px] flex flex-col items-center gap-4">
-        <div ref={searchRef} className="relative" data-name="icon">
+        <div ref={searchRef} className="absolute left-[17px] top-[36px]" data-name="icon">
           <button
             type="button"
-            className="overflow-clip size-[18px]"
+            className="overflow-clip size-[24px]"
             aria-label="Open search"
             aria-expanded={isSearchOpen}
             onClick={() => setIsSearchOpen((prev) => !prev)}
@@ -206,7 +205,7 @@ export default function Menu() {
           </button>
 
           {isSearchOpen && (
-            <div className="absolute top-0 right-full mr-2 flex items-center gap-1.5 rounded-md border border-white/20 bg-black/95 p-1.5 shadow-xl">
+            <div className="absolute top-0 right-full mr-3 flex items-center gap-2 rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
               <div className="relative">
                 <input
                   ref={searchInputRef}
@@ -219,7 +218,7 @@ export default function Menu() {
                     }
                   }}
                   placeholder="Search products"
-                  className="h-8 w-[148px] bg-transparent border border-white/25 rounded pl-2.5 pr-7 text-xs text-white placeholder:text-white/60 outline-none"
+                  className="h-9 w-[180px] bg-transparent border border-white/25 rounded pl-3 pr-8 text-sm text-white placeholder:text-white/60 outline-none"
                 />
                 {searchInput && (
                   <button
@@ -238,7 +237,7 @@ export default function Menu() {
               <button
                 type="button"
                 onClick={applySearch}
-                className="h-8 px-2.5 rounded border border-white/25 text-[10px] font-semibold uppercase text-white hover:bg-white/15"
+                className="h-9 px-3 rounded border border-white/25 text-xs font-semibold uppercase text-white hover:bg-white/15"
               >
                 Search
               </button>
@@ -246,22 +245,10 @@ export default function Menu() {
           )}
         </div>
 
-        <div className="flex h-[54px] w-[14px] items-center justify-center overflow-hidden">
-          <div className="-rotate-90 flex-none">
-            <div className="h-[14px] relative w-[54px]" data-name="17830404440764516789494914935528 2">
-              <img
-                alt=""
-                className="absolute inset-0 max-w-none object-contain pointer-events-none size-full"
-                src="/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div ref={dropdownRef} className="relative" data-name="menu">
+        <div ref={dropdownRef} className="absolute left-[16px] top-[284px]" data-name="menu">
           <button
             type="button"
-            className="relative h-[20px] w-[19px]"
+            className="relative h-[26px] w-[25px]"
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
@@ -272,24 +259,35 @@ export default function Menu() {
           </button>
 
           {isOpen && (
-            <div className="absolute top-0 right-full mr-2 min-w-[140px] rounded-md border border-white/20 bg-black/95 p-1.5 shadow-xl">
+            <div className="absolute top-0 right-full mr-3 min-w-[160px] rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
               <Link
                 href="/"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-2.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
               >
                 Home
               </Link>
               <Link
                 href="/products"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-2.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
               >
                 All Products
               </Link>
             </div>
           )}
         </div>
+
+        <div className="absolute hidden lg:flex h-[144px] items-center justify-center left-[6px] top-[97px] w-[41px]">
+          <div className="-rotate-90 flex-none">
+            <div className="h-[41px] relative w-[144px]" data-name="17830404440764516789494914935528 2">
+              <img
+                alt=""
+                className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+                src="/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
