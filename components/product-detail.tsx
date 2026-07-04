@@ -137,21 +137,21 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
           )}
 
           {/* Tags and Copyright */}
-          <div className="flex flex-col gap-1 mt-6">
-            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
-              Tags: {tags}
+          <div className="flex flex-col gap-3 mt-6">
+            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
+              <span className="font-bold">Tags:</span> <span className="text-gray-300">{tags}</span>
             </p>
 
-            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-gray-400 tracking-tight lg:tracking-[-0.24px]">
-              Copyright: {copyright}
+            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
+              <span className="font-bold">Copyright:</span> <span className="text-gray-300">{copyright}</span>
             </p>
           </div>
 
-          {/* Other Examples */}
+          {/* Examples */}
           {exampleImages.length > 0 && (
             <div className="mt-6">
               <h3 className="text-white font-['Inter:Bold',sans-serif] font-bold text-sm sm:text-base uppercase tracking-wide mb-3">
-                Other Examples
+                Examples
               </h3>
 
               <div className="flex flex-wrap gap-2 max-w-[420px]">

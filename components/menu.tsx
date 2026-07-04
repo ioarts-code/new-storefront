@@ -13,9 +13,12 @@ export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchInput, setSearchInput] = useState('');
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const searchRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
+  const desktopDropdownRef = useRef<HTMLDivElement>(null);
+  const mobileSearchRef = useRef<HTMLDivElement>(null);
+  const desktopSearchRef = useRef<HTMLDivElement>(null);
+  const mobileSearchInputRef = useRef<HTMLInputElement>(null);
+  const desktopSearchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setSearchInput(searchParams.get('q') ?? '');
@@ -23,7 +26,11 @@ export default function Menu() {
 
   useEffect(() => {
     if (isSearchOpen) {
-      searchInputRef.current?.focus();
+      if (window.matchMedia("(min-width: 1024px)").matches) {
+        desktopSearchInputRef.current?.focus();
+      } else {
+        mobileSearchInputRef.current?.focus();
+      }
     }
   }, [isSearchOpen]);
 
@@ -65,10 +72,14 @@ export default function Menu() {
   }, [searchInput, isSearchOpen, pathname, router, searchParams]);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: PointerEvent) => {
       const target = event.target as Node;
-      const clickedMenu = dropdownRef.current?.contains(target) ?? false;
-      const clickedSearch = searchRef.current?.contains(target) ?? false;
+      const clickedMenu =
+        (mobileDropdownRef.current?.contains(target) ?? false) ||
+        (desktopDropdownRef.current?.contains(target) ?? false);
+      const clickedSearch =
+        (mobileSearchRef.current?.contains(target) ?? false) ||
+        (desktopSearchRef.current?.contains(target) ?? false);
 
       if (!clickedMenu) {
         setIsOpen(false);
@@ -79,26 +90,26 @@ export default function Menu() {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("pointerdown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("pointerdown", handleClickOutside);
     };
   }, []);
 
   return (
     <div className="relative size-full pointer-events-auto">
       <div className="flex h-full w-full flex-col items-center justify-start gap-1.5 pt-3 pb-2 lg:hidden">
-        <div ref={searchRef} className="relative" data-name="icon">
+        <div ref={mobileSearchRef} className="relative" data-name="icon">
           <button
             type="button"
-            className="overflow-clip size-[14px]"
+            className="overflow-clip size-[16px]"
             aria-label="Open search"
             aria-expanded={isSearchOpen}
             onClick={() => setIsSearchOpen((prev) => !prev)}
           >
             <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
-              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
+              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
+              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
             </svg>
           </button>
 
@@ -106,7 +117,7 @@ export default function Menu() {
             <div className="absolute top-0 right-full mr-2 flex items-center gap-1 rounded-md border border-white/20 bg-black/95 p-1.5 shadow-xl">
               <div className="relative">
                 <input
-                  ref={searchInputRef}
+                  ref={mobileSearchInputRef}
                   type="text"
                   value={searchInput}
                   onChange={(event) => setSearchInput(event.target.value)}
@@ -123,7 +134,7 @@ export default function Menu() {
                     type="button"
                     onClick={() => {
                       setSearchInput('');
-                      searchInputRef.current?.focus();
+                      mobileSearchInputRef.current?.focus();
                     }}
                     aria-label="Clear search"
                     className="absolute right-1.5 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-[11px] leading-none"
@@ -143,9 +154,9 @@ export default function Menu() {
           )}
         </div>
 
-        <div className="flex h-[42px] w-[12px] items-center justify-center overflow-hidden">
+        <div className="flex h-[58px] w-[20px] items-center justify-center overflow-hidden sm:h-[64px] sm:w-[22px]">
           <div className="-rotate-90 flex-none">
-            <div className="relative h-[12px] w-[42px]" data-name="17830404440764516789494914935528 2">
+            <div className="relative h-[20px] w-[58px] sm:h-[22px] sm:w-[64px]" data-name="17830404440764516789494914935528 2">
               <img
                 alt=""
                 className="absolute inset-0 max-w-none object-contain pointer-events-none size-full"
@@ -155,7 +166,7 @@ export default function Menu() {
           </div>
         </div>
 
-        <div ref={dropdownRef} className="relative mt-1" data-name="menu">
+        <div ref={mobileDropdownRef} className="relative mt-1" data-name="menu">
           <button
             type="button"
             className="relative h-[16px] w-[15px]"
@@ -190,17 +201,17 @@ export default function Menu() {
       </div>
 
       <div className="hidden lg:block">
-        <div ref={searchRef} className="absolute left-[17px] top-[36px]" data-name="icon">
+        <div ref={desktopSearchRef} className="absolute left-[16px] top-[36px]" data-name="icon">
           <button
             type="button"
-            className="overflow-clip size-[24px]"
+            className="overflow-clip size-[26px]"
             aria-label="Open search"
             aria-expanded={isSearchOpen}
             onClick={() => setIsSearchOpen((prev) => !prev)}
           >
             <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
-              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
+              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
+              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
             </svg>
           </button>
 
@@ -208,7 +219,7 @@ export default function Menu() {
             <div className="absolute top-0 right-full mr-3 flex items-center gap-2 rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
               <div className="relative">
                 <input
-                  ref={searchInputRef}
+                  ref={desktopSearchInputRef}
                   type="text"
                   value={searchInput}
                   onChange={(event) => setSearchInput(event.target.value)}
@@ -225,7 +236,7 @@ export default function Menu() {
                     type="button"
                     onClick={() => {
                       setSearchInput('');
-                      searchInputRef.current?.focus();
+                      desktopSearchInputRef.current?.focus();
                     }}
                     aria-label="Clear search"
                     className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-sm leading-none"
@@ -245,7 +256,7 @@ export default function Menu() {
           )}
         </div>
 
-        <div ref={dropdownRef} className="absolute left-[16px] top-[284px]" data-name="menu">
+        <div ref={desktopDropdownRef} className="absolute left-[16px] top-[284px]" data-name="menu">
           <button
             type="button"
             className="relative h-[26px] w-[25px]"

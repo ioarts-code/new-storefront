@@ -104,11 +104,10 @@ export default function Hero({
         <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
           {/* Merch Text */}
           <div
-            className="font-['Inter:Bold',sans-serif] font-bold uppercase text-black text-center"
+            className="font-['Inter:Bold',sans-serif] font-black uppercase text-black text-center text-[24px] md:text-[30px]"
             style={{
-              fontSize: '24px',
-              lineHeight: '1.1',
-              letterSpacing: '2px',
+              lineHeight: '1.3',
+              letterSpacing: '4px',
             }}
           >
             Merch
@@ -116,11 +115,10 @@ export default function Hero({
 
           {/* Taglines */}
           <div
-            className="font-['Inter:Bold',sans-serif] font-bold text-black text-center"
+            className="font-['Inter:Bold',sans-serif] font-bold text-black text-center text-[10px] md:text-[13px]"
             style={{
-              fontSize: '11px',
               lineHeight: '1.4',
-              letterSpacing: '-0.24px',
+              letterSpacing: '0.4px',
             }}
           >
             <p>ILLUSTRATIONS THAT MAKE SENSE. FIND NEW ART WITH IOARTSEU</p>
@@ -129,10 +127,9 @@ export default function Hero({
 
           {/* Artist Name */}
           <div
-            className="mt-1"
+            className="mt-1 text-[16px] md:text-[20px]"
             style={{
               fontFamily: "'Mr Dafoe', cursive",
-              fontSize: '16px',
               color: '#000',
             }}
           >

@@ -43,6 +43,7 @@ interface GridItemProps {
 function GridItem({ product }: GridItemProps) {
   const imageSrc = product.images?.[0]?.url;
   const [imageError, setImageError] = useState(false);
+  const primaryCategory = product.categories?.[0]?.name;
 
   // Truncate product name if too long (max 40 chars, with ellipsis)
   const truncatedName = product.name.length > 40 
@@ -50,13 +51,13 @@ function GridItem({ product }: GridItemProps) {
     : product.name;
 
   return (
-    <Link href={`/products/${product.slug}`}>
-      <div className="content-stretch flex flex-col aspect-[3/4] tablet:aspect-auto tablet:h-[450px] desktop:h-[650px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-visible pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer">
+    <Link href={`/products/${product.slug}`} className="group block">
+      <div className="content-stretch flex flex-col aspect-[3/4] tablet:aspect-auto tablet:h-[450px] desktop:h-[650px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-visible pb-[10%] tablet:pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {imageSrc && !imageError ? (
             <Image
               alt={product.name}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               src={imageSrc}
               width={800}
               height={1200}
@@ -69,25 +70,25 @@ function GridItem({ product }: GridItemProps) {
           )}
         </div>
 
-        <div className="content-stretch flex flex-col items-start w-[90%] relative shrink-1 z-10">
-          <div className="bg-[rgba(255,255,255,0.2)] mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] desktop-wide:h-[90px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] desktop-wide:min-h-[90px] relative rounded-[6px] shrink-0 w-full flex items-center justify-between px-4 desktop:px-6 desktop-wide:px-8">
+        <div className="content-stretch flex flex-col items-center w-[90%] relative shrink-1 z-10">
+          {/* Product name + action container */}
+          <div className="bg-transparent mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] desktop-wide:h-[90px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] desktop-wide:min-h-[90px] relative rounded-[6px] shrink-0 w-full flex items-center justify-center px-4 desktop:px-6 desktop-wide:px-8">
             <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
 
-            <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-white mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
-              <p className="truncate">{truncatedName}</p>
-            </div>
-
-            <div className="content-stretch flex mobile:h-[36px] text-white hover:bg-green-200 hover:text-black tablet:h-[42px] desktop:h-[48px] desktop-wide:h-[58px] items-center justify-center mobile:p-[2px] desktop:p-[3px] relative rounded-[6px] shrink-0 mobile:w-[70px] tablet:w-[85px] desktop:w-[106px] desktop-wide:w-[126px] ml-3 bg-transparent text-white">
-              <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
-              <div className="relative shrink-0">
-                <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-center relative size-full">
-                  <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 mobile:text-[12px] tablet:text-[14px] desktop:text-[20px] text-center mobile:tracking-[-0.24px] tablet:tracking-[-0.28px] desktop:tracking-[-0.36px] uppercase whitespace-nowrap">
-                    <p className="mobile:leading-[17px] tablet:leading-[20px] desktop:leading-[28.8px]">View</p>
-                  </div>
-                </div>
-              </div>
+            {/* Product name */}
+            <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center items-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-white mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
+              <p className="truncate text-center w-full">{truncatedName}</p>
             </div>
           </div>
+
+          {primaryCategory ? (
+            <div className="w-full mt-2 flex items-center gap-2">
+              <p className="font-['Inter:Bold',sans-serif] font-bold text-[16px] leading-[1.2] tracking-[0.3px] text-white truncate">
+                {primaryCategory}
+              </p>
+              <div aria-hidden="true" className="h-[2px] w-[58px] bg-white shrink-0" />
+            </div>
+          ) : null}
         </div>
       </div>
     </Link>
@@ -172,10 +173,10 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     <div className="content-stretch flex flex-col items-start px-[24px] relative size-full pt-16 pb-32 tablet:pb-40 desktop:pb-48 gap-16 bg-transparent">
       {/* Tag Filter */}
       <div className="w-full flex justify-center mb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 justify-center items-center max-w-4xl w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 justify-center items-center max-w-4xl w-full px-4 sm:px-0">
           <button
             onClick={() => setSelectedTagIds([])}
-            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all w-full ${
+            className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
               selectedTagIds.length === 0
                 ? 'bg-white text-black border-2 border-white'
                 : 'text-white border-2 border-white hover:bg-white/10'
@@ -191,7 +192,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
                   current.length === 1 && current[0] === tag.id ? [] : [tag.id]
                 )
               }
-              className={`px-4 py-2 rounded-lg font-bold text-sm transition-all w-full ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
                 selectedTagIds.includes(tag.id)
                   ? 'bg-white text-black border-2 border-white'
                   : 'text-white border-2 border-white text-white hover:bg-green-200 hover:text-black'
