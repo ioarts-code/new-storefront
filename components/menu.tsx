@@ -102,7 +102,7 @@ export default function Menu() {
         </button>
 
         {isSearchOpen && (
-          <div className="absolute top-full left-0 mt-2 flex items-center gap-2 rounded-md border border-white/20 bg-black/95 p-2 shadow-xl lg:top-0 lg:left-auto lg:right-full lg:mr-3 lg:mt-0">
+          <div className="absolute top-0 right-full mr-3 flex items-center gap-2 rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
             <div className="relative">
               <input
                 ref={searchInputRef}
@@ -155,7 +155,7 @@ export default function Menu() {
         </button>
 
         {isOpen && (
-          <div className="absolute top-full left-0 mt-2 min-w-[160px] rounded-md border border-white/20 bg-black/95 p-2 shadow-xl lg:top-0 lg:left-auto lg:right-full lg:mr-3 lg:mt-0">
+          <div className="absolute top-0 right-full mr-3 min-w-[160px] rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
             <Link
               href="/"
               onClick={() => setIsOpen(false)}
