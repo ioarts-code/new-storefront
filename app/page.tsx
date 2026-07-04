@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
@@ -9,7 +9,7 @@ import { filterProductsToTShirts } from '@/lib/product-filters';
 import { Grid } from '@/components/grid';
 import Hero from '@/components/hero';
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get('q') ?? '';
   const [products, setProducts] = useState<Product[]>([]);
@@ -71,5 +71,13 @@ export default function Home() {
         searchQuery={searchQuery}
       />
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-[#0F0F0F]" />}>
+      <HomeContent />
+    </Suspense>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Suspense } from 'react'
 import Footer from '@/components/footer'
 import Menu from '@/components/menu'
 import { CartProvider } from '@/lib/cart-context'
@@ -104,7 +105,9 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-[#0F0F0F] text-foreground">
         <CartProvider>
           <aside className="fixed right-0 top-0 z-50 h-screen w-[58px] sm:w-[64px] lg:w-[58px] pointer-events-none">
-            <Menu />
+            <Suspense fallback={null}>
+              <Menu />
+            </Suspense>
           </aside>
           {children}
           <Footer />
