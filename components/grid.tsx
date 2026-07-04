@@ -100,20 +100,42 @@ interface GridProps {
   isEmpty?: boolean;
   groupByCategoryOnLoad?: boolean;
   itemsPerCategory?: number;
+  showProducts?: boolean;
+  searchQuery?: string;
 }
 
-export function Grid({ products, isLoading = false, isEmpty = false, groupByCategoryOnLoad = false, itemsPerCategory = 3 }: GridProps) {
+export function Grid({ products, isLoading = false, isEmpty = false, groupByCategoryOnLoad = false, itemsPerCategory = 3, showProducts = true, searchQuery = '' }: GridProps) {
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
+  const normalizedSearchQuery = searchQuery.trim().toLowerCase();
 
   const visibleProducts = useMemo(
     () => products.filter((product) => !isExcludedProduct(product)),
     [products]
   );
 
+  const searchFilteredProducts = useMemo(() => {
+    if (!normalizedSearchQuery) {
+      return visibleProducts;
+    }
+
+    return visibleProducts.filter((product) => {
+      const searchableText = [
+        product.name,
+        product.description,
+        ...(product.tags ?? []).map((tag) => tag.name),
+        ...(product.categories ?? []).map((category) => category.name),
+      ]
+        .join(' ')
+        .toLowerCase();
+
+      return searchableText.includes(normalizedSearchQuery);
+    });
+  }, [visibleProducts, normalizedSearchQuery]);
+
   const allTags = useMemo(() => {
     const tagMap = new Map<string, Tag>();
 
-    visibleProducts.forEach((product) => {
+    searchFilteredProducts.forEach((product) => {
       (product.tags ?? []).forEach((tag) => {
         if (!tagMap.has(tag.id) && !isExcludedFilterTag(tag)) {
           tagMap.set(tag.id, tag);
@@ -122,16 +144,16 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     });
 
     return Array.from(tagMap.values());
-  }, [visibleProducts]);
+  }, [searchFilteredProducts]);
 
   const filteredProducts = useMemo(
     () =>
       selectedTagIds.length > 0
-        ? visibleProducts.filter((product) =>
+        ? searchFilteredProducts.filter((product) =>
             (product.tags ?? []).some((tag) => selectedTagIds.includes(tag.id))
           )
-        : visibleProducts,
-    [visibleProducts, selectedTagIds]
+        : searchFilteredProducts,
+    [searchFilteredProducts, selectedTagIds]
   );
 
   if (isLoading) {
@@ -181,11 +203,11 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
         </div>
       </div>
 
-      {filteredProducts.length === 0 ? (
-        selectedTagIds.length > 0 ? (
+      {!showProducts ? null : filteredProducts.length === 0 ? (
+        selectedTagIds.length > 0 || normalizedSearchQuery ? (
           <div className="text-center py-20 w-full">
             <h3 className="text-lg font-semibold text-white mb-2">No products found</h3>
-            <p className="text-gray-400">Try selecting a different tag or clear the filter.</p>
+            <p className="text-gray-400">Try a different search term, tag, or clear the filter.</p>
           </div>
         ) : null
       ) : (

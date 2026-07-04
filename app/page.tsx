@@ -1,13 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS } from '@/lib/graphql-queries';
+import { filterProductsToTShirts } from '@/lib/product-filters';
 import { Grid } from '@/components/grid';
 import Hero from '@/components/hero';
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get('q') ?? '';
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -20,9 +24,7 @@ export default function Home() {
       try {
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(GET_PRODUCTS);
-        const filteredProducts = data.products.filter((product) =>
-          product.categories?.some((category) => category.name === 'T-Shirt')
-        );
+        const filteredProducts = filterProductsToTShirts(data.products);
         setProducts(filteredProducts);
       } catch (err) {
         let message = err instanceof Error ? err.message : 'Failed to fetch data';
@@ -66,6 +68,7 @@ export default function Home() {
         products={products}
         isLoading={isLoading && products.length === 0}
         isEmpty={!isLoading && products.length === 0}
+        searchQuery={searchQuery}
       />
     </main>
   );

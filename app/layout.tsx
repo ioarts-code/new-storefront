@@ -103,7 +103,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased bg-[#0F0F0F] text-foreground">
         <CartProvider>
-          <aside className="fixed right-0 top-0 z-50 h-screen w-[58px]">
+          <aside className="fixed right-0 top-0 z-50 h-[64px] w-[72px] sm:h-[72px] sm:w-[80px] lg:h-screen lg:w-[58px] pointer-events-none">
             <Menu />
           </aside>
           {children}

@@ -95,7 +95,7 @@ export default function Hero({
 
       {/* Horizontal Divider - Bottom */}
       <div
-        className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.95)] pointer-events-none overflow-hidden"
+        className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(100,100,100,0.95)] pointer-events-none overflow-hidden"
         style={{
           height: '160px',
         }}
@@ -145,9 +145,9 @@ export default function Hero({
       {showFeaturedCard && (
         <>
           {featuredCardLoading ? (
-            <div className="absolute top-16 md:top-24 left-6 md:left-10 lg:left-16 w-56 sm:w-72 md:w-80 lg:w-96 h-auto bg-white/20 rounded-lg z-50" />
+            <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] w-56 sm:w-72 md:w-80 lg:w-96 h-auto bg-white/20 rounded-lg z-50" />
           ) : featuredProduct ? (
-            <div className="absolute top-16 md:top-24 left-6 md:left-10 lg:left-16 flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-transparent rounded-lg gap-2 sm:gap-4 z-50">
+            <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-transparent rounded-lg gap-2 sm:gap-4 z-50">
               <div className="absolute border-l-3 border-white inset-0 pointer-events-none " />
 
               {/* Badge */}
