@@ -87,100 +87,206 @@ export default function Menu() {
 
   return (
     <div className="relative size-full pointer-events-auto">
-      <div ref={searchRef} className="absolute left-[10px] top-[14px] sm:left-[12px] sm:top-[18px] lg:left-[17px] lg:top-[36px]" data-name="icon">
-        <button
-          type="button"
-          className="overflow-clip size-[20px] sm:size-[22px] lg:size-[24px]"
-          aria-label="Open search"
-          aria-expanded={isSearchOpen}
-          onClick={() => setIsSearchOpen((prev) => !prev)}
-        >
-          <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
-            <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-            <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
-          </svg>
-        </button>
+      <div className="flex h-full w-full flex-col items-center justify-start gap-2 pt-4 pb-2 lg:hidden">
+        <div ref={searchRef} className="relative" data-name="icon">
+          <button
+            type="button"
+            className="overflow-clip size-[16px]"
+            aria-label="Open search"
+            aria-expanded={isSearchOpen}
+            onClick={() => setIsSearchOpen((prev) => !prev)}
+          >
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
+              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
+            </svg>
+          </button>
 
-        {isSearchOpen && (
-          <div className="absolute top-0 right-full mr-3 flex items-center gap-2 rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
-            <div className="relative">
-              <input
-                ref={searchInputRef}
-                type="text"
-                value={searchInput}
-                onChange={(event) => setSearchInput(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter') {
-                    applySearch();
-                  }
-                }}
-                placeholder="Search products"
-                className="h-9 w-[180px] bg-transparent border border-white/25 rounded pl-3 pr-8 text-sm text-white placeholder:text-white/60 outline-none"
-              />
-              {searchInput && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchInput('');
-                    searchInputRef.current?.focus();
+          {isSearchOpen && (
+            <div className="absolute top-0 right-full mr-2 flex items-center gap-1 rounded-md border border-white/20 bg-black/95 p-1.5 shadow-xl">
+              <div className="relative">
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchInput}
+                  onChange={(event) => setSearchInput(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      applySearch();
+                    }
                   }}
-                  aria-label="Clear search"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-sm leading-none"
-                >
-                  X
-                </button>
-              )}
+                  placeholder="Search products"
+                  className="h-8 w-[132px] bg-transparent border border-white/25 rounded pl-2.5 pr-7 text-[11px] text-white placeholder:text-white/60 outline-none"
+                />
+                {searchInput && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchInput('');
+                      searchInputRef.current?.focus();
+                    }}
+                    aria-label="Clear search"
+                    className="absolute right-1.5 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-[11px] leading-none"
+                  >
+                    X
+                  </button>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={applySearch}
+                className="h-8 px-2 rounded border border-white/25 text-[10px] font-semibold uppercase text-white hover:bg-white/15"
+              >
+                Search
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={applySearch}
-              className="h-9 px-3 rounded border border-white/25 text-xs font-semibold uppercase text-white hover:bg-white/15"
-            >
-              Search
-            </button>
-          </div>
-        )}
-      </div>
-      <div ref={dropdownRef} className="absolute left-[38px] top-[12px] sm:left-[42px] sm:top-[16px] lg:left-[16px] lg:top-[284px]" data-name="menu">
-        <button
-          type="button"
-          className="relative h-[22px] w-[21px] lg:h-[26px] lg:w-[25px]"
-          onClick={() => setIsOpen((prev) => !prev)}
-          aria-label="Toggle menu"
-          aria-expanded={isOpen}
-        >
-          <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25 26">
-            <path d={svgMenuPaths.p44709f0} fill="var(--fill-0, white)" id="menu" />
-          </svg>
-        </button>
+          )}
+        </div>
 
-        {isOpen && (
-          <div className="absolute top-0 right-full mr-3 min-w-[160px] rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
-            <Link
-              href="/"
-              onClick={() => setIsOpen(false)}
-              className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
-            >
-              Home
-            </Link>
-            <Link
-              href="/products"
-              onClick={() => setIsOpen(false)}
-              className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
-            >
-              All Products
-            </Link>
+        <div className="flex h-[56px] w-[16px] items-center justify-center overflow-hidden">
+          <div className="-rotate-90 flex-none">
+            <div className="relative h-[16px] w-[56px]" data-name="17830404440764516789494914935528 2">
+              <img
+                alt=""
+                className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+                src="/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png"
+              />
+            </div>
           </div>
-        )}
+        </div>
+
+        <div ref={dropdownRef} className="relative mt-2" data-name="menu">
+          <button
+            type="button"
+            className="relative h-[18px] w-[17px]"
+            onClick={() => setIsOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={isOpen}
+          >
+            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25 26">
+              <path d={svgMenuPaths.p44709f0} fill="var(--fill-0, white)" id="menu" />
+            </svg>
+          </button>
+
+          {isOpen && (
+            <div className="absolute top-0 right-full mr-2 min-w-[128px] rounded-md border border-white/20 bg-black/95 p-1.5 shadow-xl">
+              <Link
+                href="/"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                Home
+              </Link>
+              <Link
+                href="/products"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                All Products
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
-      <div className="absolute hidden lg:flex h-[159px] items-center justify-center left-[6px] top-[89px] w-[45px]">
-        <div className="-rotate-90 flex-none">
-          <div className="h-[45px] relative w-[159px]" data-name="17830404440764516789494914935528 2">
-            <img
-              alt=""
-              className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
-              src="/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png"
-            />
+
+      <div className="hidden lg:block">
+        <div ref={searchRef} className="absolute left-[17px] top-[36px]" data-name="icon">
+          <button
+            type="button"
+            className="overflow-clip size-[24px]"
+            aria-label="Open search"
+            aria-expanded={isSearchOpen}
+            onClick={() => setIsSearchOpen((prev) => !prev)}
+          >
+            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
+              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
+              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
+            </svg>
+          </button>
+
+          {isSearchOpen && (
+            <div className="absolute top-0 right-full mr-3 flex items-center gap-2 rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
+              <div className="relative">
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchInput}
+                  onChange={(event) => setSearchInput(event.target.value)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter') {
+                      applySearch();
+                    }
+                  }}
+                  placeholder="Search products"
+                  className="h-9 w-[180px] bg-transparent border border-white/25 rounded pl-3 pr-8 text-sm text-white placeholder:text-white/60 outline-none"
+                />
+                {searchInput && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchInput('');
+                      searchInputRef.current?.focus();
+                    }}
+                    aria-label="Clear search"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-sm leading-none"
+                  >
+                    X
+                  </button>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={applySearch}
+                className="h-9 px-3 rounded border border-white/25 text-xs font-semibold uppercase text-white hover:bg-white/15"
+              >
+                Search
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div ref={dropdownRef} className="absolute left-[16px] top-[284px]" data-name="menu">
+          <button
+            type="button"
+            className="relative h-[26px] w-[25px]"
+            onClick={() => setIsOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={isOpen}
+          >
+            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25 26">
+              <path d={svgMenuPaths.p44709f0} fill="var(--fill-0, white)" id="menu" />
+            </svg>
+          </button>
+
+          {isOpen && (
+            <div className="absolute top-0 right-full mr-3 min-w-[160px] rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
+              <Link
+                href="/"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                Home
+              </Link>
+              <Link
+                href="/products"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                All Products
+              </Link>
+            </div>
+          )}
+        </div>
+
+        <div className="absolute hidden lg:flex h-[144px] items-center justify-center left-[6px] top-[97px] w-[41px]">
+          <div className="-rotate-90 flex-none">
+            <div className="h-[41px] relative w-[144px]" data-name="17830404440764516789494914935528 2">
+              <img
+                alt=""
+                className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+                src="/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png"
+              />
+            </div>
           </div>
         </div>
       </div>
