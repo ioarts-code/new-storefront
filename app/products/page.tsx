@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -10,7 +10,7 @@ import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { filterProductsToTShirts } from '@/lib/product-filters';
 import { Grid } from '@/components/grid';
 
-export default function ProductsPage() {
+function ProductsPageContent() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get('q') ?? '';
   const [products, setProducts] = useState<Product[]>([]);
@@ -78,5 +78,13 @@ export default function ProductsPage() {
         searchQuery={searchQuery}
       />
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0F0F0F]" />}>
+      <ProductsPageContent />
+    </Suspense>
   );
 }
