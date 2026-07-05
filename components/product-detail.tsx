@@ -180,11 +180,11 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
       </div>
 
       {/* Right Column - Product Image */}
-      <div className="relative z-0 w-full lg:w-[45%] xl:w-[85%] flex lg:items-start items-center justify-center p-4 lg:p-4 lg:pr-8 xl:pr-16 2xl:pr-0 order-first lg:order-last lg:pt-12 pointer-events-none">
+      <div className="relative z-0 w-full lg:w-[45%] xl:w-[85%] flex lg:items-start items-center justify-center p-0 sm:p-4 lg:p-4 lg:pr-8 xl:pr-16 2xl:pr-0 order-first lg:order-last lg:pt-12 pointer-events-none">
         {imageUrl ? (
           <Image
             alt={product.name}
-            className="object-contain object-center w-full max-w-full max-h-[300px] sm:max-h-[550px] md:max-h-[700px] lg:max-h-none lg:scale-[1.8] pointer-events-none"
+            className="object-contain object-center w-full max-w-full max-h-[560px] sm:max-h-[680px] md:max-h-[820px] lg:max-h-none lg:scale-[1.8] pointer-events-none"
             src={imageUrl}
             width={900}
             height={1200}
