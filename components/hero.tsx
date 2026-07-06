@@ -38,12 +38,12 @@ function getFeaturedBadgeLabel(product: Product) {
   return heroCategory?.name ?? product.categories?.[0]?.name ?? 'Featured';
 }
 
-const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; backdrop?: boolean }> = {
-  1: { scale: 1.0 },
-  2: { scale: 1.0 },
-  3: { scale: 1.08 },
-  4: { scale: 1.12 },
-  5: { scale: 1.16 },
+const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; backdrop?: boolean; categorySlugs?: string[] }> = {
+  1: { scale: 1.0, categorySlugs: ['hero'] },
+  2: { scale: 1.0, categorySlugs: ['hero'] },
+  3: { scale: 1.08, categorySlugs: ['hero'] },
+  4: { scale: 1.12, categorySlugs: ['hero'] },
+  5: { scale: 1.16, categorySlugs: ['hero'] },
 };
 
 function getHeroImageConfig(slideNumber: number) {
@@ -63,11 +63,16 @@ export default function Hero() {
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(GET_PRODUCTS);
 
+        // Get all unique category slugs from the config
+        const configCategorySlugs = new Set<string>();
+        Object.values(HERO_IMAGE_CONFIG_BY_SLIDE).forEach((config) => {
+          config.categorySlugs?.forEach((slug) => configCategorySlugs.add(slug));
+        });
+
         const products = (data?.products ?? []).filter((product) =>
           product.categories?.some((category) => {
-            const nameKey = normalizeKey(category.name);
             const slugKey = normalizeKey(category.slug);
-            return nameKey === 'hero' || slugKey === 'hero';
+            return configCategorySlugs.has(slugKey);
           })
         );
 
