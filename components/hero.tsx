@@ -233,7 +233,7 @@ export default function Hero() {
 
             {/* Taglines */}
             <div
-              className="font-['Inter:Bold',sans-serif] font-bold text-black text-center text-[10px] md:text-[13px]"
+              className="font-['Inter:Bold',sans-serif] font-bold text-white text-center text-[10px] md:text-[13px]"
               style={{
                 lineHeight: '1.4',
                 letterSpacing: '0.4px',
@@ -248,7 +248,7 @@ export default function Hero() {
               className="mt-1 text-[16px] md:text-[20px]"
               style={{
                 fontFamily: "'Mr Dafoe', cursive",
-                color: '#000',
+                color: '#fff',
               }}
             >
               Anders Altmann
