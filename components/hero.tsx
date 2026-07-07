@@ -39,7 +39,7 @@ function getFeaturedBadgeLabel(product: Product) {
 }
 
 const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; backdrop?: boolean; slugs?: string[] }> = {
-  1: { scale: 1.0, slugs: [flask-elden] },
+  1: { scale: 1.0, slugs: ['flask-elden'] },
   2: { scale: 1.0, slugs: [] },
   3: { scale: 1.08, slugs: [] },
   4: { scale: 1.12, slugs: [] },
@@ -63,17 +63,14 @@ export default function Hero() {
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(GET_PRODUCTS);
 
-        // Get all unique slugs from the config
+        // Get all unique product slugs from the config
         const configSlugs = new Set<string>();
         Object.values(HERO_IMAGE_CONFIG_BY_SLIDE).forEach((config) => {
           config.slugs?.forEach((slug) => configSlugs.add(normalizeKey(slug)));
         });
 
         const products = (data?.products ?? []).filter((product) =>
-          configSlugs.size === 0 || product.categories?.some((category) => {
-            const slugKey = normalizeKey(category.slug);
-            return configSlugs.has(slugKey);
-          })
+          configSlugs.size === 0 || configSlugs.has(normalizeKey(product.slug))
         );
 
         setHeroProducts(products);
