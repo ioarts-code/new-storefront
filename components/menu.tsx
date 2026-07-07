@@ -98,7 +98,7 @@ export default function Menu() {
 
   return (
     <div className="relative size-full pointer-events-auto">
-      <div className="flex h-full w-full flex-col items-center justify-start gap-1.5 pt-3 pb-2 lg:hidden">
+      <div className="flex h-full w-full flex-col items-end justify-start gap-1.5 pt-3 pb-2 pr-3 lg:hidden">
         <div ref={mobileSearchRef} className="relative" data-name="icon">
           <button
             type="button"

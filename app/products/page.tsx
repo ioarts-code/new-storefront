@@ -64,13 +64,6 @@ function ProductsPageContent() {
         </div>
       )}
 
-      {/* Products inventory header */}
-      <div className="flex justify-center px-6 md:px-8 lg:px-10 xl:px-16 pt-4 pb-4">
-        <h1 className="font-['Inter:Bold',sans-serif] font-bold text-white text-lg md:text-xl lg:text-2xl text-center">
-          Products inventory - please choose
-        </h1>
-      </div>
-
       <Grid
         products={products}
         isLoading={isLoading && products.length === 0}
