@@ -222,7 +222,7 @@ export default function Hero() {
           <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
             {/* Merch Text */}
             <div
-              className="font-['Inter:Bold',sans-serif] font-black uppercase text-black text-center text-[24px] md:text-[30px]"
+              className="font-['Inter:Bold',sans-serif] font-black uppercase text-white text-center text-[24px] md:text-[30px]"
               style={{
                 lineHeight: '1.3',
                 letterSpacing: '4px',
