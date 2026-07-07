@@ -94,7 +94,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
               className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 text-white hover:bg-green-200 hover:text-black lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
             >
               SVG
-              <Download size={18} />
+              <Download size={18} className="-translate-y-0.5" />
             </button>
             {/* Search Store */}
             <a
