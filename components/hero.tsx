@@ -135,7 +135,7 @@ export default function Hero() {
                 const imageUrl = product.images?.[0]?.url ?? '';
                 const slideNumber = index + 1;
                 const heroImageConfig = getHeroImageConfig(slideNumber);
-                const showBackdropImage = heroImageConfig.backdrop ?? heroImageConfig.scale < 1;
+                const showBackdropImage = heroImageConfig.backdrop ?? false;
 
                 return (
                   <CarouselItem key={product.id} className="pl-0">
