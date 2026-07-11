@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import svgMenuPaths from "@/public/svgmenu";
 
+const PRODUCTS_GRID_ID = 'products-grid';
+
 export default function Menu() {
   const router = useRouter();
   const pathname = usePathname();
@@ -34,6 +36,17 @@ export default function Menu() {
     }
   }, [isSearchOpen]);
 
+  const scrollToProductsGrid = () => {
+    const gridElement = document.getElementById(PRODUCTS_GRID_ID);
+
+    if (!gridElement) {
+      return false;
+    }
+
+    gridElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return true;
+  };
+
   const getSearchTarget = (query: string) => {
     const nextParams = new URLSearchParams(searchParams.toString());
 
@@ -47,7 +60,28 @@ export default function Menu() {
     const targetPath = shouldStayOnCurrentPage ? pathname : '/products';
     const nextQuery = nextParams.toString();
 
-    return nextQuery ? `${targetPath}?${nextQuery}` : targetPath;
+    return `${nextQuery ? `${targetPath}?${nextQuery}` : targetPath}#${PRODUCTS_GRID_ID}`;
+  };
+
+  const handleSearchIconClick = () => {
+    const nextIsSearchOpen = !isSearchOpen;
+    setIsSearchOpen(nextIsSearchOpen);
+
+    if (!nextIsSearchOpen) {
+      return;
+    }
+
+    const target = getSearchTarget(searchInput.trim());
+
+    if (pathname === '/' || pathname === '/products') {
+      router.replace(target, { scroll: false });
+      window.requestAnimationFrame(() => {
+        scrollToProductsGrid();
+      });
+      return;
+    }
+
+    router.push(target);
   };
 
   const applySearch = () => {
@@ -105,7 +139,7 @@ export default function Menu() {
             className="overflow-clip size-[16px]"
             aria-label="Open search"
             aria-expanded={isSearchOpen}
-            onClick={() => setIsSearchOpen((prev) => !prev)}
+            onClick={handleSearchIconClick}
           >
             <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
               <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
@@ -207,7 +241,7 @@ export default function Menu() {
             className="overflow-clip size-[26px]"
             aria-label="Open search"
             aria-expanded={isSearchOpen}
-            onClick={() => setIsSearchOpen((prev) => !prev)}
+            onClick={handleSearchIconClick}
           >
             <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
               <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />

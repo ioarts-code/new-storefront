@@ -2,8 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Product, Tag } from '@/lib/types';
+
+const PRODUCTS_GRID_ID = 'products-grid';
 
 const EXCLUDED_FILTER_KEYS = new Set([
   'mug',
@@ -157,6 +159,26 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     [searchFilteredProducts, selectedTagIds]
   );
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || isLoading || window.location.hash !== `#${PRODUCTS_GRID_ID}`) {
+      return;
+    }
+
+    const gridElement = document.getElementById(PRODUCTS_GRID_ID);
+
+    if (!gridElement) {
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      gridElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, [filteredProducts.length, isLoading, normalizedSearchQuery, selectedTagIds.length]);
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-20">
@@ -170,7 +192,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
   }
 
   return (
-    <div className="content-stretch flex flex-col items-start px-[24px] relative size-full pt-16 pb-32 tablet:pb-40 desktop:pb-48 gap-16 bg-transparent">
+    <div id={PRODUCTS_GRID_ID} className="content-stretch flex flex-col items-start px-[24px] relative size-full pt-16 pb-32 tablet:pb-40 desktop:pb-48 gap-16 bg-transparent">
       {/* Tag Filter */}
       <div className="w-full flex justify-center mb-8">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 justify-center items-center max-w-4xl w-full px-4 sm:px-0">
