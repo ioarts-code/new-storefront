@@ -73,7 +73,7 @@ export default function CartPage() {
                           </h3>
                         </Link>
                         <p className="text-gray-400 text-sm md:text-base mt-2">
-                          ${item.product.price.toFixed(2)}
+                          {item.product.price === 0 ? 'Free' : `$${item.product.price.toFixed(2)}`}
                         </p>
                       </div>
 
