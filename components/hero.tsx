@@ -150,7 +150,7 @@ export default function Hero() {
           >
             <CarouselContent className="ml-0">
               {heroProducts.map((product, index) => {
-                const imageUrl = product.images?.[0]?.url ?? '';
+                const imageUrl = product.heroImage?.url ?? product.images?.[0]?.url ?? '';
                 const slideNumber = index + 1;
                 const heroImageConfig = getHeroImageConfig(slideNumber);
                 const showBackdropImage = heroImageConfig.backdrop ?? false;

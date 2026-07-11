@@ -6,6 +6,11 @@ export const GET_PRODUCTS = /* GraphQL */ `
       slug
       description
       price
+      heroImage {
+        id
+        url
+        fileName
+      }
       download {
         url
         fileName

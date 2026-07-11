@@ -74,7 +74,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
             {/* Price */}
             <div
-              className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[96px] text-white"
+              className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[40px] text-white"
               style={{ fontVariationSettings: "'wdth' 100" }}
             >
               {product.price === 0 ? 'FREE' : `$${product.price || 0}`}
