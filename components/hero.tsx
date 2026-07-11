@@ -40,7 +40,7 @@ function getFeaturedBadgeLabel(product: Product) {
 
 const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; backdrop?: boolean; slugs?: string[] }> = {
   1: { scale: 1.0, slugs: ['flask-elden'] },
-  2: { scale: 1.0, slugs: [] },
+  2: { scale: 1.0, slugs: ['t-shirt-radiohead'] },
   3: { scale: 1.08, slugs: [] },
   4: { scale: 1.12, slugs: [] },
   5: { scale: 1.16, slugs: [] },
@@ -56,6 +56,7 @@ export default function Hero() {
   const [isLoading, setIsLoading] = useState(true);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [productSlideNumbers, setProductSlideNumbers] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
     const fetchHeroProducts = async () => {
@@ -63,17 +64,34 @@ export default function Hero() {
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(GET_PRODUCTS);
 
-        // Get all unique product slugs from the config
-        const configSlugs = new Set<string>();
-        Object.values(HERO_IMAGE_CONFIG_BY_SLIDE).forEach((config) => {
-          config.slugs?.forEach((slug) => configSlugs.add(normalizeKey(slug)));
+        // Build an ordered map of config slugs to their slide positions
+        const configSlugsMap = new Map<string, number>();
+        Object.entries(HERO_IMAGE_CONFIG_BY_SLIDE).forEach(([slideNum, config]) => {
+          config.slugs?.forEach((slug) => {
+            configSlugsMap.set(normalizeKey(slug), parseInt(slideNum));
+          });
         });
 
-        const products = (data?.products ?? []).filter((product) =>
-          configSlugs.size === 0 || configSlugs.has(normalizeKey(product.slug))
-        );
+        // Filter and sort products based on config order
+        const products = (data?.products ?? [])
+          .filter((product) => configSlugsMap.has(normalizeKey(product.slug)))
+          .sort((a, b) => {
+            const slideA = configSlugsMap.get(normalizeKey(a.slug)) ?? Infinity;
+            const slideB = configSlugsMap.get(normalizeKey(b.slug)) ?? Infinity;
+            return slideA - slideB;
+          });
+
+        // Create a map of product slug to slide number from config
+        const slugToSlideMap = new Map<string, number>();
+        products.forEach((product) => {
+          const slideNum = configSlugsMap.get(normalizeKey(product.slug));
+          if (slideNum) {
+            slugToSlideMap.set(product.id, slideNum);
+          }
+        });
 
         setHeroProducts(products);
+        setProductSlideNumbers(slugToSlideMap);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       } finally {
@@ -131,11 +149,11 @@ export default function Hero() {
             className="w-full"
           >
             <CarouselContent className="ml-0">
-              {heroProducts.filter((_, index) => index !== 1).map((product, index) => {
+              {heroProducts.map((product, index) => {
                 const imageUrl = product.images?.[0]?.url ?? '';
                 const slideNumber = index + 1;
                 const heroImageConfig = getHeroImageConfig(slideNumber);
-                const showBackdropImage = heroImageConfig.backdrop ?? heroImageConfig.scale < 1;
+                const showBackdropImage = heroImageConfig.backdrop ?? false;
 
                 return (
                   <CarouselItem key={product.id} className="pl-0">
@@ -201,7 +219,7 @@ export default function Hero() {
 
             <div className="hidden sm:block absolute bottom-6 left-6 md:bottom-8 md:left-8 lg:bottom-10 lg:left-10 z-40 pointer-events-none">
               <div className="font-['Inter:Bold',sans-serif] font-black text-white leading-none tracking-[-0.08em] text-[72px] sm:text-[96px] md:text-[120px] lg:text-[160px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)]">
-                {String(currentSlideIndex + 1).padStart(2, '0')}
+                {String((productSlideNumbers.get(heroProducts[currentSlideIndex]?.id) || currentSlideIndex + 1)).padStart(2, '0')}
               </div>
             </div>
           </Carousel>

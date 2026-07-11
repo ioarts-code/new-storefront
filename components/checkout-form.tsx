@@ -234,7 +234,7 @@ export function CheckoutForm() {
               <span>
                 {item.product.name} × {item.quantity}
               </span>
-              <span>${(item.product.price * item.quantity).toFixed(2)}</span>
+              <span>{item.product.price === 0 ? 'FREE' : `$${(item.product.price * item.quantity).toFixed(2)}`}</span>
             </div>
           ))}
         </div>
