@@ -15,6 +15,17 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = 'Unofficial: Rightsholder permits fanart on merch in small scale';
   const hasPrice = typeof product.price === 'number' && product.price > 0;
+  const titleLength = product.name.trim().length;
+  const titleWordCount = product.name.trim().split(/\s+/).filter(Boolean).length;
+  const titleFontSize =
+    titleLength > 34
+      ? 'clamp(2.75rem, 5vw, 5.5rem)'
+      : titleLength > 24 || titleWordCount > 3
+        ? 'clamp(3.25rem, 6vw, 6.5rem)'
+        : 'clamp(3.5rem, 8vw, 8rem)';
+  const titleLetterSpacing =
+    titleLength > 34 ? '0.02em' : titleLength > 24 || titleWordCount > 3 ? '0.03em' : '0.05em';
+  const titleMaxWidth = titleLength > 24 || titleWordCount > 3 ? '12ch' : '14ch';
   const [lightboxImageUrl, setLightboxImageUrl] = useState<string | null>(null);
   const [lightboxImageAlt, setLightboxImageAlt] = useState('Example image');
 
@@ -63,12 +74,19 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
     >
       {/* Left Column */}
-      <div className="relative z-10 flex flex-col justify-between w-full lg:w-[85%] xl:w-[100%] bg-transparent">
+      <div className="relative z-10 flex min-w-0 flex-col justify-between w-full lg:flex-1 bg-transparent">
         {/* Product Content */}
         <div className="flex flex-col gap-4">
           {/* Title and Price */}
           <div className="flex flex-col gap-0">
-            <h1 className="font-['Inter:Bold',sans-serif] font-bold text-3xl sm:text-4xl md:text-6xl lg:text-[128px] text-white tracking-tighter lg:tracking-[4.1px] uppercase leading-none">
+            <h1
+              className="font-['Inter:Bold',sans-serif] break-words text-3xl font-bold uppercase leading-[0.92] tracking-tighter text-white sm:text-4xl md:text-2xl lg:max-w-[14ch]"
+              style={{
+                fontSize: titleFontSize,
+                letterSpacing: titleLetterSpacing,
+                maxWidth: titleMaxWidth,
+              }}
+            >
               {product.name}
             </h1>
 
@@ -180,7 +198,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
       </div>
 
       {/* Right Column - Product Image */}
-      <div className="relative z-0 w-full lg:w-[45%] xl:w-[85%] flex lg:items-start items-center justify-center p-0 sm:p-4 lg:p-4 lg:pr-8 xl:pr-16 2xl:pr-0 order-first lg:order-last lg:pt-12 pointer-events-none">
+      <div className="relative z-0 order-first flex w-full items-center justify-center p-0 pointer-events-none sm:p-4 lg:order-last lg:basis-[45%] lg:shrink-0 lg:items-start lg:p-4 lg:pr-8 lg:pt-12 xl:basis-[50%] xl:pr-16 2xl:pr-0">
         {imageUrl ? (
           <Image
             alt={product.name}
