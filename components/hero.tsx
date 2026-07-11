@@ -56,6 +56,7 @@ export default function Hero() {
   const [isLoading, setIsLoading] = useState(true);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [productSlideNumbers, setProductSlideNumbers] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
     const fetchHeroProducts = async () => {
@@ -80,7 +81,17 @@ export default function Hero() {
             return slideA - slideB;
           });
 
+        // Create a map of product slug to slide number from config
+        const slugToSlideMap = new Map<string, number>();
+        products.forEach((product) => {
+          const slideNum = configSlugsMap.get(normalizeKey(product.slug));
+          if (slideNum) {
+            slugToSlideMap.set(product.id, slideNum);
+          }
+        });
+
         setHeroProducts(products);
+        setProductSlideNumbers(slugToSlideMap);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       } finally {
@@ -208,7 +219,7 @@ export default function Hero() {
 
             <div className="hidden sm:block absolute bottom-6 left-6 md:bottom-8 md:left-8 lg:bottom-10 lg:left-10 z-40 pointer-events-none">
               <div className="font-['Inter:Bold',sans-serif] font-black text-white leading-none tracking-[-0.08em] text-[72px] sm:text-[96px] md:text-[120px] lg:text-[160px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)]">
-                {String(currentSlideIndex + 1).padStart(2, '0')}
+                {String((productSlideNumbers.get(heroProducts[currentSlideIndex]?.id) || currentSlideIndex + 1)).padStart(2, '0')}
               </div>
             </div>
           </Carousel>
