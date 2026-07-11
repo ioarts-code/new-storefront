@@ -80,7 +80,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
           {/* Title and Price */}
           <div className="flex flex-col gap-0">
             <h1
-              className="font-['Inter:Bold',sans-serif] break-words text-3xl font-bold uppercase leading-[0.92] tracking-tighter text-white sm:text-4xl md:text-2xl lg:max-w-[14ch]"
+              className="font-['Inter:Bold',sans-serif] break-words text-3xl font-bold uppercase leading-[0.92] tracking-tighter text-white sm:text-4xl md:text-6xl lg:max-w-[14ch]"
               style={{
                 fontSize: titleFontSize,
                 letterSpacing: titleLetterSpacing,
