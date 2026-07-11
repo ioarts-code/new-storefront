@@ -149,25 +149,19 @@ export default function Hero() {
                       )}
 
                       {imageUrl ? (
-                        <div
-                          className="absolute inset-0"
+                        <Image
+                          alt={product.name}
+                          src={imageUrl}
+                          fill
+                          priority
+                          sizes="100vw"
+                          className="object-cover object-center pointer-events-none hover:opacity-90 transition-opacity"
                           style={{
+                            backgroundColor: 'transparent',
                             transform: `scale(${heroImageConfig.scale})`,
                             transformOrigin: 'center center',
                           }}
-                        >
-                          <Image
-                            alt={product.name}
-                            src={imageUrl}
-                            fill
-                            priority
-                            sizes="100vw"
-                            className="object-cover object-center pointer-events-none hover:opacity-90 transition-opacity"
-                            style={{
-                              backgroundColor: 'transparent',
-                            }}
-                          />
-                        </div>
+                        />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center bg-white/5 text-white/60">
                           No image available
