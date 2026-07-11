@@ -6,6 +6,8 @@ export const GET_PRODUCTS = /* GraphQL */ `
       slug
       description
       price
+      author
+      copyright
       heroImage {
         id
         url
@@ -41,6 +43,8 @@ export const GET_PRODUCTS_BY_TAG = /* GraphQL */ `
       slug
       description
       price
+      author
+      copyright
       download {
         url
         fileName
@@ -66,6 +70,8 @@ export const SEARCH_PRODUCTS = /* GraphQL */ `
       slug
       description
       price
+      author
+      copyright
       download {
         url
         fileName
@@ -91,6 +97,8 @@ export const GET_PRODUCT_BY_SLUG = /* GraphQL */ `
       slug
       description
       price
+      author
+      copyright
       download {
         url
         fileName
@@ -121,6 +129,8 @@ export const GET_PRODUCTS_BY_SLUGS = /* GraphQL */ `
       slug
       description
       price
+      author
+      copyright
       download {
         url
         fileName

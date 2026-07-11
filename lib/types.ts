@@ -4,6 +4,8 @@ export interface Product {
   slug: string;
   description: string;
   price: number;
+  author?: string | null;
+  copyright?: string | null;
   heroImage?: ProductImage | null;
   download?: {
     url: string;

@@ -13,16 +13,17 @@ interface ProductDetailProps {
 export function ProductDetail({ product, otherExamples = [] }: ProductDetailProps) {
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
-  const copyright = 'Unofficial: Rightsholder permits fanart on merch in small scale';
+  const copyright = product.copyright?.trim() || 'No copyright information provided';
+  const author = product.author?.trim() || 'No author specified';
   const hasPrice = typeof product.price === 'number' && product.price > 0;
   const titleLength = product.name.trim().length;
   const titleWordCount = product.name.trim().split(/\s+/).filter(Boolean).length;
   const titleFontSize =
     titleLength > 34
-      ? 'clamp(2.75rem, 5vw, 5.5rem)'
+      ? 'clamp(2.5rem, 4.8vw, 5rem)'
       : titleLength > 24 || titleWordCount > 3
-        ? 'clamp(3.25rem, 6vw, 6.5rem)'
-        : 'clamp(3.5rem, 8vw, 8rem)';
+        ? 'clamp(3rem, 5.8vw, 6rem)'
+        : 'clamp(3.25rem, 7.5vw, 7.25rem)';
   const titleLetterSpacing =
     titleLength > 34 ? '0.02em' : titleLength > 24 || titleWordCount > 3 ? '0.03em' : '0.05em';
   const titleMaxWidth = titleLength > 24 || titleWordCount > 3 ? '12ch' : '14ch';
@@ -91,11 +92,16 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             </h1>
 
             {/* Price */}
-            <div
-              className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[40px] text-white"
-              style={{ fontVariationSettings: "'wdth' 100" }}
-            >
-              {product.price === 0 ? 'FREE' : `$${product.price || 0}`}
+            <div className="mt-1 flex w-full items-center gap-2" style={{ maxWidth: titleMaxWidth }}>
+              <div
+                className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[40px] text-white"
+                style={{ fontVariationSettings: "'wdth' 100" }}
+              >
+                {product.price === 0 ? 'FREE' : `$${product.price || 0}`}
+              </div>
+              {product.price === 0 ? (
+                <div aria-hidden="true" className="h-[2px] flex-1 bg-white" />
+              ) : null}
             </div>
           </div>
 
@@ -162,6 +168,10 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
             <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
               <span className="font-bold">Copyright:</span> <span className="text-gray-300">{copyright}</span>
+            </p>
+
+            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
+              <span className="font-bold">Author:</span> <span className="text-gray-300">{author}</span>
             </p>
           </div>
 
