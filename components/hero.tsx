@@ -135,7 +135,7 @@ export default function Hero() {
                 const imageUrl = product.images?.[0]?.url ?? '';
                 const slideNumber = index + 1;
                 const heroImageConfig = getHeroImageConfig(slideNumber);
-                const showBackdropImage = heroImageConfig.backdrop ?? false;
+                const showBackdropImage = heroImageConfig.backdrop ?? heroImageConfig.scale < 1;
 
                 return (
                   <CarouselItem key={product.id} className="pl-0">
@@ -157,9 +157,9 @@ export default function Hero() {
                           sizes="100vw"
                           className="object-cover object-center pointer-events-none hover:opacity-90 transition-opacity"
                           style={{
-                            backgroundColor: 'transparent',
                             transform: `scale(${heroImageConfig.scale})`,
                             transformOrigin: 'center center',
+                            backgroundColor: 'transparent',
                           }}
                         />
                       ) : (
@@ -211,7 +211,50 @@ export default function Hero() {
           </div>
         )}
 
+        {/* Horizontal Divider - Bottom */}
+        <div
+          className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(100,100,100,0.55)] pointer-events-none overflow-hidden"
+          style={{
+            height: '160px',
+          }}
+        >
+          {/* Divider Content */}
+          <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
+            {/* Merch Text */}
+            <div
+              className="font-['Inter:Bold',sans-serif] font-black uppercase text-white text-center text-[24px] md:text-[30px]"
+              style={{
+                lineHeight: '1.3',
+                letterSpacing: '4px',
+              }}
+            >
+              Merch
+            </div>
 
+            {/* Taglines */}
+            <div
+              className="font-['Inter:Bold',sans-serif] font-bold text-white text-center text-[10px] md:text-[13px]"
+              style={{
+                lineHeight: '1.4',
+                letterSpacing: '0.4px',
+              }}
+            >
+              <p>ILLUSTRATIONS THAT MAKE SENSE. FIND NEW ART WITH IOARTSEU</p>
+              <p>{`LET'S MAKE EVERY PRODUCT YOURS FOR REAL.`}</p>
+            </div>
+
+            {/* Artist Name */}
+            <div
+              className="mt-1 text-[16px] md:text-[20px]"
+              style={{
+                fontFamily: "'Mr Dafoe', cursive",
+                color: '#fff',
+              }}
+            >
+              Anders Altmann
+            </div>
+          </div>
+        </div>
       </div>
       <div className="h-12 lg:h-20" />
     </div>
