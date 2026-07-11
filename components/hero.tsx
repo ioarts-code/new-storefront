@@ -63,15 +63,22 @@ export default function Hero() {
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(GET_PRODUCTS);
 
-        // Get all unique product slugs from the config
-        const configSlugs = new Set<string>();
-        Object.values(HERO_IMAGE_CONFIG_BY_SLIDE).forEach((config) => {
-          config.slugs?.forEach((slug) => configSlugs.add(normalizeKey(slug)));
+        // Build an ordered map of config slugs to their slide positions
+        const configSlugsMap = new Map<string, number>();
+        Object.entries(HERO_IMAGE_CONFIG_BY_SLIDE).forEach(([slideNum, config]) => {
+          config.slugs?.forEach((slug) => {
+            configSlugsMap.set(normalizeKey(slug), parseInt(slideNum));
+          });
         });
 
-        const products = (data?.products ?? []).filter((product) =>
-          configSlugs.size === 0 || configSlugs.has(normalizeKey(product.slug))
-        );
+        // Filter and sort products based on config order
+        const products = (data?.products ?? [])
+          .filter((product) => configSlugsMap.has(normalizeKey(product.slug)))
+          .sort((a, b) => {
+            const slideA = configSlugsMap.get(normalizeKey(a.slug)) ?? Infinity;
+            const slideB = configSlugsMap.get(normalizeKey(b.slug)) ?? Infinity;
+            return slideA - slideB;
+          });
 
         setHeroProducts(products);
       } catch (error) {
@@ -131,11 +138,11 @@ export default function Hero() {
             className="w-full"
           >
             <CarouselContent className="ml-0">
-              {heroProducts.filter((_, index) => index !== 1).map((product, index) => {
+              {heroProducts.map((product, index) => {
                 const imageUrl = product.images?.[0]?.url ?? '';
                 const slideNumber = index + 1;
                 const heroImageConfig = getHeroImageConfig(slideNumber);
-                const showBackdropImage = heroImageConfig.backdrop ?? heroImageConfig.scale < 1;
+                const showBackdropImage = heroImageConfig.backdrop ?? false;
 
                 return (
                   <CarouselItem key={product.id} className="pl-0">
