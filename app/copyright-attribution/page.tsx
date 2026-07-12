@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { BackToHomeButton } from '@/components/back-to-home-button';
 
 export const metadata = {
   title: 'Copyright & Attribution | IOARTS',
@@ -11,9 +12,7 @@ export default function CopyrightAttributionPage() {
       <div className="max-w-3xl mx-auto px-4 py-12 md:py-20">
         {/* Header */}
         <div className="mb-16">
-          <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 text-sm md:text-base transition-colors">
-            ← Back to Home
-          </Link>
+          <BackToHomeButton className="mb-8" />
           <h1 className="font-['Inter:Bold',sans-serif] font-bold text-5xl md:text-7xl text-white uppercase tracking-tight mb-4">
             Copyright & Attribution
           </h1>

@@ -3,9 +3,31 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import svgMenuPaths from "@/public/svgmenu";
 
 const PRODUCTS_GRID_ID = 'products-grid';
+
+type AnimatedMenuIconProps = {
+  isOpen: boolean;
+  compact?: boolean;
+};
+
+function AnimatedMenuIcon({ isOpen, compact = false }: AnimatedMenuIconProps) {
+  const thickness = compact ? 'h-[2px]' : 'h-[2.6px]';
+
+  return (
+    <span className="relative block size-full -scale-x-100 transform-gpu" aria-hidden="true">
+      <span
+        className={`absolute right-0 ${thickness} rounded-full bg-white transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 rotate-45' : 'top-[1px] w-full rotate-0'}`}
+      />
+      <span
+        className={`absolute right-0 top-1/2 ${thickness} w-[56%] rounded-full bg-white -translate-y-1/2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'opacity-0 translate-x-2 scale-x-0' : 'opacity-100 translate-x-0 scale-x-100'}`}
+      />
+      <span
+        className={`absolute right-0 ${thickness} rounded-full bg-white transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 -rotate-45' : 'bottom-[1px] w-[86%] rotate-0'}`}
+      />
+    </span>
+  );
+}
 
 export default function Menu() {
   const router = useRouter();
@@ -133,7 +155,7 @@ export default function Menu() {
   return (
     <div className="relative size-full pointer-events-auto">
       <div className="flex h-full w-full flex-col items-end justify-start gap-1.5 pt-3 pb-2 pr-3 lg:hidden">
-        <div ref={mobileSearchRef} className="relative" data-name="icon">
+        <div ref={mobileSearchRef} className="relative mr-1" data-name="icon">
           <button
             type="button"
             className="overflow-clip size-[16px]"
@@ -208,9 +230,7 @@ export default function Menu() {
             aria-label="Toggle menu"
             aria-expanded={isOpen}
           >
-            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25 26">
-              <path d={svgMenuPaths.p44709f0} fill="var(--fill-0, white)" id="menu" />
-            </svg>
+            <AnimatedMenuIcon isOpen={isOpen} compact />
           </button>
 
           {isOpen && (
@@ -235,7 +255,7 @@ export default function Menu() {
       </div>
 
       <div className="hidden lg:block">
-        <div ref={desktopSearchRef} className="absolute left-[16px] top-[36px]" data-name="icon">
+        <div ref={desktopSearchRef} className="absolute left-[12px] top-[36px]" data-name="icon">
           <button
             type="button"
             className="overflow-clip size-[26px]"
@@ -298,9 +318,7 @@ export default function Menu() {
             aria-label="Toggle menu"
             aria-expanded={isOpen}
           >
-            <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 25 26">
-              <path d={svgMenuPaths.p44709f0} fill="var(--fill-0, white)" id="menu" />
-            </svg>
+            <AnimatedMenuIcon isOpen={isOpen} />
           </button>
 
           {isOpen && (

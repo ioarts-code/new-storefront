@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { BackToHomeButton } from '@/components/back-to-home-button';
 
 export const metadata = {
   title: 'Privacy Policy | IOARTS',
@@ -8,19 +9,14 @@ export const metadata = {
 export default function PrivacyPolicy() {
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
-      <div className="max-w-4xl mx-auto px-4 py-16 md:py-24">
+      <div className="max-w-3xl mx-auto px-4 py-12 md:py-20">
         {/* Header */}
-        <div className="mb-12">
-          <Link 
-            href="/" 
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 text-sm transition-colors"
-          >
-            ← Back to Home
-          </Link>
-          <h1 className="font-['Inter:Bold',sans-serif] font-bold text-4xl md:text-6xl lg:text-[80px] text-white uppercase tracking-tight">
+        <div className="mb-16">
+          <BackToHomeButton className="mb-8" />
+          <h1 className="font-['Inter:Bold',sans-serif] font-bold text-5xl md:text-7xl text-white uppercase tracking-tight">
             Privacy Policy
           </h1>
-          <p className="text-gray-400 mt-4">Last updated: January 2025</p>
+          <p className="text-gray-400 mt-4 text-lg md:text-xl">Last updated: January 2025</p>
         </div>
 
         {/* Content */}
@@ -190,12 +186,7 @@ export default function PrivacyPolicy() {
 
         {/* Footer Link */}
         <div className="mt-16 pt-8 border-t border-gray-700">
-          <Link 
-            href="/" 
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-          >
-            ← Back to Home
-          </Link>
+          <BackToHomeButton />
         </div>
       </div>
     </main>

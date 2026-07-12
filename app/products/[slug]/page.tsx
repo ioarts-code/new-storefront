@@ -6,8 +6,8 @@ import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCT_BY_SLUG, GET_PRODUCTS } from '@/lib/graphql-queries';
 import { ProductDetail } from '@/components/product-detail';
+import { BackToHomeButton } from '@/components/back-to-home-button';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 
 const EXAMPLE_CATEGORY_KEYS = new Set([
   'mug',
@@ -131,11 +131,8 @@ export default function ProductPage() {
 
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
-      <div className="max-w-full lg:max-w-7xl mx-auto px-6 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-10 md:py-12">
-        <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-12 sm:mb-16 md:mb-20 text-sm sm:text-base">
-          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-          Back to Home
-        </Link>
+      <div className="max-w-full lg:max-w-7xl mx-auto px-9 sm:px-9 md:px-8 lg:px-12 py-6 sm:py-10 md:py-12">
+        <BackToHomeButton className="mb-12 sm:mb-16 md:mb-20" />
         <ProductDetail product={product} otherExamples={otherExamples} />
       </div>
     </main>

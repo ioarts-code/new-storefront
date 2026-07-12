@@ -1,20 +1,19 @@
 'use client';
 
 import Link from 'next/link';
+import { BackToHomeButton } from '@/components/back-to-home-button';
 
 export default function TermsOfSalePage() {
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
-      <div className="max-w-4xl mx-auto px-4 py-12 md:py-20">
+      <div className="max-w-3xl mx-auto px-4 py-12 md:py-20">
         {/* Header */}
-        <div className="mb-12">
-          <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 text-sm md:text-base">
-            ← Back to Home
-          </Link>
-          <h1 className="font-['Inter:Bold',sans-serif] font-bold text-4xl md:text-6xl lg:text-[80px] text-white uppercase tracking-tight">
+        <div className="mb-16">
+          <BackToHomeButton className="mb-8" />
+          <h1 className="font-['Inter:Bold',sans-serif] font-bold text-5xl md:text-7xl text-white uppercase tracking-tight mb-4">
             Terms of Sale
           </h1>
-          <p className="text-gray-400 mt-4">Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <p className="text-gray-400 text-lg md:text-xl">Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
         </div>
 
         {/* Content */}

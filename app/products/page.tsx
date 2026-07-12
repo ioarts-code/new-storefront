@@ -2,13 +2,12 @@
 
 import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
 import { GET_PRODUCTS } from '@/lib/graphql-queries';
 import { filterProductsToTShirts } from '@/lib/product-filters';
 import { Grid } from '@/components/grid';
+import { BackToHomeButton } from '@/components/back-to-home-button';
 
 function ProductsPageContent() {
   const searchParams = useSearchParams();
@@ -51,10 +50,7 @@ function ProductsPageContent() {
   return (
     <div className="min-h-screen bg-[#0F0F0F]">
       <div className="px-6 md:px-8 lg:px-10 xl:px-16 pt-8">
-        <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm sm:text-base">
-          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-          Back to Home
-        </Link>
+          <BackToHomeButton />
       </div>
 
       {error && (

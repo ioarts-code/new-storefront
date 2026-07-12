@@ -70,7 +70,7 @@ function DivAbsolute() {
 function A() {
   return (
     <a
-      href="mailto:brevduva999@proton.me"
+      href="/contact"
       className="flex items-center shrink-0 font-['Inter:Regular',sans-serif] font-normal text-[14.6px] text-white tracking-[-0.24px] leading-[19.2px] hover:text-gray-400 transition-colors"
       data-name="a"
     >

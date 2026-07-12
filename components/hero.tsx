@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { type MouseEvent, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -42,8 +42,8 @@ const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; backdrop?: boo
   1: { scale: 1.0, slugs: ['flask-elden'] },
   2: { scale: 1.0, slugs: ['t-shirt-radiohead'] },
   3: { scale: 1.0, slugs: ['hoodie-elden'] },
-  4: { scale: 1.12, slugs: [] },
-  5: { scale: 1.16, slugs: [] },
+  4: { scale: 1.0, slugs: ['backback-elden'] },
+  5: { scale: 1.0, slugs: [] },
 };
 
 function getHeroImageConfig(slideNumber: number) {
@@ -137,6 +137,24 @@ export default function Hero() {
     };
   }, [carouselApi]);
 
+  const handlePrevSlide = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    if (!carouselApi || heroProducts.length <= 1) {
+      return;
+    }
+
+    carouselApi.scrollPrev();
+  };
+
+  const handleNextSlide = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    if (!carouselApi || heroProducts.length <= 1) {
+      return;
+    }
+
+    carouselApi.scrollNext();
+  };
+
   return (
     <div className="relative">
       <div className="relative w-full max-w-full overflow-hidden">
@@ -216,6 +234,40 @@ export default function Hero() {
                 );
               })}
             </CarouselContent>
+
+            {heroProducts.length > 1 && (
+              <>
+                <button
+                  type="button"
+                  aria-label="Previous slide"
+                  onClick={handlePrevSlide}
+                  className="absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 p-2 sm:p-3 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
+                >
+                  <Image
+                    src="/arrows.svg"
+                    alt=""
+                    width={28}
+                    height={28}
+                    className="h-6 w-6 sm:h-7 sm:w-7 rotate-180"
+                  />
+                </button>
+
+                <button
+                  type="button"
+                  aria-label="Next slide"
+                  onClick={handleNextSlide}
+                  className="absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-50 p-2 sm:p-3 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
+                >
+                  <Image
+                    src="/arrows.svg"
+                    alt=""
+                    width={28}
+                    height={28}
+                    className="h-6 w-6 sm:h-7 sm:w-7"
+                  />
+                </button>
+              </>
+            )}
 
             <div className="hidden sm:block absolute bottom-6 left-6 md:bottom-8 md:left-8 lg:bottom-10 lg:left-10 z-40 pointer-events-none">
               <div className="font-['Inter:Bold',sans-serif] font-black text-white leading-none tracking-[-0.08em] text-[72px] sm:text-[96px] md:text-[120px] lg:text-[160px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)]">

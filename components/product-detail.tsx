@@ -4,6 +4,7 @@ import { Product } from '@/lib/types';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Download } from 'lucide-react';
+import Title from '@/components/title';
 
 interface ProductDetailProps {
   product: Product;
@@ -16,17 +17,6 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
   const copyright = product.copyright?.trim() || 'No copyright information provided';
   const author = product.author?.trim() || 'No author specified';
   const hasPrice = typeof product.price === 'number' && product.price > 0;
-  const titleLength = product.name.trim().length;
-  const titleWordCount = product.name.trim().split(/\s+/).filter(Boolean).length;
-  const titleFontSize =
-    titleLength > 34
-      ? 'clamp(2.5rem, 4.8vw, 5rem)'
-      : titleLength > 24 || titleWordCount > 3
-        ? 'clamp(3rem, 5.8vw, 6rem)'
-        : 'clamp(3.25rem, 7.5vw, 7.25rem)';
-  const titleLetterSpacing =
-    titleLength > 34 ? '0.02em' : titleLength > 24 || titleWordCount > 3 ? '0.03em' : '0.05em';
-  const titleMaxWidth = titleLength > 24 || titleWordCount > 3 ? '12ch' : '14ch';
   const [lightboxImageUrl, setLightboxImageUrl] = useState<string | null>(null);
   const [lightboxImageAlt, setLightboxImageAlt] = useState('Example image');
 
@@ -80,29 +70,23 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
         <div className="flex flex-col gap-4">
           {/* Title and Price */}
           <div className="flex flex-col gap-0">
-            <h1
-              className="font-['Inter:Bold',sans-serif] break-words text-3xl font-bold uppercase leading-[0.92] tracking-tighter text-white sm:text-4xl md:text-6xl lg:max-w-[14ch]"
-              style={{
-                fontSize: titleFontSize,
-                letterSpacing: titleLetterSpacing,
-                maxWidth: titleMaxWidth,
-              }}
-            >
-              {product.name}
-            </h1>
+            <Title
+              title={product.name}
+              showFree={!hasPrice}
+              className="text-white max-w-[14ch] sm:max-w-[12ch]"
+            />
 
             {/* Price */}
-            <div className="mt-1 flex w-full items-center gap-2" style={{ maxWidth: titleMaxWidth }}>
-              <div
-                className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[40px] text-white"
-                style={{ fontVariationSettings: "'wdth' 100" }}
-              >
-                {product.price === 0 ? 'FREE' : `$${product.price || 0}`}
+            {hasPrice && (
+              <div className="mt-1 flex w-full items-center gap-2" style={{ maxWidth: '14ch' }}>
+                <div
+                  className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[40px] text-white"
+                  style={{ fontVariationSettings: "'wdth' 100" }}
+                >
+                  ${product.price || 0}
+                </div>
               </div>
-              {product.price === 0 ? (
-                <div aria-hidden="true" className="h-[2px] flex-1 bg-white" />
-              ) : null}
-            </div>
+            )}
           </div>
 
           {/* Description */}
@@ -182,13 +166,13 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                 Examples
               </h3>
 
-              <div className="flex flex-wrap gap-2 max-w-[420px]">
+              <div className="flex flex-wrap gap-3 max-w-[420px]">
                 {exampleImages.map((item) => (
                   <button
                     key={item.id}
                     type="button"
                     onClick={() => openLightbox(item.imageUrl, item.name)}
-                    className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-[6px] border border-white/30 hover:border-white transition-colors shrink-0"
+                    className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-[6px] border-2 border-gray-400 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow shrink-0"
                     aria-label={`Open lightbox for ${item.name}`}
                   >
                     <Image
