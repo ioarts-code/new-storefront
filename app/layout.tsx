@@ -12,9 +12,9 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'Store',
+  '@type': 'Organization',
   name: 'IOARTS',
-  description: 'Digital Art Merch & Illustration Store',
+  description: 'Digital Arts Fanart & Illustrations',
   url: 'https://www.ioarts.ink',
   logo: 'https://www.ioarts.ink/favicon.svg',
   sameAs: [
@@ -22,14 +22,14 @@ const structuredData = {
   ],
   address: {
     '@type': 'PostalAddress',
-    addressCountry: 'US',
+    addressCountry: 'SE',
   },
 }
 
 export const metadata: Metadata = {
-  title: 'IOARTS | Digital Art Merch & Illustration Store',
-  description: 'Discover unique digital art merchandise and illustrations. Official IOARTS store featuring exclusive illustrated products.',
-  keywords: ['digital art', 'merch', 'illustrations', 'art store', 'exclusive designs'],
+  title: 'IOARTS | Digital Art Fanart & Illustration Idealab',
+  description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Idealab featuring exclusive illustrated arts',
+  keywords: ['digital art', 'Fanart', 'illustrations', 'art Idealab', 'exclusive designs'],
   authors: [{ name: 'Anders Altmann' }],
   creator: 'Anders Altmann',
   publisher: 'IOARTS',
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.ioarts.ink',
     siteName: 'IOARTS',
-    title: 'IOARTS | Digital Art Merch & Illustration Store',
-    description: 'Discover unique digital art merchandise and illustrations. Official IOARTS store featuring exclusive illustrated products.',
+    title: 'IOARTS | Digital Art Fanart & Illustration Idealab',
+    description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Idealab featuring exclusive illustrated arts',
     images: [
       {
         url: '/favicon.svg',
@@ -63,8 +63,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'IOARTS | Digital Art Merch & Illustration Store',
-    description: 'Discover unique digital art merchandise and illustrations.',
+    title: 'IOARTS | Digital Art Fanart & Illustration Idealab',
+    description: 'Discover unique digital art Fanart and illustrations.',
     creator: '@ioarts',
     images: ['/favicon.svg'],
   },
