@@ -298,7 +298,7 @@ export default function Hero() {
                 letterSpacing: '4px',
               }}
             >
-             Free Fanart
+             Fanart Gallery
             </div>
 
             {/* Taglines */}
