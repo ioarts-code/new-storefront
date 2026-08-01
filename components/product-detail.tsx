@@ -15,7 +15,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = product.copyright?.trim() || 'No copyright information provided';
-  const author = product.author?.trim() || 'No author specified';
+  const productType = product.productType?.trim() || 'No product type specified';
   const hasPrice = typeof product.price === 'number' && product.price > 0;
   const [lightboxImageUrl, setLightboxImageUrl] = useState<string | null>(null);
   const [lightboxImageAlt, setLightboxImageAlt] = useState('Example image');
@@ -89,10 +89,10 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             )}
           </div>
 
-          {/* Description */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base text-white leading-[1.5] max-w-[640px]">
+          {/* Description Button */}
+          <button className="mt-2 inline-flex py-1 px-3 border border-white text-white hover:bg-white hover:text-black font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm transition-all">
             {product.description}
-          </p>
+          </button>
 
           {/* Download and Support Buttons - Hidden when price exists */}
           {!hasPrice && (
@@ -143,7 +143,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             </p>
 
             <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
-              <span className="font-bold">Author:</span> <span className="text-gray-300">{author}</span>
+              <span className="font-bold">Product Type:</span> <span className="text-gray-300">{productType}</span>
             </p>
           </div>
 
