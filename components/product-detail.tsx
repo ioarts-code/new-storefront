@@ -73,7 +73,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             <Title
               title={product.name}
               showFree={!hasPrice}
-              className="text-white max-w-[14ch] sm:max-w-[12ch]"
+              className="text-[#8C8C8C] max-w-[14ch] sm:max-w-[12ch]"
             />
 
             {/* Price */}
@@ -101,9 +101,9 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                 onClick={handleDownload}
                 disabled={!product.download?.url}
                 className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 text-white hover:bg-green-200 hover:text-black lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+                style={{ paddingLeft: '30px' }}
               >
-                SVG
-                <Download size={18} className="-translate-y-0.5" />
+                Download SVG
               </button>
               {/* Search Store */}
               <a
