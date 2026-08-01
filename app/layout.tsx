@@ -27,9 +27,9 @@ const structuredData = {
 }
 
 export const metadata: Metadata = {
-  title: 'IOARTS | Digital Art Fanart & Illustration Idealab',
-  description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Idealab featuring exclusive illustrated arts',
-  keywords: ['digital art', 'Fanart', 'illustrations', 'art Idealab', 'exclusive designs'],
+  title: 'IOARTS | Digital Art Fanart & Illustration Gallery',
+  description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Gallery featuring exclusive illustrated arts',
+  keywords: ['digital art', 'Fanart', 'illustrations', 'art Gallery', 'exclusive designs'],
   authors: [{ name: 'Anders Altmann' }],
   creator: 'Anders Altmann',
   publisher: 'IOARTS',
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.ioarts.ink',
     siteName: 'IOARTS',
-    title: 'IOARTS | Digital Art Fanart & Illustration Idealab',
-    description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Idealab featuring exclusive illustrated arts',
+    title: 'IOARTS | Digital Art Fanart & Illustration Gallery',
+    description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Gallery featuring exclusive illustrated arts',
     images: [
       {
         url: '/favicon.svg',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'IOARTS | Digital Art Fanart & Illustration Idealab',
+    title: 'IOARTS | Digital Art Fanart & Illustration Gallery',
     description: 'Discover unique digital art Fanart and illustrations.',
     creator: '@ioarts',
     images: ['/favicon.svg'],
