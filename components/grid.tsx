@@ -201,7 +201,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
             className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
               selectedTagIds.length === 0
                 ? 'bg-white text-black border-2 border-white'
-                : 'text-white border-2 border-white hover:bg-white/10'
+                : 'text-white border-2 border-white hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black'
             }`}
           >
             All
@@ -217,7 +217,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
               className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
                 selectedTagIds.includes(tag.id)
                   ? 'bg-white text-black border-2 border-white'
-                  : 'text-white border-2 border-white text-white hover:bg-green-200 hover:text-black'
+                  : 'text-white border-2 border-white text-white hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black'
               }`}
             >
               {tag.name}

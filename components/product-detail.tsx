@@ -113,7 +113,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                 href="https://www.google.com/maps/search/t-shirt+printing+near+me"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] ${titleBackgroundColorClass} text-black hover:bg-green-200 hover:text-black px-6 sm:px-8 border-2 ${titleBorderColorClass} font-['Inter:Black',sans-serif] font-black text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
+                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] ${titleBackgroundColorClass} text-black hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black px-6 sm:px-8 border-2 ${titleBorderColorClass} font-['Inter:Black',sans-serif] font-black text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
               >
                 Search
               </a>

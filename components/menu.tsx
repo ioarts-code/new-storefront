@@ -162,6 +162,7 @@ export default function Menu() {
             aria-label="Open search"
             aria-expanded={isSearchOpen}
             onClick={handleSearchIconClick}
+            data-no-topbar-hover="true"
           >
             <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
               <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
@@ -202,7 +203,7 @@ export default function Menu() {
               <button
                 type="button"
                 onClick={applySearch}
-                className="h-7 px-2 rounded border border-white/25 text-[9px] font-semibold uppercase text-white hover:bg-white/15"
+                className="h-7 px-2 rounded border border-white/25 text-[9px] font-semibold uppercase text-white hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black"
               >
                 Search
               </button>
@@ -229,6 +230,7 @@ export default function Menu() {
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
+            data-no-topbar-hover="true"
           >
             <AnimatedMenuIcon isOpen={isOpen} compact />
           </button>
@@ -249,6 +251,29 @@ export default function Menu() {
               >
                 All Products
               </Link>
+              <a
+                href="https://buymeacoffee.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                Buy Me Coffee
+              </a>
+              <Link
+                href="/cart"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                Cart
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                Contact
+              </Link>
             </div>
           )}
         </div>
@@ -262,6 +287,7 @@ export default function Menu() {
             aria-label="Open search"
             aria-expanded={isSearchOpen}
             onClick={handleSearchIconClick}
+            data-no-topbar-hover="true"
           >
             <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
               <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
@@ -302,7 +328,7 @@ export default function Menu() {
               <button
                 type="button"
                 onClick={applySearch}
-                className="h-9 px-3 rounded border border-white/25 text-xs font-semibold uppercase text-white hover:bg-white/15"
+                className="h-9 px-3 rounded border border-white/25 text-xs font-semibold uppercase text-white hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black"
               >
                 Search
               </button>
@@ -317,6 +343,7 @@ export default function Menu() {
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
+            data-no-topbar-hover="true"
           >
             <AnimatedMenuIcon isOpen={isOpen} />
           </button>
@@ -336,6 +363,29 @@ export default function Menu() {
                 className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
               >
                 All Products
+              </Link>
+              <a
+                href="https://buymeacoffee.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                Buy Me Coffee
+              </a>
+              <Link
+                href="/cart"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                Cart
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+              >
+                Contact
               </Link>
             </div>
           )}

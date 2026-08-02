@@ -21,6 +21,12 @@ export default function TopBar() {
           >
             cart
           </Link>
+          <Link
+            href="/contact"
+            className="font-inter font-bold text-xs text-black hover:opacity-80 transition-opacity"
+          >
+            contact
+          </Link>
         </div>
       </div>
     </div>

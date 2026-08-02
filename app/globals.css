@@ -2,6 +2,7 @@
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant hover (&:hover);
 
 :root {
   --background: oklch(1 0 0);
@@ -146,6 +147,16 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  button:not([data-no-topbar-hover='true']):hover,
+  button:not([data-no-topbar-hover='true']):focus-visible,
+  input[type='button']:not([data-no-topbar-hover='true']):hover,
+  input[type='submit']:not([data-no-topbar-hover='true']):hover,
+  input[type='reset']:not([data-no-topbar-hover='true']):hover {
+    background-color: #74d5ff !important;
+    border-color: #74d5ff !important;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
