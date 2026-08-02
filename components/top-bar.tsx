@@ -5,8 +5,8 @@ import Link from 'next/link';
 export default function TopBar() {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full h-6 bg-[#74D5FF]">
-      <div className="flex items-center justify-end px-8 h-full">
-        <div className="flex items-center gap-4 -translate-x-6">
+      <div className="flex items-center justify-start px-8 h-full">
+        <div className="flex items-center gap-4">
           <a
             href="https://buymeacoffee.com"
             target="_blank"

@@ -4,7 +4,9 @@ import { Product } from '@/lib/types';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Download } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import Title from '@/components/title';
+import { useCart } from '@/lib/cart-context';
 
 interface ProductDetailProps {
   product: Product;
@@ -12,9 +14,12 @@ interface ProductDetailProps {
 }
 
 export function ProductDetail({ product, otherExamples = [] }: ProductDetailProps) {
+  const router = useRouter();
+  const { dispatch } = useCart();
   const titleTextColorClass = 'text-[#a2a2a2]';
   const titleBorderColorClass = 'border-[#a2a2a2]';
   const titleBackgroundColorClass = 'bg-[#a2a2a2]';
+  const heroViewButtonDesignClass = 'border-3 border-white rounded-full text-white shadow-[14px_14px_0_#ffffff] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black font-bold uppercase';
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = product.copyright?.trim() || 'No copyright information provided';
@@ -76,24 +81,13 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             <Title
               title={product.name}
               showFree={!hasPrice}
-              className="max-w-[14ch] sm:max-w-[12ch]"
+              priceLabel={hasPrice ? `$${product.price || 0}` : undefined}
+              className="max-w-[14ch] sm:max-w-[12ch] text-white"
             />
-
-            {/* Price */}
-            {hasPrice && (
-              <div className="mt-1 flex w-full items-center gap-2" style={{ maxWidth: '14ch' }}>
-                <div
-                  className={`font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[40px] ${titleTextColorClass}`}
-                  style={{ fontVariationSettings: "'wdth' 100" }}
-                >
-                  ${product.price || 0}
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Description */}
-          <p className={`font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base ${titleTextColorClass} leading-[1.5] max-w-[640px]`}>
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base text-white leading-[1.5] max-w-[640px]">
             {product.description}
           </p>
 
@@ -103,7 +97,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
               <button
                 onClick={handleDownload}
                 disabled={!product.download?.url}
-                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 ${titleBackgroundColorClass} text-black hover:bg-green-200 hover:text-black lg:h-[45px] px-6 sm:px-8 border-2 ${titleBorderColorClass} font-['Inter:Black',sans-serif] font-black text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
+                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 ${heroViewButtonDesignClass} font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] relative flex items-center justify-center gap-2 flex-1 sm:flex-initial disabled:opacity-50 disabled:cursor-not-allowed`}
                 style={{ paddingLeft: '30px' }}
               >
                 Download SVG
@@ -113,7 +107,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                 href="https://www.google.com/maps/search/t-shirt+printing+near+me"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] ${titleBackgroundColorClass} text-black hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black px-6 sm:px-8 border-2 ${titleBorderColorClass} font-['Inter:Black',sans-serif] font-black text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
+                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 ${heroViewButtonDesignClass} font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
               >
                 Search
               </a>
@@ -122,34 +116,46 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
           {/* Buy Now button shown only when Price exists */}
           {hasPrice && (
-            <div className="mt-4">
+            <div className="mt-4 flex flex-col sm:flex-row gap-5">
               <button
                 onClick={() => {
                   window.location.href = `/checkout?product=${product.id}`;
                 }}
-                className={`w-full py-3 sm:py-4 lg:py-5 px-6 border-2 ${titleBorderColorClass} ${titleBackgroundColorClass} text-black font-['Inter:Black',sans-serif] font-black text-sm sm:text-base lg:text-[16px] uppercase transition-all hover:bg-green-200 hover:text-black`}
+                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-8 sm:px-10 min-w-[170px] text-center ${heroViewButtonDesignClass} font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] inline-flex items-center justify-center`}
                 aria-label={`Buy ${product.name} now`}
               >
                 Buy Now
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  dispatch({ type: 'ADD_TO_CART', payload: product, quantity: 1 });
+                  router.push('/cart');
+                }}
+                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-8 sm:px-10 min-w-[170px] text-center ${heroViewButtonDesignClass} font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] inline-flex items-center justify-center`}
+                aria-label={`Add ${product.name} to cart`}
+              >
+                Add to cart
               </button>
             </div>
           )}
 
           {/* Tags and Copyright */}
           <div className="flex flex-col gap-3 mt-6">
-            <p className={`font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
-              <span className="font-bold">Tags:</span> <span className={titleTextColorClass}>{tags}</span>
+            <p className="font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
+              <span className="font-bold text-white">Tags:</span> <span className="font-bold text-white">{tags}</span>
             </p>
 
-            <p className={`font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
-              <span className="font-bold">Copyright:</span> <span className={titleTextColorClass}>{copyright}</span>
+            <p className="font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
+              <span className="font-bold text-white">Copyright:</span> <span className="font-bold text-white">{copyright}</span>
             </p>
           </div>
 
           {/* Examples */}
           {exampleImages.length > 0 && (
             <div className="mt-6">
-              <h3 className={`${titleTextColorClass} font-['Inter:Bold',sans-serif] font-bold text-sm sm:text-base uppercase tracking-wide mb-3`}>
+              <h3 className="text-white font-['Inter:Bold',sans-serif] font-bold text-sm sm:text-base uppercase tracking-wide mb-3">
                 Examples
               </h3>
 
@@ -159,7 +165,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                     key={item.id}
                     type="button"
                     onClick={() => openLightbox(item.imageUrl, item.name)}
-                    className={`relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-none ${titleBackgroundColorClass} shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow shrink-0`}
+                    className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-none bg-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow shrink-0"
                     aria-label={`Open lightbox for ${item.name}`}
                   >
                     <div className="absolute inset-1">
@@ -183,7 +189,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
       {/* Right Column - Product Image */}
       <div className="relative z-0 order-first flex w-full items-center justify-center p-0 pointer-events-none sm:p-4 lg:order-last lg:basis-[45%] lg:shrink-0 lg:items-start lg:p-4 lg:pr-8 lg:pt-12 xl:basis-[50%] xl:pr-16 2xl:pr-0">
         <div
-          className={`absolute right-3 top-3 z-10 inline-flex items-center border ${titleBorderColorClass} ${titleBackgroundColorClass} px-3 py-1.5 text-xs sm:text-sm font-['Inter:Black',sans-serif] font-black uppercase tracking-wide text-black`}
+          className={`absolute -right-6 -top-10 z-10 inline-flex items-center border ${titleBorderColorClass} bg-white px-3 py-1.5 text-xs sm:text-sm font-['Inter:Black',sans-serif] font-black uppercase tracking-wide text-black`}
         >
           {productType}
         </div>

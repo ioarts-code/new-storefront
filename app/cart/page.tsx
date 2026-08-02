@@ -73,7 +73,26 @@ export default function CartPage() {
                           </h3>
                         </Link>
                         <p className="text-gray-400 text-sm md:text-base mt-2">
-                          {item.product.price === 0 ? 'FREE' : `$${item.product.price.toFixed(2)}`}
+                          {item.product.price === 0 ? (
+                            <span
+                              className="inline-flex items-center gap-2 whitespace-nowrap uppercase text-[16px] md:text-[18px] text-[#a2a2a2]"
+                              style={{
+                                fontWeight: 600,
+                                letterSpacing: 'normal',
+                                lineHeight: 1,
+                                verticalAlign: 'bottom',
+                                paddingBottom: '0.05em',
+                              }}
+                            >
+                              FREE
+                              <span
+                                className="inline-block bg-[#949494] flex-shrink-0"
+                                style={{ width: '22px', height: '2px' }}
+                              />
+                            </span>
+                          ) : (
+                            `$${item.product.price.toFixed(2)}`
+                          )}
                         </p>
                       </div>
 

@@ -40,7 +40,7 @@ function getFeaturedBadgeLabel(product: Product) {
 
 const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; backdrop?: boolean; slugs?: string[] }> = {
   1: { scale: 1.3, slugs: ['flask-elden'] },
-  2: { scale: 1.0, slugs: ['backback-elden'] },
+  2: { scale: 1.0, slugs: ['hoodie-elden'] },
   3: { scale: 1.0, slugs: [] },
   4: { scale: 1.0, slugs: [] },
   5: { scale: 1.0, slugs: [] },
@@ -224,7 +224,7 @@ export default function Hero() {
 
                         <Link
                           href={`/products/${product.slug}`}
-                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black font-bold text-xs sm:text-sm uppercase"
+                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white shadow-[14px_14px_0_#ffffff] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black font-bold text-xs sm:text-sm uppercase"
                         >
                           View
                         </Link>
@@ -269,7 +269,7 @@ export default function Hero() {
               </>
             )}
 
-            <div className="hidden sm:block absolute bottom-6 left-6 md:bottom-8 md:left-8 lg:bottom-10 lg:left-10 z-40 pointer-events-none">
+            <div className="hidden sm:block absolute bottom-20 left-6 md:bottom-24 md:left-8 lg:bottom-28 lg:left-10 z-40 pointer-events-none">
               <div className="font-['Inter:Bold',sans-serif] font-black text-white leading-none tracking-[-0.08em] text-[72px] sm:text-[96px] md:text-[120px] lg:text-[160px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)]">
                 {String((productSlideNumbers.get(heroProducts[currentSlideIndex]?.id) || currentSlideIndex + 1)).padStart(2, '0')}
               </div>
@@ -283,7 +283,7 @@ export default function Hero() {
 
         {/* Horizontal Divider - Bottom */}
         <div
-          className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(100,100,100,0.55)] pointer-events-none overflow-hidden"
+          className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.45)] pointer-events-none overflow-hidden"
           style={{
             height: '160px',
           }}
@@ -292,7 +292,7 @@ export default function Hero() {
           <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
             {/* Merch Text */}
             <div
-              className="font-['Inter:Bold',sans-serif] font-black uppercase text-white text-center text-[24px] md:text-[30px]"
+              className="font-['Inter:Bold',sans-serif] font-black uppercase text-black text-center text-[24px] md:text-[30px]"
               style={{
                 lineHeight: '1.3',
                 letterSpacing: '4px',
@@ -303,7 +303,7 @@ export default function Hero() {
 
             {/* Taglines */}
             <div
-              className="font-['Inter:Bold',sans-serif] font-bold text-white text-center text-[10px] md:text-[13px]"
+              className="font-['Inter:Bold',sans-serif] font-bold text-black text-center text-[10px] md:text-[13px]"
               style={{
                 lineHeight: '1.4',
                 letterSpacing: '0.4px',
@@ -318,7 +318,7 @@ export default function Hero() {
               className="mt-1 text-[16px] md:text-[20px]"
               style={{
                 fontFamily: "'Mr Dafoe', cursive",
-                color: '#fff',
+                color: '#000',
               }}
             >
               Anders Altmann
