@@ -203,7 +203,7 @@ export default function Menu() {
               <button
                 type="button"
                 onClick={applySearch}
-                className="h-7 px-2 rounded border border-white/25 text-[9px] font-semibold uppercase text-white hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black"
+                className="h-7 px-2 rounded border border-white/25 text-[9px] font-semibold uppercase text-white hover:bg-white/15 hover:border-white hover:text-white"
               >
                 Search
               </button>
@@ -328,7 +328,7 @@ export default function Menu() {
               <button
                 type="button"
                 onClick={applySearch}
-                className="h-9 px-3 rounded border border-white/25 text-xs font-semibold uppercase text-white hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black"
+                className="h-9 px-3 rounded border border-white/25 text-xs font-semibold uppercase text-white hover:bg-white/15 hover:border-white hover:text-white"
               >
                 Search
               </button>

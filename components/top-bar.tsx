@@ -5,8 +5,8 @@ import Link from 'next/link';
 export default function TopBar() {
   return (
     <div className="fixed top-0 left-0 right-0 z-50 w-full h-6 bg-[#74D5FF]">
-      <div className="flex items-center justify-start px-8 h-full">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between px-4 sm:px-[26%] h-full">
+        <div className="flex items-center">
           <a
             href="https://buymeacoffee.com"
             target="_blank"
@@ -15,6 +15,9 @@ export default function TopBar() {
           >
             buy me coffee
           </a>
+        </div>
+
+        <div className="flex items-center gap-4">
           <Link
             href="/cart"
             className="font-inter font-bold text-xs text-black hover:opacity-80 transition-opacity"
@@ -26,6 +29,12 @@ export default function TopBar() {
             className="font-inter font-bold text-xs text-black hover:opacity-80 transition-opacity"
           >
             contact
+          </Link>
+          <Link
+            href="/copyright-attribution"
+            className="font-inter font-bold text-xs text-black hover:opacity-80 transition-opacity"
+          >
+            copyright
           </Link>
         </div>
       </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { type MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -137,24 +137,6 @@ export default function Hero() {
     };
   }, [carouselApi]);
 
-  const handlePrevSlide = (event: MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    if (!carouselApi || heroProducts.length <= 1) {
-      return;
-    }
-
-    carouselApi.scrollPrev();
-  };
-
-  const handleNextSlide = (event: MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-    if (!carouselApi || heroProducts.length <= 1) {
-      return;
-    }
-
-    carouselApi.scrollNext();
-  };
-
   return (
     <div className="relative">
       <div className="relative w-full max-w-full overflow-hidden">
@@ -207,24 +189,24 @@ export default function Hero() {
                       <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
 
                       <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-transparent gap-1 sm:gap-2 z-50">
-                        <div className="flex items-center px-3 py-1 sm:px-4 border-2 border-white rounded-full mb-2 sm:mb-3">
-                          <span className="text-[10px] sm:text-xs font-bold text-white uppercase tracking-tight">
+                        <div className="flex items-center px-3 py-1 sm:px-4 border-2 border-[#a2a2a2] rounded-full mb-2 sm:mb-3">
+                          <span className="text-[10px] sm:text-xs font-bold text-[#a2a2a2] uppercase tracking-tight">
                             {getFeaturedBadgeLabel(product)}
                           </span>
                         </div>
 
-                        <h3 className="text-lg sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white leading-tight line-clamp-2">
+                        <h3 className="text-lg sm:text-2xl md:text-2xl lg:text-3xl font-bold text-[#a2a2a2] leading-tight line-clamp-2">
                           {product.name}
                         </h3>
 
-                        <p className="-mt-1 text-xs sm:text-sm text-white leading-tight line-clamp-2">
+                        <p className="-mt-1 text-xs sm:text-sm text-[#a2a2a2] leading-tight line-clamp-2">
                           <span className="block sm:hidden">{truncateDescription(product.description, 25)}</span>
                           <span className="hidden sm:block">{truncateDescription(product.description, 85)}</span>
                         </p>
 
                         <Link
                           href={`/products/${product.slug}`}
-                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-white rounded-full text-white shadow-[14px_14px_0_#ffffff] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black font-bold text-xs sm:text-sm uppercase"
+                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] shadow-[14px_14px_0_#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#a2a2a2]/20 hover:border-[#a2a2a2] hover:text-[#a2a2a2] font-bold text-xs sm:text-sm uppercase"
                         >
                           View
                         </Link>
@@ -235,45 +217,6 @@ export default function Hero() {
               })}
             </CarouselContent>
 
-            {heroProducts.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  aria-label="Previous slide"
-                  onClick={handlePrevSlide}
-                  className="absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-50 p-2 sm:p-3 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
-                >
-                  <Image
-                    src="/arrows.svg"
-                    alt=""
-                    width={28}
-                    height={28}
-                    className="h-6 w-6 sm:h-7 sm:w-7 rotate-180"
-                  />
-                </button>
-
-                <button
-                  type="button"
-                  aria-label="Next slide"
-                  onClick={handleNextSlide}
-                  className="absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-50 p-2 sm:p-3 rounded-full bg-black/30 hover:bg-black/50 transition-colors"
-                >
-                  <Image
-                    src="/arrows.svg"
-                    alt=""
-                    width={28}
-                    height={28}
-                    className="h-6 w-6 sm:h-7 sm:w-7"
-                  />
-                </button>
-              </>
-            )}
-
-            <div className="hidden sm:block absolute bottom-20 left-6 md:bottom-24 md:left-8 lg:bottom-28 lg:left-10 z-40 pointer-events-none">
-              <div className="font-['Inter:Bold',sans-serif] font-black text-white leading-none tracking-[-0.08em] text-[72px] sm:text-[96px] md:text-[120px] lg:text-[160px] drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)]">
-                {String((productSlideNumbers.get(heroProducts[currentSlideIndex]?.id) || currentSlideIndex + 1)).padStart(2, '0')}
-              </div>
-            </div>
           </Carousel>
         ) : (
           <div className="relative lg:h-[1040px] mobile:h-[540px] flex items-center justify-center w-full max-w-full bg-white/5 text-white/70">

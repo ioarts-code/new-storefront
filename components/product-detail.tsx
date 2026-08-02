@@ -19,7 +19,6 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
   const titleTextColorClass = 'text-[#a2a2a2]';
   const titleBorderColorClass = 'border-[#a2a2a2]';
   const titleBackgroundColorClass = 'bg-[#a2a2a2]';
-  const heroViewButtonDesignClass = 'border-2 border-[#a2a2a2] bg-[#a2a2a2] text-black font-black uppercase';
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = product.copyright?.trim() || 'No copyright information provided';
@@ -93,12 +92,11 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
           {/* Download and Support Buttons - Hidden when price exists */}
           {!hasPrice && (
-            <div className="mt-4 lg:mt-[10px] flex flex-col sm:flex-row gap-5">
+            <div className="mt-4 lg:mt-[10px] flex flex-col sm:flex-row gap-4 sm:gap-5">
               <button
                 onClick={handleDownload}
                 disabled={!product.download?.url}
-                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 ${heroViewButtonDesignClass} font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] relative flex items-center justify-center gap-2 flex-1 sm:flex-initial disabled:opacity-50 disabled:cursor-not-allowed`}
-                style={{ paddingLeft: '30px' }}
+                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Download SVG
               </button>
@@ -107,7 +105,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                 href="https://www.google.com/maps/search/t-shirt+printing+near+me"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 ${heroViewButtonDesignClass} hover:bg-[#74D5FF] hover:border-[#74D5FF] transition-colors font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
+                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
               >
                 Search
               </a>
@@ -116,12 +114,12 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
           {/* Buy Now button shown only when Price exists */}
           {hasPrice && (
-            <div className="mt-4 flex flex-col sm:flex-row gap-5">
+            <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-5">
               <button
                 onClick={() => {
                   window.location.href = `/checkout?product=${product.id}`;
                 }}
-                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-8 sm:px-10 min-w-[170px] text-center ${heroViewButtonDesignClass} font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] inline-flex items-center justify-center`}
+                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
                 aria-label={`Buy ${product.name} now`}
               >
                 Buy Now
@@ -133,7 +131,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                   dispatch({ type: 'ADD_TO_CART', payload: product, quantity: 1 });
                   router.push('/cart');
                 }}
-                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-8 sm:px-10 min-w-[170px] text-center ${heroViewButtonDesignClass} font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] inline-flex items-center justify-center`}
+                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
                 aria-label={`Add ${product.name} to cart`}
               >
                 Add to cart
@@ -142,7 +140,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
           )}
 
           {/* Tags and Copyright */}
-          <div className="flex flex-col gap-3 mt-6">
+          <div className="flex flex-col gap-3 mt-10">
             <p className={`font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
               <span className={`font-bold ${titleTextColorClass}`}>Tags:</span> <span className={`font-bold ${titleTextColorClass}`}>{tags}</span>
             </p>
@@ -150,6 +148,10 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             <p className={`font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
               <span className={`font-bold ${titleTextColorClass}`}>Copyright:</span> <span className={`font-bold ${titleTextColorClass}`}>{copyright}</span>
             </p>
+
+            <div className="inline-flex w-fit items-center rounded-full bg-[#a2a2a2] px-2.5 py-1 text-[10px] sm:text-[11px] font-['Inter:Black',sans-serif] font-black uppercase tracking-wide text-black">
+              {productType}
+            </div>
           </div>
 
           {/* Examples */}
@@ -188,11 +190,6 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
       {/* Right Column - Product Image */}
       <div className="relative z-0 order-first flex w-full items-center justify-center p-0 pointer-events-none sm:p-4 lg:order-last lg:basis-[45%] lg:shrink-0 lg:items-start lg:p-4 lg:pr-8 lg:pt-12 xl:basis-[50%] xl:pr-16 2xl:pr-0">
-        <div
-          className="absolute -right-6 -top-10 z-10 inline-flex items-center rounded-full bg-[#a2a2a2] px-4 py-1.5 text-xs sm:text-sm font-['Inter:Black',sans-serif] font-black uppercase tracking-wide text-black"
-        >
-          {productType}
-        </div>
         {imageUrl ? (
           <Image
             alt={product.name}
