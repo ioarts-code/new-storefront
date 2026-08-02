@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
       customer_email: customerEmail,
     });
 
-    return NextResponse.json({ sessionId: session.id });
+    return NextResponse.json({ sessionId: session.id, sessionUrl: session.url });
   } catch (error) {
     console.error('[checkout] Checkout endpoint error:', error);
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';

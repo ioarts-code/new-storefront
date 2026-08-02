@@ -2,11 +2,6 @@
 
 import { useState } from 'react';
 import { useCart } from '@/lib/cart-context';
-import { loadStripe } from '@stripe/stripe-js';
-
-const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-  ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
-  : null;
 
 export function CheckoutForm() {
   const { state, dispatch } = useCart();
@@ -43,26 +38,15 @@ export function CheckoutForm() {
         throw new Error(data.error || 'Failed to create checkout session');
       }
 
-      const { sessionId } = await response.json();
+      const { sessionUrl } = await response.json();
 
-      if (!stripePromise) {
-        throw new Error('Missing Stripe publishable key');
+      if (!sessionUrl) {
+        throw new Error('Missing Stripe checkout URL');
       }
 
-      const stripe = await stripePromise;
-
-      if (!stripe) {
-        throw new Error('Stripe failed to initialize');
-      }
-
-      const { error } = await stripe.redirectToCheckout({ sessionId });
-
-      if (error) {
-        throw new Error(error.message);
-      }
-
-      // Clear cart if the redirect did not happen and Stripe returned to this page.
+      // Clear cart before redirecting to the hosted Stripe checkout page.
       dispatch({ type: 'CLEAR_CART' });
+      window.location.assign(sessionUrl);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       console.error('[checkout] Error:', err);
