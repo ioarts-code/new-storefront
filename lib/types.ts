@@ -6,6 +6,7 @@ export interface Product {
   price: number;
   author?: string | null;
   copyright?: string | null;
+  productType?: string | null;
   heroImage?: ProductImage | null;
   download?: {
     url: string;

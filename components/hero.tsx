@@ -298,7 +298,7 @@ export default function Hero() {
                 letterSpacing: '4px',
               }}
             >
-             Free Fanart
+             Fanart Gallery
             </div>
 
             {/* Taglines */}
@@ -309,7 +309,7 @@ export default function Hero() {
                 letterSpacing: '0.4px',
               }}
             >
-              <p>ILLUSTRATIONS THAT MAKE SENSE. FREE FANART FROM IOARTSEU</p>
+              <p>ILLUSTRATIONS THAT MAKE SENSE. FREE FANART FROM IOARTS AND IOARTSEU</p>
               <p>{`LET'S MAKE EVERY PRODUCT YOURS FOR REAL.`}</p>
             </div>
 
