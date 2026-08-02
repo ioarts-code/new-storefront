@@ -12,6 +12,9 @@ interface ProductDetailProps {
 }
 
 export function ProductDetail({ product, otherExamples = [] }: ProductDetailProps) {
+  const titleTextColorClass = 'text-[#a2a2a2]';
+  const titleBorderColorClass = 'border-[#a2a2a2]';
+  const titleBackgroundColorClass = 'bg-[#a2a2a2]';
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = product.copyright?.trim() || 'No copyright information provided';
@@ -73,14 +76,14 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             <Title
               title={product.name}
               showFree={!hasPrice}
-              className="text-[#8C8C8C] max-w-[14ch] sm:max-w-[12ch]"
+              className="max-w-[14ch] sm:max-w-[12ch]"
             />
 
             {/* Price */}
             {hasPrice && (
               <div className="mt-1 flex w-full items-center gap-2" style={{ maxWidth: '14ch' }}>
                 <div
-                  className="font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[40px] text-white"
+                  className={`font-['Roboto:SemiBold',sans-serif] font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-[40px] ${titleTextColorClass}`}
                   style={{ fontVariationSettings: "'wdth' 100" }}
                 >
                   ${product.price || 0}
@@ -90,7 +93,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
           </div>
 
           {/* Description */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base text-white leading-[1.5] max-w-[640px]">
+          <p className={`font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base ${titleTextColorClass} leading-[1.5] max-w-[640px]`}>
             {product.description}
           </p>
 
@@ -100,7 +103,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
               <button
                 onClick={handleDownload}
                 disabled={!product.download?.url}
-                className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 text-white hover:bg-green-200 hover:text-black lg:h-[45px] px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 ${titleBackgroundColorClass} text-black hover:bg-green-200 hover:text-black lg:h-[45px] px-6 sm:px-8 border-2 ${titleBorderColorClass} font-['Inter:Black',sans-serif] font-black text-sm sm:text-base lg:text-[16px] uppercase transition-all relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
                 style={{ paddingLeft: '30px' }}
               >
                 Download SVG
@@ -110,7 +113,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                 href="https://www.google.com/maps/search/t-shirt+printing+near+me"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] text-white hover:bg-green-200 hover:text-black px-6 sm:px-8 border-2 border-white text-white font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] ${titleBackgroundColorClass} text-black hover:bg-green-200 hover:text-black px-6 sm:px-8 border-2 ${titleBorderColorClass} font-['Inter:Black',sans-serif] font-black text-sm sm:text-base lg:text-[16px] uppercase relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
               >
                 Search
               </a>
@@ -124,7 +127,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                 onClick={() => {
                   window.location.href = `/checkout?product=${product.id}`;
                 }}
-                className="w-full py-3 sm:py-4 lg:py-5 px-6 border-2 border-white bg-white text-black font-['Inter:Extra_Bold',sans-serif] font-extrabold text-sm sm:text-base lg:text-[16px] uppercase transition-all hover:bg-green-200"
+                className={`w-full py-3 sm:py-4 lg:py-5 px-6 border-2 ${titleBorderColorClass} ${titleBackgroundColorClass} text-black font-['Inter:Black',sans-serif] font-black text-sm sm:text-base lg:text-[16px] uppercase transition-all hover:bg-green-200 hover:text-black`}
                 aria-label={`Buy ${product.name} now`}
               >
                 Buy Now
@@ -134,26 +137,19 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
           {/* Tags and Copyright */}
           <div className="flex flex-col gap-3 mt-6">
-            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
-              <span className="font-bold">Tags:</span> <span className="text-gray-300">{tags}</span>
+            <p className={`font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
+              <span className="font-bold">Tags:</span> <span className={titleTextColorClass}>{tags}</span>
             </p>
 
-            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
-              <span className="font-bold">Copyright:</span> <span className="text-gray-300">{copyright}</span>
-            </p>
-
-            <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
-              <span className="font-bold">Product Type:</span> 
-              <button className="ml-2 inline-flex py-0.5 px-2 border border-white text-white hover:bg-white hover:text-black font-['Inter:Regular',sans-serif] font-normal text-xs transition-all">
-                {productType}
-              </button>
+            <p className={`font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
+              <span className="font-bold">Copyright:</span> <span className={titleTextColorClass}>{copyright}</span>
             </p>
           </div>
 
           {/* Examples */}
           {exampleImages.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-white font-['Inter:Bold',sans-serif] font-bold text-sm sm:text-base uppercase tracking-wide mb-3">
+              <h3 className={`${titleTextColorClass} font-['Inter:Bold',sans-serif] font-bold text-sm sm:text-base uppercase tracking-wide mb-3`}>
                 Examples
               </h3>
 
@@ -163,16 +159,18 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                     key={item.id}
                     type="button"
                     onClick={() => openLightbox(item.imageUrl, item.name)}
-                    className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-[6px] border-2 border-gray-400 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow shrink-0"
+                    className={`relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-none ${titleBackgroundColorClass} shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow shrink-0`}
                     aria-label={`Open lightbox for ${item.name}`}
                   >
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.name}
-                      fill
-                      className="object-cover"
-                      sizes="64px"
-                    />
+                    <div className="absolute inset-1">
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                        sizes="64px"
+                      />
+                    </div>
                   </button>
                 ))}
               </div>
@@ -184,6 +182,11 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
       {/* Right Column - Product Image */}
       <div className="relative z-0 order-first flex w-full items-center justify-center p-0 pointer-events-none sm:p-4 lg:order-last lg:basis-[45%] lg:shrink-0 lg:items-start lg:p-4 lg:pr-8 lg:pt-12 xl:basis-[50%] xl:pr-16 2xl:pr-0">
+        <div
+          className={`absolute right-3 top-3 z-10 inline-flex items-center border ${titleBorderColorClass} ${titleBackgroundColorClass} px-3 py-1.5 text-xs sm:text-sm font-['Inter:Black',sans-serif] font-black uppercase tracking-wide text-black`}
+        >
+          {productType}
+        </div>
         {imageUrl ? (
           <Image
             alt={product.name}
@@ -195,7 +198,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 45vw"
           />
         ) : (
-          <div className="text-gray-500 text-center">No image available</div>
+          <div className={`${titleTextColorClass} text-center`}>No image available</div>
         )}
       </div>
 
@@ -212,11 +215,11 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
           }}
           aria-label="Close lightbox"
         >
-          <div className="relative w-full max-w-6xl h-[84vh] rounded-2xl border border-white/20 bg-[linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] shadow-[0_24px_80px_rgba(0,0,0,0.55)]" onClick={(e) => e.stopPropagation()}>
+          <div className="relative w-full max-w-6xl h-[84vh] rounded-none border border-[#a2a2a2]/20 bg-[linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] shadow-[0_24px_80px_rgba(0,0,0,0.55)]" onClick={(e) => e.stopPropagation()}>
             <button
               type="button"
               onClick={closeLightbox}
-              className="absolute top-4 right-4 z-10 h-12 w-12 rounded-full border border-white/40 bg-black/30 text-white text-3xl leading-none flex items-center justify-center hover:bg-white/15 hover:border-white transition-all"
+              className="absolute top-4 right-4 z-10 h-12 w-12 rounded-full border border-[#a2a2a2]/40 bg-black/30 text-white text-3xl leading-none flex items-center justify-center hover:bg-white/15 hover:border-[#a2a2a2] transition-all"
               aria-label="Close lightbox"
             >
               ×
@@ -225,7 +228,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
               src={lightboxImageUrl}
               alt={lightboxImageAlt}
               fill
-              className="object-contain rounded-2xl"
+              className="object-contain rounded-none"
               sizes="100vw"
               priority
             />
