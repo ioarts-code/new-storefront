@@ -89,10 +89,10 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             )}
           </div>
 
-          {/* Description Button */}
-          <button className="mt-2 inline-flex py-1 px-3 border border-white text-white hover:bg-white hover:text-black font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm transition-all">
+          {/* Description */}
+          <p className="font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base text-white leading-[1.5] max-w-[640px]">
             {product.description}
-          </button>
+          </p>
 
           {/* Download and Support Buttons - Hidden when price exists */}
           {!hasPrice && (
@@ -143,7 +143,10 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             </p>
 
             <p className="font-['Inter:Regular',sans-serif] font-normal text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
-              <span className="font-bold">Product Type:</span> <span className="text-gray-300">{productType}</span>
+              <span className="font-bold">Product Type:</span> 
+              <button className="ml-2 inline-flex py-0.5 px-2 border border-white text-white hover:bg-white hover:text-black font-['Inter:Regular',sans-serif] font-normal text-xs transition-all">
+                {productType}
+              </button>
             </p>
           </div>
 
