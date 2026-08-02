@@ -25,11 +25,11 @@ export default function Title({ title, className = '', showFree = false, priceLa
             paddingBottom: '0.05em',
           }}
         >
-          &thinsp;FREE
           <span
             className="inline-block bg-[#949494] flex-shrink-0"
             style={{ width: '34px', height: '2px' }}
           />
+          &thinsp;FREE
         </span>
       )}
       {!showFree && priceLabel && (

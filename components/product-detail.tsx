@@ -19,7 +19,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
   const titleTextColorClass = 'text-[#a2a2a2]';
   const titleBorderColorClass = 'border-[#a2a2a2]';
   const titleBackgroundColorClass = 'bg-[#a2a2a2]';
-  const heroViewButtonDesignClass = 'border-3 border-white rounded-full text-white shadow-[14px_14px_0_#ffffff] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black font-bold uppercase';
+  const heroViewButtonDesignClass = 'border-2 border-[#a2a2a2] bg-[#a2a2a2] text-black font-black uppercase';
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = product.copyright?.trim() || 'No copyright information provided';
@@ -82,12 +82,12 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
               title={product.name}
               showFree={!hasPrice}
               priceLabel={hasPrice ? `$${product.price || 0}` : undefined}
-              className="max-w-[14ch] sm:max-w-[12ch] text-white"
+              className={`max-w-[14ch] sm:max-w-[12ch] ${titleTextColorClass}`}
             />
           </div>
 
           {/* Description */}
-          <p className="font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base text-white leading-[1.5] max-w-[640px]">
+          <p className={`font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base ${titleTextColorClass} leading-[1.5] max-w-[640px]`}>
             {product.description}
           </p>
 
@@ -107,7 +107,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                 href="https://www.google.com/maps/search/t-shirt+printing+near+me"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 ${heroViewButtonDesignClass} font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
+                className={`py-3 sm:py-4 lg:py-5 h-auto sm:h-11 lg:h-[45px] px-6 sm:px-8 ${heroViewButtonDesignClass} hover:bg-[#74D5FF] hover:border-[#74D5FF] transition-colors font-['Inter:Black',sans-serif] text-sm sm:text-base lg:text-[16px] relative flex items-center justify-center gap-2 flex-1 sm:flex-initial`}
               >
                 Search
               </a>
@@ -143,19 +143,19 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
           {/* Tags and Copyright */}
           <div className="flex flex-col gap-3 mt-6">
-            <p className="font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
-              <span className="font-bold text-white">Tags:</span> <span className="font-bold text-white">{tags}</span>
+            <p className={`font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
+              <span className={`font-bold ${titleTextColorClass}`}>Tags:</span> <span className={`font-bold ${titleTextColorClass}`}>{tags}</span>
             </p>
 
-            <p className="font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm text-white tracking-tight lg:tracking-[-0.24px] leading-relaxed">
-              <span className="font-bold text-white">Copyright:</span> <span className="font-bold text-white">{copyright}</span>
+            <p className={`font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
+              <span className={`font-bold ${titleTextColorClass}`}>Copyright:</span> <span className={`font-bold ${titleTextColorClass}`}>{copyright}</span>
             </p>
           </div>
 
           {/* Examples */}
           {exampleImages.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-white font-['Inter:Bold',sans-serif] font-bold text-sm sm:text-base uppercase tracking-wide mb-3">
+              <h3 className={`${titleTextColorClass} font-['Inter:Bold',sans-serif] font-bold text-sm sm:text-base uppercase tracking-wide mb-3`}>
                 Examples
               </h3>
 
@@ -165,7 +165,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
                     key={item.id}
                     type="button"
                     onClick={() => openLightbox(item.imageUrl, item.name)}
-                    className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-none bg-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow shrink-0"
+                    className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-none bg-[#a2a2a2] border border-[#a2a2a2] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] shrink-0"
                     aria-label={`Open lightbox for ${item.name}`}
                   >
                     <div className="absolute inset-1">
@@ -189,7 +189,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
       {/* Right Column - Product Image */}
       <div className="relative z-0 order-first flex w-full items-center justify-center p-0 pointer-events-none sm:p-4 lg:order-last lg:basis-[45%] lg:shrink-0 lg:items-start lg:p-4 lg:pr-8 lg:pt-12 xl:basis-[50%] xl:pr-16 2xl:pr-0">
         <div
-          className={`absolute -right-6 -top-10 z-10 inline-flex items-center border ${titleBorderColorClass} bg-white px-3 py-1.5 text-xs sm:text-sm font-['Inter:Black',sans-serif] font-black uppercase tracking-wide text-black`}
+          className="absolute -right-6 -top-10 z-10 inline-flex items-center rounded-full bg-[#a2a2a2] px-4 py-1.5 text-xs sm:text-sm font-['Inter:Black',sans-serif] font-black uppercase tracking-wide text-black"
         >
           {productType}
         </div>
@@ -225,7 +225,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
             <button
               type="button"
               onClick={closeLightbox}
-              className="absolute top-4 right-4 z-10 h-12 w-12 rounded-full border border-[#a2a2a2]/40 bg-black/30 text-white text-3xl leading-none flex items-center justify-center hover:bg-white/15 hover:border-[#a2a2a2] transition-all"
+              className="absolute top-4 right-4 z-10 h-12 w-12 rounded-full border border-[#a2a2a2] bg-[#a2a2a2] text-black text-3xl leading-none flex items-center justify-center"
               aria-label="Close lightbox"
             >
               ×
