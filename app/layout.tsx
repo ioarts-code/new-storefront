@@ -8,8 +8,8 @@ import TopBar from '@/components/top-bar'
 import { CartProvider } from '@/lib/cart-context'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist', display: 'swap' })
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono', display: 'swap' })
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -91,7 +91,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
+    <html
+      lang="en"
+      className={`${geist.variable} ${geistMono.variable} scroll-smooth`}
+      data-scroll-behavior="smooth"
+    >
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />

@@ -86,7 +86,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
           </div>
 
           {/* Description */}
-          <p className={`font-['Inter:Regular',sans-serif] font-normal text-sm sm:text-base ${titleTextColorClass} leading-[1.5] max-w-[640px]`}>
+          <p className={`font-sans font-normal text-sm sm:text-base ${titleTextColorClass} leading-[1.5] max-w-[640px]`}>
             {product.description}
           </p>
 
@@ -141,15 +141,15 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
           {/* Tags and Copyright */}
           <div className="flex flex-col gap-3 mt-10">
-            <p className={`font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
+            <p className={`font-sans font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
               <span className={`font-bold ${titleTextColorClass}`}>Tags:</span> <span className={`font-bold ${titleTextColorClass}`}>{tags}</span>
             </p>
 
-            <p className={`font-['Inter:Bold',sans-serif] font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
+            <p className={`font-sans font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
               <span className={`font-bold ${titleTextColorClass}`}>Copyright:</span> <span className={`font-bold ${titleTextColorClass}`}>{copyright}</span>
             </p>
 
-            <div className="inline-flex w-fit items-center rounded-full bg-[#a2a2a2] px-2.5 py-1 text-[10px] sm:text-[11px] font-['Inter:Black',sans-serif] font-black uppercase tracking-wide text-black">
+            <div className="inline-flex w-fit items-center rounded-full bg-[#a2a2a2] px-3.5 sm:px-4 py-1 text-[10px] sm:text-[11px] font-sans font-black uppercase tracking-wide text-black">
               {productType}
             </div>
           </div>
@@ -157,7 +157,7 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
           {/* Examples */}
           {exampleImages.length > 0 && (
             <div className="mt-6">
-              <h3 className={`${titleTextColorClass} font-['Inter:Bold',sans-serif] font-bold text-sm sm:text-base uppercase tracking-wide mb-3`}>
+              <h3 className={`${titleTextColorClass} font-sans font-bold text-sm sm:text-base uppercase tracking-wide mb-3`}>
                 Examples
               </h3>
 

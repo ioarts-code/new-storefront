@@ -17,7 +17,7 @@ export function BackToHomeButton({
     <Link
       href={href}
       className={cn(
-        'inline-flex items-center gap-2 rounded-full border border-[#a2a2a2] bg-[#a2a2a2] px-3 py-2 text-black text-sm sm:text-base font-black',
+        'inline-flex items-center gap-2 rounded-full border border-[#a2a2a2] bg-[#a2a2a2] pl-3 pr-5 py-2 text-black text-sm sm:text-base font-semibold',
         className,
       )}
     >

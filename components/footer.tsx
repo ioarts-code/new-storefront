@@ -1,10 +1,14 @@
 function Frame() {
   return (
     <div className="relative shrink-0 size-[24px]" data-name="Frame">
-      <img 
+      <img
         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1051327-TAKDPK5fkufJGrn8AokBhu2Mh1iPnR.png"
-        alt="File icon"
-        className="absolute block inset-0 size-full brightness-0 invert"
+        alt="DeviantArt icon"
+        className="absolute block inset-0 size-full brightness-0 invert opacity-65"
+      />
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 size-full bg-[#a2a2a2] [mask-image:url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1051327-TAKDPK5fkufJGrn8AokBhu2Mh1iPnR.png')] [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center] [-webkit-mask-image:url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1051327-TAKDPK5fkufJGrn8AokBhu2Mh1iPnR.png')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] [-webkit-mask-position:center]"
       />
     </div>
   );
@@ -21,7 +25,7 @@ function VisitDeviantArt() {
     >
       <div
         aria-hidden="true"
-        className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow"
+        className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow"
       />
       <Frame />
     </a>
@@ -33,7 +37,7 @@ function PinterestIcon() {
     <div className="relative shrink-0" data-name="PinterestIcon">
       <svg
         viewBox="0 0 24 24"
-        className="w-6 h-6 fill-white"
+        className="w-6 h-6 fill-[#a2a2a2]"
         aria-hidden="true"
         role="img"
       >
@@ -52,7 +56,7 @@ function ShopOnPinterest() {
       rel="noreferrer"
       data-name="Pinterest"
     >
-      <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8)] transition-shadow" />
+      <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8)] transition-shadow" />
       <PinterestIcon />
     </a>
   );
@@ -71,7 +75,7 @@ function A() {
   return (
     <a
       href="/contact"
-      className="flex items-center shrink-0 font-['Inter:Regular',sans-serif] font-normal text-[14.6px] text-white tracking-[-0.24px] leading-[19.2px] hover:text-gray-400 transition-colors"
+      className="flex items-center shrink-0 font-['Inter:Regular',sans-serif] font-semibold text-[14.6px] text-[#a2a2a2] tracking-[-0.24px] leading-[19.2px] hover:text-gray-400 transition-colors"
       data-name="a"
     >
       Contact
@@ -86,7 +90,7 @@ function A1() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15.1px] text-white tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15.1px] text-[#a2a2a2] tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
         <p className="leading-[19.2px]">Terms of Sale</p>
       </div>
     </a>
@@ -100,7 +104,7 @@ function A2() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-[#a2a2a2] tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
         <p className="leading-[19.2px]">Privacy Policy</p>
       </div>
     </a>
@@ -114,7 +118,7 @@ function A3() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-white tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-[#a2a2a2] tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
         <p className="leading-[19.2px]">Copyright & Attribution</p>
       </div>
     </a>
@@ -135,8 +139,8 @@ function DivAbsolute1() {
 function DivAbsolute2() {
   return (
     <div className="absolute content-stretch flex flex-col items-end right-[44px] mobile:right-[32px] mobile:bottom-[24px] tablet:top-[480px] mobile:w-auto" data-name="div.absolute">
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[14.8px] text-white tracking-[-0.24px] text-right mobile:rotate-90 mobile:origin-bottom-right">
-        <p className="leading-[19.2px]">2026© — All rights reserved</p>
+      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[14.8px] text-[#a2a2a2] tracking-[-0.24px] text-right mobile:rotate-90 mobile:origin-bottom-right">
+        <p className="leading-[19.2px]">2026© By Ioarts Websiates</p>
       </div>
     </div>
   );
@@ -145,7 +149,7 @@ function DivAbsolute2() {
 function FooterWFull() {
   return (
     <div className="bg-[rgba(255,255,255,0.2)] h-[532px] min-h-[532px] relative rounded-[12px] shrink-0 w-full" data-name="footer.w-full">
-      <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[12px]" />
+      <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[12px]" />
       <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[349px] justify-center leading-[0] left-[44px] not-italic mobile:text-[64px] tablet:text-[180px] desktop:text-[288px] text-[#a2a2a2] top-[218.5px] mobile:w-auto tablet:w-[500px] desktop:w-[1079.975px]">
         <p className="leading-[normal]">IOARTS</p>
       </div>
@@ -158,7 +162,10 @@ function FooterWFull() {
 
 export default function Footer() {
   return (
-    <div className="bg-[#0f0f0f] content-stretch flex flex-col items-start p-[24px] relative size-full" data-name="div">
+    <div
+      className="bg-[#0f0f0f] content-stretch flex flex-col items-start px-9 sm:px-9 md:px-8 lg:px-12 py-6 sm:py-10 md:py-12 relative size-full"
+      data-name="div"
+    >
       <FooterWFull />
     </div>
   );

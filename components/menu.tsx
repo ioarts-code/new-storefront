@@ -17,13 +17,13 @@ function AnimatedMenuIcon({ isOpen, compact = false }: AnimatedMenuIconProps) {
   return (
     <span className="relative block size-full -scale-x-100 transform-gpu" aria-hidden="true">
       <span
-        className={`absolute right-0 ${thickness} rounded-full bg-white transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 rotate-45' : 'top-[1px] w-full rotate-0'}`}
+        className={`absolute right-0 ${thickness} rounded-full bg-[#a2a2a2] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 rotate-45' : 'top-[1px] w-full rotate-0'}`}
       />
       <span
-        className={`absolute right-0 top-1/2 ${thickness} w-[56%] rounded-full bg-white -translate-y-1/2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'opacity-0 translate-x-2 scale-x-0' : 'opacity-100 translate-x-0 scale-x-100'}`}
+        className={`absolute right-0 top-1/2 ${thickness} w-[56%] rounded-full bg-[#a2a2a2] -translate-y-1/2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'opacity-0 translate-x-2 scale-x-0' : 'opacity-100 translate-x-0 scale-x-100'}`}
       />
       <span
-        className={`absolute right-0 ${thickness} rounded-full bg-white transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 -rotate-45' : 'bottom-[1px] w-[86%] rotate-0'}`}
+        className={`absolute right-0 ${thickness} rounded-full bg-[#a2a2a2] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 -rotate-45' : 'bottom-[1px] w-[86%] rotate-0'}`}
       />
     </span>
   );
@@ -165,13 +165,13 @@ export default function Menu() {
             data-no-topbar-hover="true"
           >
             <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
-              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
-              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
+              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, #a2a2a2)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
+              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, #a2a2a2)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
             </svg>
           </button>
 
           {isSearchOpen && (
-            <div className="absolute top-0 right-full mr-2 flex items-center gap-1 rounded-md border border-white/20 bg-black/95 p-1.5 shadow-xl">
+            <div className="absolute top-0 right-full mr-2 flex items-center gap-1 rounded-md border border-[#a2a2a2]/25 bg-black/95 p-1.5 shadow-xl">
               <div className="relative">
                 <input
                   ref={mobileSearchInputRef}
@@ -184,7 +184,7 @@ export default function Menu() {
                     }
                   }}
                   placeholder="Search products"
-                  className="h-7 w-[116px] bg-transparent border border-white/25 rounded pl-2 pr-6 text-[10px] text-white placeholder:text-white/60 outline-none"
+                  className="h-7 w-[116px] bg-transparent border border-[#a2a2a2]/35 rounded pl-2 pr-6 text-[10px] text-[#a2a2a2] placeholder:text-[#a2a2a2]/65 outline-none"
                 />
                 {searchInput && (
                   <button
@@ -194,7 +194,7 @@ export default function Menu() {
                       mobileSearchInputRef.current?.focus();
                     }}
                     aria-label="Clear search"
-                    className="absolute right-1.5 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-[11px] leading-none"
+                    className="absolute right-1.5 top-1/2 -translate-y-1/2 text-[#a2a2a2]/75 hover:text-[#a2a2a2] text-[11px] leading-none"
                   >
                     X
                   </button>
@@ -203,7 +203,7 @@ export default function Menu() {
               <button
                 type="button"
                 onClick={applySearch}
-                className="h-7 px-2 rounded border border-white/25 text-[9px] font-semibold uppercase text-white hover:bg-white/15 hover:border-white hover:text-white"
+                className="h-7 px-2 rounded border border-[#a2a2a2]/35 text-[9px] font-semibold uppercase text-[#a2a2a2] hover:bg-[#a2a2a2]/15 hover:border-[#a2a2a2] hover:text-[#a2a2a2]"
               >
                 Search
               </button>
@@ -216,8 +216,12 @@ export default function Menu() {
             <div className="relative h-[20px] w-[58px] sm:h-[22px] sm:w-[64px]" data-name="17830404440764516789494914935528 2">
               <img
                 alt=""
-                className="absolute inset-0 max-w-none object-contain pointer-events-none size-full"
+                className="absolute inset-0 max-w-none object-contain pointer-events-none size-full opacity-65"
                 src="/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 size-full bg-[#a2a2a2] [mask-image:url('/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png')] [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center] [-webkit-mask-image:url('/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] [-webkit-mask-position:center]"
               />
             </div>
           </div>
@@ -236,18 +240,18 @@ export default function Menu() {
           </button>
 
           {isOpen && (
-            <div className="absolute top-0 right-full mr-2 min-w-[128px] rounded-md border border-white/20 bg-black/95 p-1.5 shadow-xl">
+            <div className="absolute top-0 right-full mr-2 min-w-[128px] rounded-md border border-[#a2a2a2]/25 bg-black/95 p-1.5 shadow-xl">
               <Link
                 href="/"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Home
               </Link>
               <Link
                 href="/products"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 All Products
               </Link>
@@ -256,21 +260,21 @@ export default function Menu() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Buy Me Coffee
               </a>
               <Link
                 href="/cart"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Cart
               </Link>
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Contact
               </Link>
@@ -290,13 +294,13 @@ export default function Menu() {
             data-no-topbar-hover="true"
           >
             <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 24 24">
-              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
-              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, white)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
+              <path d="M11 3.5C15.1421 3.5 18.5 6.85786 18.5 11C18.5 15.1421 15.1421 18.5 11 18.5C6.85786 18.5 3.5 15.1421 3.5 11C3.5 6.85786 6.85786 3.5 11 3.5Z" stroke="var(--stroke-0, #a2a2a2)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
+              <path d="M16.5 16.5L21 21" stroke="var(--stroke-0, #a2a2a2)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
             </svg>
           </button>
 
           {isSearchOpen && (
-            <div className="absolute top-0 right-full mr-3 flex items-center gap-2 rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
+            <div className="absolute top-0 right-full mr-3 flex items-center gap-2 rounded-md border border-[#a2a2a2]/25 bg-black/95 p-2 shadow-xl">
               <div className="relative">
                 <input
                   ref={desktopSearchInputRef}
@@ -309,7 +313,7 @@ export default function Menu() {
                     }
                   }}
                   placeholder="Search products"
-                  className="h-9 w-[180px] bg-transparent border border-white/25 rounded pl-3 pr-8 text-sm text-white placeholder:text-white/60 outline-none"
+                  className="h-9 w-[180px] bg-transparent border border-[#a2a2a2]/35 rounded pl-3 pr-8 text-sm text-[#a2a2a2] placeholder:text-[#a2a2a2]/65 outline-none"
                 />
                 {searchInput && (
                   <button
@@ -319,7 +323,7 @@ export default function Menu() {
                       desktopSearchInputRef.current?.focus();
                     }}
                     aria-label="Clear search"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-sm leading-none"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-[#a2a2a2]/75 hover:text-[#a2a2a2] text-sm leading-none"
                   >
                     X
                   </button>
@@ -328,7 +332,7 @@ export default function Menu() {
               <button
                 type="button"
                 onClick={applySearch}
-                className="h-9 px-3 rounded border border-white/25 text-xs font-semibold uppercase text-white hover:bg-white/15 hover:border-white hover:text-white"
+                className="h-9 px-3 rounded border border-[#a2a2a2]/35 text-xs font-semibold uppercase text-[#a2a2a2] hover:bg-[#a2a2a2]/15 hover:border-[#a2a2a2] hover:text-[#a2a2a2]"
               >
                 Search
               </button>
@@ -349,18 +353,18 @@ export default function Menu() {
           </button>
 
           {isOpen && (
-            <div className="absolute top-0 right-full mr-3 min-w-[160px] rounded-md border border-white/20 bg-black/95 p-2 shadow-xl">
+            <div className="absolute top-0 right-full mr-3 min-w-[160px] rounded-md border border-[#a2a2a2]/25 bg-black/95 p-2 shadow-xl">
               <Link
                 href="/"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Home
               </Link>
               <Link
                 href="/products"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 All Products
               </Link>
@@ -369,21 +373,21 @@ export default function Menu() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Buy Me Coffee
               </a>
               <Link
                 href="/cart"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Cart
               </Link>
               <Link
                 href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:bg-white/15"
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Contact
               </Link>
@@ -396,8 +400,12 @@ export default function Menu() {
             <div className="h-[41px] relative w-[144px]" data-name="17830404440764516789494914935528 2">
               <img
                 alt=""
-                className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+                className="absolute inset-0 max-w-none object-cover pointer-events-none size-full opacity-65"
                 src="/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 size-full bg-[#a2a2a2] [mask-image:url('/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png')] [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center] [-webkit-mask-image:url('/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] [-webkit-mask-position:center]"
               />
             </div>
           </div>

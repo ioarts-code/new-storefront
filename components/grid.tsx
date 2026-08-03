@@ -75,20 +75,20 @@ function GridItem({ product }: GridItemProps) {
         <div className="content-stretch flex flex-col items-center w-[90%] relative shrink-1 z-10">
           {/* Product name + action container */}
           <div className="bg-transparent mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] desktop-wide:h-[90px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] desktop-wide:min-h-[90px] relative rounded-[6px] shrink-0 w-full flex items-center justify-center px-4 desktop:px-6 desktop-wide:px-8">
-            <div aria-hidden="true" className="absolute border-3 border-solid border-white inset-0 pointer-events-none rounded-[6px]" />
+            <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px]" />
 
             {/* Product name */}
-            <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center items-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-white mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
+            <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center items-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-[#a2a2a2] mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
               <p className="truncate text-center w-full">{truncatedName}</p>
             </div>
           </div>
 
           {primaryCategory ? (
             <div className="w-full mt-2 flex items-center gap-2">
-              <p className="font-['Inter:Bold',sans-serif] font-bold text-[16px] leading-[1.2] tracking-[0.3px] text-white truncate">
+              <p className="font-['Inter:Bold',sans-serif] font-bold text-[16px] leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
                 {primaryCategory}
               </p>
-              <div aria-hidden="true" className="h-[2px] w-[58px] bg-white shrink-0" />
+              <div aria-hidden="true" className="h-[2px] w-[58px] bg-[#a2a2a2] shrink-0" />
             </div>
           ) : null}
         </div>
@@ -200,8 +200,8 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
             onClick={() => setSelectedTagIds([])}
             className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
               selectedTagIds.length === 0
-                ? 'bg-[#a2a2a2] !text-black border-2 border-white'
-                : 'text-white border-2 border-white hover:bg-white/15 hover:border-white hover:text-white'
+                ? 'bg-[#a2a2a2] !text-black border-2 border-[#a2a2a2]'
+                : 'text-[#a2a2a2] border-2 border-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-[#a2a2a2]'
             }`}
           >
             All
@@ -218,8 +218,8 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
               }
               className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
                 selectedTagIds.includes(tag.id)
-                  ? 'bg-[#a2a2a2] !text-black border-2 border-white'
-                  : 'text-white border-2 border-white text-white hover:bg-white/15 hover:border-white hover:text-white'
+                  ? 'bg-[#a2a2a2] !text-black border-2 border-[#a2a2a2]'
+                  : 'text-[#a2a2a2] border-2 border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-[#a2a2a2]'
               }`}
             >
               {tag.name}
@@ -231,7 +231,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
       {!showProducts ? null : filteredProducts.length === 0 ? (
         selectedTagIds.length > 0 || normalizedSearchQuery ? (
           <div className="text-center py-20 w-full">
-            <h3 className="text-lg font-semibold text-white mb-2">No products found</h3>
+            <h3 className="text-lg font-semibold text-[#a2a2a2] mb-2">No products found</h3>
             <p className="text-gray-400">Try a different search term, tag, or clear the filter.</p>
           </div>
         ) : null
