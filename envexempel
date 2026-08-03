@@ -4,11 +4,17 @@
 # Find it in Hygraph Project Settings > Access > API Access > Endpoints
 NEXT_PUBLIC_HYGRAPH_ENDPOINT=
 
+
 # Permanent Auth Token (valfritt om API:et är publikt)
 # Hittas i: Project Settings > Access > API Access > Permanent Auth Tokens
 # Permanent Auth Token (optional if your API is public)
 # Find it in Hygraph Project Settings > Access > API Access > Permanent Auth Tokens
 NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=
+
+
+# Set Up Stripe Configuration To enable payment processing with Stripe, add the following to your `.env.local`:
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
 
 # Används ofta för Preview Mode eller specifika miljöer
 # HYGRAPH_DEV_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
