@@ -131,7 +131,7 @@ export default function ProductPage() {
 
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
-      <div className="max-w-full lg:max-w-7xl mx-auto px-9 sm:px-9 md:px-8 lg:px-12 py-6 sm:py-10 md:py-12">
+      <div className="max-w-full lg:max-w-7xl mx-auto px-10 sm:px-10 md:px-10 lg:px-14 py-6 sm:py-10 md:py-12">
         <BackToHomeButton className="mt-4 sm:mt-5 md:mt-6 mb-12 sm:mb-16 md:mb-20" />
         <ProductDetail product={product} otherExamples={otherExamples} />
       </div>

@@ -23,7 +23,7 @@ export default function CartPage() {
 
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
-      <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-10 py-8 md:py-12">
         {/* Header */}
         <div className="mb-12">
           <Link href="/" className="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-8 text-sm md:text-base">

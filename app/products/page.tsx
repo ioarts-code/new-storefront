@@ -49,7 +49,7 @@ function ProductsPageContent() {
 
   return (
     <div className="min-h-screen bg-[#0F0F0F]">
-      <div className="px-6 md:px-8 lg:px-10 xl:px-16 pt-8">
+        <div className="px-8 md:px-10 lg:px-12 xl:px-20 pt-8">
           <BackToHomeButton />
       </div>
 
