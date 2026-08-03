@@ -40,7 +40,7 @@ function getFeaturedBadgeLabel(product: Product) {
 
 const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; backdrop?: boolean; slugs?: string[] }> = {
   1: { scale: 1.3, slugs: ['flask-elden'] },
-  2: { scale: 1.0, slugs: ['hoodie-elden'] },
+  2: { scale: 1.0, slugs: [] },
   3: { scale: 1.0, slugs: [] },
   4: { scale: 1.0, slugs: [] },
   5: { scale: 1.0, slugs: [] },
