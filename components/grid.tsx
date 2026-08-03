@@ -211,7 +211,9 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
               key={tag.id}
               onClick={() =>
                 setSelectedTagIds((current) =>
-                  current.length === 1 && current[0] === tag.id ? [] : [tag.id]
+                  current.includes(tag.id)
+                    ? current.filter((id) => id !== tag.id)
+                    : [...current, tag.id]
                 )
               }
               className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
