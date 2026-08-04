@@ -1,12 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
+function getBaseUrl(req: NextRequest): string {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
+  }
+
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  const forwardedProto = req.headers.get('x-forwarded-proto') || 'http';
+  const host = req.headers.get('host');
+
+  if (host) {
+    return `${forwardedProto}://${host}`;
+  }
+
+  return 'http://localhost:3000';
+}
 
 export async function POST(req: NextRequest) {
   try {
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    if (!stripeSecretKey) {
+      return NextResponse.json(
+        { error: 'Missing STRIPE_SECRET_KEY environment variable' },
+        { status: 500 }
+      );
+    }
+
+    const stripe = new Stripe(stripeSecretKey);
     const body = await req.json();
     const { items, customerEmail } = body;
+    const baseUrl = getBaseUrl(req);
 
     if (!items || items.length === 0) {
       return NextResponse.json(
@@ -32,11 +59,12 @@ export async function POST(req: NextRequest) {
 
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      payment_method_types: ['card', 'paypal', 'klarna'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `${process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000'}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : 'http://localhost:3000'}/cart`,
+      billing_address_collection: 'required',
+      success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/cart`,
       customer_email: customerEmail,
     });
 

@@ -15,6 +15,7 @@ NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN=
 # Set Up Stripe Configuration To enable payment processing with Stripe, add the following to your `.env.local`:
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
 STRIPE_SECRET_KEY=
+NEXT_PUBLIC_SITE_URL=
 
 # Används ofta för Preview Mode eller specifika miljöer
 # HYGRAPH_DEV_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...

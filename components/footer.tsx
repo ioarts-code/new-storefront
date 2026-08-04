@@ -150,8 +150,8 @@ function FooterWFull() {
   return (
     <div className="bg-[rgba(255,255,255,0.2)] h-[532px] min-h-[532px] relative rounded-[12px] shrink-0 w-full" data-name="footer.w-full">
       <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[12px]" />
-      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[349px] justify-center leading-[0] left-[44px] not-italic mobile:text-[64px] tablet:text-[180px] desktop:text-[288px] text-[#a2a2a2] top-[218.5px] mobile:w-auto tablet:w-[500px] desktop:w-[1079.975px]">
-        <p className="leading-[normal]">IOARTS</p>
+      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[349px] justify-center leading-[0] left-[44px] not-italic text-[clamp(3rem,8vw,8rem)] md:text-[clamp(4rem,10vw,10rem)] lg:text-[clamp(5rem,12vw,12rem)] xl:text-[clamp(7rem,16vw,18rem)] text-[#a2a2a2] top-[218.5px] w-[calc(100%-88px)] md:w-[min(70vw,500px)] lg:w-[min(75vw,800px)] xl:w-[1079.975px] max-w-full overflow-hidden whitespace-nowrap">
+        <p className="leading-[normal] truncate">IOARTS</p>
       </div>
       <DivAbsolute />
       <DivAbsolute1 />

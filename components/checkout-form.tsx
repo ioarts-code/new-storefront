@@ -115,6 +115,10 @@ export function CheckoutForm() {
           >
             {isLoading ? 'Processing...' : 'Proceed to Payment'}
           </button>
+
+          <p className="text-sm text-gray-400 text-center">
+            Secure checkout supports cards, PayPal, Klarna, Apple Pay, and Google Pay (availability depends on your Stripe account and buyer device/browser).
+          </p>
         </form>
       )}
     </div>

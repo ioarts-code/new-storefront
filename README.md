@@ -34,12 +34,12 @@ app/
 ├─ layout.tsx                   Root layout & metadata
 ├─ globals.css                  Global styles / design tokens
 ├─ products/[slug]/page.tsx     Product detail (download + support links)
-├─ checkout/                    Temporary checkout page + success page
+├─ checkout/                    Checkout page + success page
 ├─ terms-of-sale/               Static legal page
 ├─ copyright-attribution/       Static legal page
 └─ api/
    ├─ hygraph/route.ts          Server-side GraphQL proxy (hides token)
-   └─ checkout/route.ts         Temporary disabled checkout endpoint
+   └─ checkout/route.ts         Stripe Checkout session endpoint
 
 components/
 ├─ header.tsx  footer.tsx  hero.tsx  grid.tsx

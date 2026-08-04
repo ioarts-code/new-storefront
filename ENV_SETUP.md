@@ -38,8 +38,9 @@ For detailed Hygraph setup instructions, see [HYGRAPH_SETUP.md](./HYGRAPH_SETUP.
 To enable payment processing with Stripe, add the following to your `.env.local`:
 
 ```env
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_YOUR_PUBLISHABLE_KEY
-STRIPE_SECRET_KEY=sk_test_YOUR_SECRET_KEY
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_YOUR_PUBLISHABLE_KEY
+STRIPE_SECRET_KEY=sk_live_YOUR_SECRET_KEY
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
 ```
 
 **How to get these values:**
@@ -55,8 +56,8 @@ STRIPE_SECRET_KEY=sk_test_YOUR_SECRET_KEY
 **Important:** 
 - The `NEXT_PUBLIC_` prefix means this variable is exposed to the browser - use the **Publishable Key** here
 - The `STRIPE_SECRET_KEY` is only used server-side and should NEVER be exposed to the browser
-- Always use **Test Keys** during development (they'll have `_test_` in them)
-- Switch to **Live Keys** only when deploying to production
+- `NEXT_PUBLIC_SITE_URL` ensures checkout success/cancel redirects use your public domain
+- Apple Pay and Google Pay are provided through the card method in Stripe Checkout when domain and wallet requirements are met
 
 ## 📋 Complete .env.local Example
 
@@ -68,8 +69,9 @@ NEXT_PUBLIC_HYGRAPH_ENDPOINT=https://api-eu-central-1.hygraph.com/content/abc123
 HYGRAPH_AUTH_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 # Stripe Payments
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_51234567890abcdefghijklmnop
-STRIPE_SECRET_KEY=sk_test_abcdefghijklmnopqrstuvwxyz1234567890
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_REPLACE_WITH_YOUR_PUBLISHABLE_KEY
+STRIPE_SECRET_KEY=sk_live_REPLACE_WITH_YOUR_SECRET_KEY
+NEXT_PUBLIC_SITE_URL=https://store.example.com
 ```
 
 ## 🔄 Using .env.local in Development
@@ -130,7 +132,7 @@ After setting up your `.env.local`, verify everything works:
 
 ### "Stripe is not defined" error
 - Ensure `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is set in `.env.local`
-- Check that the value starts with `pk_test_` or `pk_live_`
+- Check that the value starts with `pk_live_`
 - Restart the development server
 
 ### Hygraph content not loading

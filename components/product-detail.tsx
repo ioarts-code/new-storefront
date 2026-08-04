@@ -124,8 +124,13 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <span className={`font-bold ${titleTextColorClass}`}>Copyright:</span> <span className={`font-bold ${titleTextColorClass}`}>{copyright}</span>
             </p>
 
-            <div className="inline-flex w-fit items-center rounded-full bg-[#a2a2a2] px-3.5 sm:px-4 py-1 text-[10px] sm:text-[11px] font-sans font-black uppercase tracking-wide text-black">
-              {productType}
+            <div className="flex items-center gap-2">
+              <span className={`font-sans font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
+                Product Type
+              </span>
+              <div className="inline-flex min-h-[1.8rem] w-fit items-center justify-center rounded-full bg-[#a2a2a2] px-3.5 py-0.5 text-[10px] sm:px-4 sm:text-[11px] font-sans font-black uppercase leading-none tracking-wide text-black">
+                {productType}
+              </div>
             </div>
           </div>
         </div>

@@ -201,7 +201,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
             className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
               selectedTagIds.length === 0
                 ? 'bg-[#a2a2a2] !text-black border-2 border-[#a2a2a2]'
-                : 'text-[#a2a2a2] border-2 border-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-[#a2a2a2]'
+                : 'text-[#a2a2a2] border-2 border-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
             }`}
           >
             All
@@ -219,7 +219,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
               className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
                 selectedTagIds.includes(tag.id)
                   ? 'bg-[#a2a2a2] !text-black border-2 border-[#a2a2a2]'
-                  : 'text-[#a2a2a2] border-2 border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-[#a2a2a2]'
+                  : 'text-[#a2a2a2] border-2 border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
               }`}
             >
               {tag.name}

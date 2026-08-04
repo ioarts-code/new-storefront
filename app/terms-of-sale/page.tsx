@@ -1,9 +1,13 @@
-'use client';
-
 import Link from 'next/link';
 import { BackToHomeButton } from '@/components/back-to-home-button';
 
 export default function TermsOfSalePage() {
+  const lastUpdated = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
       <div className="max-w-3xl mx-auto px-4 py-12 md:py-20">
@@ -13,7 +17,7 @@ export default function TermsOfSalePage() {
           <h1 className="font-['Inter:Bold',sans-serif] font-bold text-5xl md:text-7xl text-white uppercase tracking-tight mb-4">
             Terms of Sale
           </h1>
-          <p className="text-gray-400 text-lg md:text-xl">Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          <p className="text-gray-400 text-lg md:text-xl">Last Updated: {lastUpdated}</p>
         </div>
 
         {/* Content */}

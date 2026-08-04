@@ -38,16 +38,23 @@ function getFeaturedBadgeLabel(product: Product) {
   return heroCategory?.name ?? product.categories?.[0]?.name ?? 'Featured';
 }
 
-const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; backdrop?: boolean; slugs?: string[] }> = {
-  1: { scale: 1.3, slugs: ['flask-elden'] },
-  2: { scale: 1.0, slugs: [] },
-  3: { scale: 1.0, slugs: [] },
-  4: { scale: 1.0, slugs: [] },
-  5: { scale: 1.0, slugs: [] },
+const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; wideScale?: number; translateX?: string; wideTranslateX?: string; backdrop?: boolean; slugs?: string[] }> = {
+  1: { scale: 1.3, wideScale: 1.0, translateX: '19%', wideTranslateX: '11%', slugs: ['flask-elden'] },
+  2: { scale: 1.0, wideScale: 1.08, translateX: '2%', wideTranslateX: '4%', slugs: [] },
+  3: { scale: 1.0, wideScale: 1.1, translateX: '-1%', wideTranslateX: '-4%', slugs: [] },
+  4: { scale: 1.0, wideScale: 1.12, translateX: '1%', wideTranslateX: '3%', slugs: [] },
+  5: { scale: 1.0, wideScale: 1.14, translateX: '-2%', wideTranslateX: '-5%', slugs: [] },
 };
 
 function getHeroImageConfig(slideNumber: number) {
   return HERO_IMAGE_CONFIG_BY_SLIDE[slideNumber] ?? { scale: 1 };
+}
+
+function getHeroImageTransform(config: { scale: number; wideScale?: number; translateX?: string; wideTranslateX?: string }, isWideScreen: boolean) {
+  const scale = isWideScreen ? config.wideScale ?? config.scale : config.scale;
+  const translateX = isWideScreen ? config.wideTranslateX ?? config.translateX ?? '0%' : config.translateX ?? '0%';
+
+  return `translateX(${translateX}) scale(${scale})`;
 }
 
 export default function Hero() {
@@ -57,6 +64,7 @@ export default function Hero() {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [productSlideNumbers, setProductSlideNumbers] = useState<Map<string, number>>(new Map());
+  const [isWideScreen, setIsWideScreen] = useState(false);
 
   useEffect(() => {
     const fetchHeroProducts = async () => {
@@ -119,6 +127,20 @@ export default function Hero() {
   }, [carouselApi, heroProducts.length]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const mediaQuery = window.matchMedia('(min-width: 1024px)');
+    const updateWideScreenState = () => setIsWideScreen(mediaQuery.matches);
+
+    updateWideScreenState();
+    mediaQuery.addEventListener('change', updateWideScreenState);
+
+    return () => mediaQuery.removeEventListener('change', updateWideScreenState);
+  }, []);
+
+  useEffect(() => {
     if (!carouselApi) {
       return;
     }
@@ -141,7 +163,7 @@ export default function Hero() {
     <div className="relative">
       <div className="relative w-full max-w-full overflow-hidden">
         {isLoading ? (
-          <div className="relative lg:h-[1040px] mobile:h-[540px] w-full bg-white/10" />
+          <div className="relative h-[540px] md:h-[800px] lg:h-[1040px] w-full bg-white/10" />
         ) : heroProducts.length > 0 ? (
           <Carousel
             opts={{ loop: heroProducts.length > 1 }}
@@ -154,10 +176,11 @@ export default function Hero() {
                 const slideNumber = index + 1;
                 const heroImageConfig = getHeroImageConfig(slideNumber);
                 const showBackdropImage = heroImageConfig.backdrop ?? false;
+                const heroImageTransform = getHeroImageTransform(heroImageConfig, isWideScreen);
 
                 return (
                   <CarouselItem key={product.id} className="pl-0">
-                    <div className="relative lg:h-[1040px] mobile:h-[540px] flex items-center justify-center overflow-hidden w-full max-w-full cursor-pointer" onClick={() => router.push(`/products/${product.slug}`)}>
+                    <div className="relative h-[540px] md:h-[800px] lg:h-[1040px] flex items-center justify-center overflow-hidden w-full max-w-full cursor-pointer" onClick={() => router.push(`/products/${product.slug}`)}>
                       {imageUrl && showBackdropImage && (
                         <div
                           aria-hidden="true"
@@ -167,19 +190,25 @@ export default function Hero() {
                       )}
 
                       {imageUrl ? (
-                        <Image
-                          alt={product.name}
-                          src={imageUrl}
-                          fill
-                          priority
-                          sizes="100vw"
-                          className="object-cover object-center pointer-events-none hover:opacity-90 transition-opacity"
+                        <div
+                          className="absolute inset-0 overflow-hidden"
                           style={{
-                            transform: `scale(${heroImageConfig.scale})`,
+                            transform: heroImageTransform,
                             transformOrigin: 'center center',
-                            backgroundColor: 'transparent',
                           }}
-                        />
+                        >
+                          <Image
+                            alt={product.name}
+                            src={imageUrl}
+                            fill
+                            priority
+                            sizes="100vw"
+                            className="object-cover object-center pointer-events-none hover:opacity-90 transition-opacity"
+                            style={{
+                              backgroundColor: 'transparent',
+                            }}
+                          />
+                        </div>
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center bg-white/5 text-[#a2a2a2]/80">
                           No image available
@@ -219,7 +248,7 @@ export default function Hero() {
 
           </Carousel>
         ) : (
-          <div className="relative lg:h-[1040px] mobile:h-[540px] flex items-center justify-center w-full max-w-full bg-white/5 text-[#a2a2a2]/80">
+          <div className="relative h-[540px] md:h-[800px] lg:h-[1040px] flex items-center justify-center w-full max-w-full bg-white/5 text-[#a2a2a2]/80">
             No hero products found
           </div>
         )}
