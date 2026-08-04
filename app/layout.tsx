@@ -107,7 +107,7 @@ export default function RootLayout({
           suppressHydrationWarning
         />
       </head>
-      <body className="font-sans antialiased bg-[#0F0F0F] text-foreground pt-6">
+      <body className="font-sans antialiased bg-[#0F0F0F] text-foreground pt-6 overflow-x-hidden">
         <CartProvider>
           <TopBar />
           <aside className="fixed right-0 top-6 z-50 h-screen w-[58px] sm:w-[64px] lg:w-[58px] pointer-events-none">
