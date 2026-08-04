@@ -2,48 +2,23 @@
 
 import { Product } from '@/lib/types';
 import Image from 'next/image';
-import { useState } from 'react';
-import { Download } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Title from '@/components/title';
 import { useCart } from '@/lib/cart-context';
 
 interface ProductDetailProps {
   product: Product;
-  otherExamples?: Product[];
 }
 
-export function ProductDetail({ product, otherExamples = [] }: ProductDetailProps) {
+export function ProductDetail({ product }: ProductDetailProps) {
   const router = useRouter();
   const { dispatch } = useCart();
   const titleTextColorClass = 'text-[#a2a2a2]';
-  const titleBorderColorClass = 'border-[#a2a2a2]';
-  const titleBackgroundColorClass = 'bg-[#a2a2a2]';
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = product.copyright?.trim() || 'No copyright information provided';
   const productType = product.productType?.trim() || 'No product type specified';
   const hasPrice = typeof product.price === 'number' && product.price > 0;
-  const [lightboxImageUrl, setLightboxImageUrl] = useState<string | null>(null);
-  const [lightboxImageAlt, setLightboxImageAlt] = useState('Example image');
-
-  const exampleImages = otherExamples
-    .filter((item) => item.categories?.some((cat) => cat.name === 'Examples'))
-    .map((item) => ({
-      id: item.id,
-      name: item.name,
-      imageUrl: item.images?.[0]?.url ?? '',
-    }))
-    .filter((item) => item.imageUrl);
-
-  const openLightbox = (imageUrlToOpen: string, alt: string) => {
-    setLightboxImageUrl(imageUrlToOpen);
-    setLightboxImageAlt(alt);
-  };
-
-  const closeLightbox = () => {
-    setLightboxImageUrl(null);
-  };
 
   const handleDownload = async () => {
     if (!product.download?.url) {
@@ -68,13 +43,13 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
 
   return (
     <div
-      className="flex flex-col lg:flex-row min-h-screen w-full gap-6 lg:gap-0"
+      className="flex flex-col lg:flex-row w-full gap-6 lg:gap-0"
 
     >
       {/* Left Column */}
       <div className="relative z-10 flex min-w-0 flex-col justify-between w-full lg:flex-1 bg-transparent">
         {/* Product Content */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 mt-8 sm:mt-10 lg:mt-14">
           {/* Title and Price */}
           <div className="flex flex-col gap-0">
             <Title
@@ -153,37 +128,6 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
               {productType}
             </div>
           </div>
-
-          {/* Examples */}
-          {exampleImages.length > 0 && (
-            <div className="mt-6">
-              <h3 className={`${titleTextColorClass} font-sans font-bold text-sm sm:text-base uppercase tracking-wide mb-3`}>
-                Examples
-              </h3>
-
-              <div className="flex flex-wrap gap-3 max-w-[420px]">
-                {exampleImages.map((item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => openLightbox(item.imageUrl, item.name)}
-                    className="relative h-14 w-14 sm:h-16 sm:w-16 overflow-hidden rounded-none bg-[#a2a2a2] border border-[#a2a2a2] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] shrink-0"
-                    aria-label={`Open lightbox for ${item.name}`}
-                  >
-                    <div className="absolute inset-1">
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.name}
-                        fill
-                        className="object-cover"
-                        sizes="64px"
-                      />
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
       </div>
@@ -205,39 +149,6 @@ export function ProductDetail({ product, otherExamples = [] }: ProductDetailProp
         )}
       </div>
 
-      {lightboxImageUrl && (
-        <div
-          className="fixed inset-0 z-50 bg-black p-4 sm:p-8 flex items-center justify-center"
-          onClick={closeLightbox}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
-              closeLightbox();
-            }
-          }}
-          aria-label="Close lightbox"
-        >
-          <div className="relative w-full max-w-6xl h-[84vh] rounded-none border border-[#a2a2a2]/20 bg-[linear-gradient(145deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] shadow-[0_24px_80px_rgba(0,0,0,0.55)]" onClick={(e) => e.stopPropagation()}>
-            <button
-              type="button"
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 z-10 h-12 w-12 rounded-full border border-[#a2a2a2] bg-[#a2a2a2] text-black text-3xl leading-none flex items-center justify-center"
-              aria-label="Close lightbox"
-            >
-              ×
-            </button>
-            <Image
-              src={lightboxImageUrl}
-              alt={lightboxImageAlt}
-              fill
-              className="object-contain rounded-none"
-              sizes="100vw"
-              priority
-            />
-          </div>
-        </div>
-      )}
     </div>
   );
 }

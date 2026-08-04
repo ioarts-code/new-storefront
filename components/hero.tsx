@@ -235,7 +235,7 @@ export default function Hero() {
           <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
             {/* Merch Text */}
             <div
-              className="font-['Inter:Bold',sans-serif] font-black uppercase text-[#a2a2a2] text-center text-[24px] md:text-[30px]"
+              className="font-['Inter:Bold',sans-serif] font-black uppercase text-black text-center text-[24px] md:text-[30px]"
               style={{
                 lineHeight: '1.3',
                 letterSpacing: '4px',
@@ -246,7 +246,7 @@ export default function Hero() {
 
             {/* Taglines */}
             <div
-              className="font-['Inter:Bold',sans-serif] font-bold text-[#a2a2a2] text-center text-[10px] md:text-[13px]"
+              className="font-['Inter:Bold',sans-serif] font-bold text-black text-center text-[10px] md:text-[13px]"
               style={{
                 lineHeight: '1.4',
                 letterSpacing: '0.4px',
@@ -261,7 +261,7 @@ export default function Hero() {
               className="mt-1 text-[16px] md:text-[20px]"
               style={{
                 fontFamily: "'Mr Dafoe', cursive",
-                color: '#a2a2a2',
+                color: '#000000',
               }}
             >
               Anders Altmann

@@ -4,45 +4,16 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { Product } from '@/lib/types';
 import { createHygraphClient } from '@/lib/hygraph-client';
-import { GET_PRODUCT_BY_SLUG, GET_PRODUCTS } from '@/lib/graphql-queries';
+import { GET_PRODUCT_BY_SLUG } from '@/lib/graphql-queries';
 import { ProductDetail } from '@/components/product-detail';
 import { BackToHomeButton } from '@/components/back-to-home-button';
 import Link from 'next/link';
-
-const EXAMPLE_CATEGORY_KEYS = new Set([
-  'mug',
-  'mugs',
-  'hoodie',
-  'hoodies',
-  'polo-shirt',
-  'polo-shirts',
-  'poloshirt',
-  'poloshirts',
-]);
-
-function normalizeKey(value?: string | null) {
-  return (value ?? '')
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9\s_-]+/g, '')
-    .replace(/[_\s]+/g, '-');
-}
-
-function shuffleArray<T>(items: T[]) {
-  const arr = [...items];
-  for (let i = arr.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
 
 export default function ProductPage() {
   const params = useParams();
   const slug = params.slug as string;
 
   const [product, setProduct] = useState<Product | null>(null);
-  const [otherExamples, setOtherExamples] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -59,27 +30,7 @@ export default function ProductPage() {
         );
 
         if (data.products && data.products.length > 0) {
-          const currentProduct = data.products[0];
-          setProduct(currentProduct);
-
-          try {
-            const allProductsData = await client.request<{ products: Product[] }>(GET_PRODUCTS);
-            const examples = (allProductsData.products ?? []).filter((item) => {
-              if (item.id === currentProduct.id) return false;
-              if (!item.images || item.images.length === 0) return false;
-              return (item.categories ?? []).some((category) => {
-                if (category.name === 'Examples') return true;
-                const nameKey = normalizeKey(category.name);
-                const slugKey = normalizeKey(category.slug);
-                return EXAMPLE_CATEGORY_KEYS.has(nameKey) || EXAMPLE_CATEGORY_KEYS.has(slugKey);
-              });
-            });
-
-            setOtherExamples(shuffleArray(examples).slice(0, 8));
-          } catch (examplesError) {
-            console.error('Failed to load other examples:', examplesError);
-            setOtherExamples([]);
-          }
+          setProduct(data.products[0]);
         } else {
           setError('Product not found');
         }
@@ -133,7 +84,7 @@ export default function ProductPage() {
     <main className="min-h-screen bg-[#0F0F0F]">
       <div className="max-w-full lg:max-w-7xl mx-auto px-10 sm:px-10 md:px-10 lg:px-14 py-6 sm:py-10 md:py-12">
         <BackToHomeButton className="mt-4 sm:mt-5 md:mt-6 mb-12 sm:mb-16 md:mb-20" />
-        <ProductDetail product={product} otherExamples={otherExamples} />
+        <ProductDetail product={product} />
       </div>
     </main>
   );
