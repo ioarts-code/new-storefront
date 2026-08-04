@@ -163,7 +163,7 @@ function FooterWFull() {
 export default function Footer() {
   return (
     <div
-      className="bg-[#0f0f0f] content-stretch flex flex-col items-start px-10 sm:px-10 md:px-10 lg:px-14 py-6 sm:py-10 md:py-12 relative size-full"
+      className="bg-[#0f0f0f] content-stretch flex flex-col items-start px-9 sm:px-9 md:px-8 lg:px-12 py-6 sm:py-10 md:py-12 relative size-full"
       data-name="div"
     >
       <FooterWFull />

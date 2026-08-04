@@ -11,7 +11,7 @@ export default function TopBar() {
             href="https://buymeacoffee.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-inter font-extrabold text-[7px] sm:text-[10px] uppercase tracking-[0.02em] sm:tracking-[0.04em] text-black hover:opacity-80 transition-opacity"
+            className="font-inter font-extrabold text-[8px] sm:text-[10px] uppercase tracking-[0.02em] sm:tracking-[0.04em] text-black hover:opacity-80 transition-opacity"
           >
             buy me coffee
           </a>
@@ -20,19 +20,19 @@ export default function TopBar() {
         <div className="flex items-center gap-4">
           <Link
             href="/cart"
-            className="font-inter font-extrabold text-[7px] sm:text-[10px] uppercase tracking-[0.02em] sm:tracking-[0.04em] text-black hover:opacity-80 transition-opacity"
+            className="font-inter font-extrabold text-[8px] sm:text-[10px] uppercase tracking-[0.02em] sm:tracking-[0.04em] text-black hover:opacity-80 transition-opacity"
           >
             cart
           </Link>
           <Link
             href="/contact"
-            className="font-inter font-extrabold text-[7px] sm:text-[10px] uppercase tracking-[0.02em] sm:tracking-[0.04em] text-black hover:opacity-80 transition-opacity"
+            className="font-inter font-extrabold text-[8px] sm:text-[10px] uppercase tracking-[0.02em] sm:tracking-[0.04em] text-black hover:opacity-80 transition-opacity"
           >
             contact
           </Link>
           <Link
             href="/copyright-attribution"
-            className="font-inter font-extrabold text-[7px] sm:text-[10px] uppercase tracking-[0.02em] sm:tracking-[0.04em] text-black hover:opacity-80 transition-opacity"
+            className="font-inter font-extrabold text-[8px] sm:text-[10px] uppercase tracking-[0.02em] sm:tracking-[0.04em] text-black hover:opacity-80 transition-opacity"
           >
             copyright
           </Link>
