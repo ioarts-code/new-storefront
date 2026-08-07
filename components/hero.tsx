@@ -64,7 +64,7 @@ function HeroBrandStripe() {
       className="relative w-full bg-[rgba(42,42,42,0.72)]"
       data-name="Overlay"
     >
-      <div className="mx-auto flex min-h-[100px] max-w-3xl flex-col items-center justify-center gap-3 px-4 py-10 sm:min-h-[142px] sm:px-6 sm:py-12 md:flex-row md:items-center md:justify-center md:gap-14 md:py-14 lg:min-h-[182px] lg:gap-10 lg:px-8 lg:py-16">
+      <div className="mx-auto flex min-h-[72px] max-w-3xl flex-col items-center justify-center gap-3 px-4 py-4 sm:min-h-[82px] sm:px-6 sm:py-5 md:flex-row md:items-center md:justify-center md:gap-14 lg:min-h-[102px] lg:gap-20 lg:px-8">
         <div className="flex shrink-0 justify-center">
           <p
             className="w-[52px] text-center text-[12px] font-black uppercase leading-[0.94] tracking-[0.38em] text-[#c8c8c8] sm:w-[60px] sm:text-[14px] lg:w-[68px] lg:text-[17px]"
