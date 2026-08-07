@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import { Suspense } from 'react'
+import { Inter } from 'next/font/google'
 import Footer from '@/components/footer'
 import Menu from '@/components/menu'
 import { CartProvider } from '@/lib/cart-context'
 import './globals.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -102,7 +109,7 @@ export default function RootLayout({
           suppressHydrationWarning
         />
       </head>
-      <body className="font-sans antialiased bg-[#0F0F0F] text-foreground overflow-x-hidden">
+      <body className={`${inter.variable} ${inter.className} antialiased bg-[#0F0F0F] text-foreground overflow-x-hidden`}>
         <CartProvider>
           <aside className="fixed right-0 top-0 z-50 h-screen w-[58px] sm:w-[64px] lg:w-[58px] pointer-events-none">
             <Suspense fallback={null}>

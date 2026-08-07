@@ -5,7 +5,25 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const PRODUCTS_GRID_ID = 'products-grid';
-const TOP_BAR_VERTICAL_TEXT = 'BUY ME COFFEE / CART / CONTACT / COPYRIGHT';
+const TOP_BAR_LINKS = [
+  {
+    label: 'BUY ME COFFEE',
+    href: 'https://buymeacoffee.com',
+    external: true,
+  },
+  {
+    label: 'CART',
+    href: '/cart',
+  },
+  {
+    label: 'CONTACT',
+    href: '/contact',
+  },
+  {
+    label: 'COPYRIGHT',
+    href: '/copyright-attribution',
+  },
+];
 
 type AnimatedMenuIconProps = {
   isOpen: boolean;
@@ -284,9 +302,33 @@ export default function Menu() {
         </div>
 
         <div className="mt-[138px] flex h-[118px] w-[20px] items-start justify-center overflow-visible sm:mt-[138px] sm:h-[132px] sm:w-[22px]">
-          <p className="-rotate-90 whitespace-nowrap text-[8px] font-extrabold uppercase tracking-[0.12em] text-[#74D5FF] sm:text-[9px]">
-            {TOP_BAR_VERTICAL_TEXT}
-          </p>
+          <nav
+            aria-label="Top bar quick links"
+            className="-rotate-90 whitespace-nowrap text-[8px] font-extrabold uppercase tracking-[0.12em] text-[#74D5FF] sm:text-[9px]"
+          >
+            {TOP_BAR_LINKS.map((link, index) => (
+              <span key={link.label}>
+                {link.external ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pointer-events-auto hover:text-[#a2a2a2] transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="pointer-events-auto hover:text-[#a2a2a2] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )}
+                {index < TOP_BAR_LINKS.length - 1 ? ' / ' : ''}
+              </span>
+            ))}
+          </nav>
         </div>
       </div>
 
@@ -403,9 +445,33 @@ export default function Menu() {
         </div>
 
         <div className="absolute left-1/2 top-[498px] flex h-[180px] w-[24px] -translate-x-1/2 items-start justify-center overflow-visible">
-          <p className="-rotate-90 whitespace-nowrap text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#74D5FF]">
-            {TOP_BAR_VERTICAL_TEXT}
-          </p>
+          <nav
+            aria-label="Top bar quick links"
+            className="-rotate-90 whitespace-nowrap text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#74D5FF]"
+          >
+            {TOP_BAR_LINKS.map((link, index) => (
+              <span key={link.label}>
+                {link.external ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pointer-events-auto hover:text-[#a2a2a2] transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="pointer-events-auto hover:text-[#a2a2a2] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )}
+                {index < TOP_BAR_LINKS.length - 1 ? ' / ' : ''}
+              </span>
+            ))}
+          </nav>
         </div>
 
         <div className="absolute hidden lg:flex h-[144px] items-center justify-center left-[6px] top-[97px] w-[41px]">
