@@ -34,7 +34,7 @@ function SuccessContent() {
             </svg>
           </div>
 
-          <h1 className="font-['Inter:Bold',sans-serif] font-bold text-4xl md:text-6xl lg:text-[80px] text-white uppercase tracking-tight mb-4">
+          <h1 className="font-bold text-4xl md:text-6xl lg:text-[80px] text-white uppercase tracking-tight mb-4">
             Order Confirmed
           </h1>
 

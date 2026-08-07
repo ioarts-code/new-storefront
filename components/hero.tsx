@@ -57,6 +57,38 @@ function getHeroImageTransform(config: { scale: number; wideScale?: number; tran
   return `translateX(${translateX}) scale(${scale})`;
 }
 
+// bstripe divider
+function HeroBrandStripe() {
+  return (
+    <div
+      className="relative w-full bg-[rgba(42,42,42,0.72)]"
+      data-name="Overlay"
+    >
+      <div className="mx-auto flex min-h-[72px] max-w-3xl flex-col items-center justify-center gap-3 px-4 py-4 sm:min-h-[82px] sm:px-6 sm:py-5 md:flex-row md:items-center md:justify-center md:gap-14 lg:min-h-[102px] lg:gap-20 lg:px-8">
+        <div className="flex shrink-0 justify-center">
+          <p
+            className="w-[52px] text-center text-[12px] font-black uppercase leading-[0.94] tracking-[0.38em] text-[#c8c8c8] sm:w-[60px] sm:text-[14px] lg:w-[68px] lg:text-[17px]"
+          >
+            {`FAN\nART\nGALL\nERY`}
+          </p>
+        </div>
+
+        <div className="flex flex-col items-center gap-0.5 text-center">
+          <p className="max-w-[320px] text-[8px] font-bold uppercase leading-[1.35] tracking-[0.03em] text-[#d0d0d0] sm:max-w-[430px] sm:text-[9px] md:max-w-[520px] md:text-[10px] lg:max-w-[620px] lg:text-[11px]">
+            ILLUSTRATIONS THAT MAKE SENSE. FREE FANART FROM IOARTS AND IOARTSEU
+          </p>
+          <p className="max-w-[320px] text-[8px] font-bold uppercase leading-[1.35] tracking-[0.03em] text-[#d0d0d0] sm:max-w-[430px] sm:text-[9px] md:max-w-[520px] md:text-[10px] lg:max-w-[620px] lg:text-[11px]">
+            LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
+          </p>
+          <p className="pt-0.5 text-[12px] capitalize leading-none text-[#d5d5d5] sm:text-[13px] lg:text-[14px]">
+            Anders Altmann
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
   const router = useRouter();
   const [heroProducts, setHeroProducts] = useState<Product[]>([]);
@@ -215,7 +247,7 @@ export default function Hero() {
                         </div>
                       )}
 
-                      <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
+                      <div className="absolute inset-x-0 bottom-0 h-[42%] pointer-events-none" />
 
                       <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-transparent gap-1 sm:gap-2 z-50">
                         <div className="flex items-center px-3 py-1 sm:px-4 border-2 border-[#a2a2a2] rounded-full mb-2 sm:mb-3">
@@ -235,7 +267,7 @@ export default function Hero() {
 
                         <Link
                           href={`/products/${product.slug}`}
-                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] shadow-[14px_14px_0_#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#a2a2a2]/20 hover:border-[#a2a2a2] hover:text-[#a2a2a2] font-bold text-xs sm:text-sm uppercase"
+                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-[#74D5FF] hover:font-bold font-bold text-xs sm:text-sm uppercase"
                         >
                           View
                         </Link>
@@ -253,52 +285,9 @@ export default function Hero() {
           </div>
         )}
 
-        {/* Horizontal Divider - Bottom */}
-        <div
-          className="absolute bottom-0 left-0 right-0 w-full bg-[rgba(255,255,255,0.45)] pointer-events-none overflow-hidden"
-          style={{
-            height: '160px',
-          }}
-        >
-          {/* Divider Content */}
-          <div className="relative w-full h-full flex flex-col items-center justify-center px-8 py-4">
-            {/* Merch Text */}
-            <div
-              className="font-['Inter:Bold',sans-serif] font-black uppercase text-black text-center text-[24px] md:text-[30px]"
-              style={{
-                lineHeight: '1.3',
-                letterSpacing: '4px',
-              }}
-            >
-             Fanart Gallery
-            </div>
-
-            {/* Taglines */}
-            <div
-              className="font-['Inter:Bold',sans-serif] font-bold text-black text-center text-[10px] md:text-[13px]"
-              style={{
-                lineHeight: '1.4',
-                letterSpacing: '0.4px',
-              }}
-            >
-              <p>ILLUSTRATIONS THAT MAKE SENSE. FREE FANART FROM IOARTS AND IOARTSEU</p>
-              <p>{`LET'S MAKE EVERY PRODUCT YOURS FOR REAL.`}</p>
-            </div>
-
-            {/* Artist Name */}
-            <div
-              className="mt-1 text-[16px] md:text-[20px]"
-              style={{
-                fontFamily: "'Mr Dafoe', cursive",
-                color: '#000000',
-              }}
-            >
-              Anders Altmann
-            </div>
-          </div>
-        </div>
+        <HeroBrandStripe />
       </div>
-      <div className="h-12 lg:h-20" />
     </div>
+
   );
 }

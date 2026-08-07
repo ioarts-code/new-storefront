@@ -75,7 +75,7 @@ function A() {
   return (
     <a
       href="/contact"
-      className="flex items-center shrink-0 font-['Inter:Regular',sans-serif] font-semibold text-[14.6px] text-[#a2a2a2] tracking-[-0.24px] leading-[19.2px] hover:text-gray-400 transition-colors"
+      className="flex items-center shrink-0 font-semibold text-[14.6px] text-[#a2a2a2] tracking-[-0.24px] leading-[19.2px] hover:text-gray-400 transition-colors"
       data-name="a"
     >
       Contact
@@ -90,7 +90,7 @@ function A1() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15.1px] text-[#a2a2a2] tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
+      <div className="flex flex-col font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15.1px] text-[#a2a2a2] tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
         <p className="leading-[19.2px]">Terms of Sale</p>
       </div>
     </a>
@@ -104,7 +104,7 @@ function A2() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-[#a2a2a2] tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
+      <div className="flex flex-col font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-[#a2a2a2] tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
         <p className="leading-[19.2px]">Privacy Policy</p>
       </div>
     </a>
@@ -118,7 +118,7 @@ function A3() {
       className="content-stretch flex flex-col items-start relative self-stretch shrink-0"
       data-name="a"
     >
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-[#a2a2a2] tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
+      <div className="flex flex-col font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[15px] text-[#a2a2a2] tracking-[-0.24px] whitespace-nowrap hover:text-gray-400 transition-colors">
         <p className="leading-[19.2px]">Copyright & Attribution</p>
       </div>
     </a>
@@ -139,7 +139,7 @@ function DivAbsolute1() {
 function DivAbsolute2() {
   return (
     <div className="absolute content-stretch flex flex-col items-end right-[44px] mobile:right-[32px] mobile:bottom-[24px] tablet:top-[480px] mobile:w-auto" data-name="div.absolute">
-      <div className="flex flex-col font-['Inter:Regular',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[14.8px] text-[#a2a2a2] tracking-[-0.24px] text-right mobile:rotate-90 mobile:origin-bottom-right">
+      <div className="flex flex-col font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[14.8px] text-[#a2a2a2] tracking-[-0.24px] text-right mobile:rotate-90 mobile:origin-bottom-right">
         <p className="leading-[19.2px]">2026© By Ioarts Websiates</p>
       </div>
     </div>
@@ -150,7 +150,7 @@ function FooterWFull() {
   return (
     <div className="bg-[rgba(255,255,255,0.2)] h-[532px] min-h-[532px] relative rounded-[12px] shrink-0 w-full" data-name="footer.w-full">
       <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[12px]" />
-      <div className="-translate-y-1/2 absolute flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[349px] justify-center leading-[0] left-[44px] not-italic text-[clamp(3rem,8vw,8rem)] md:text-[clamp(4rem,10vw,10rem)] lg:text-[clamp(5rem,12vw,12rem)] xl:text-[clamp(7rem,16vw,18rem)] text-[#a2a2a2] top-[218.5px] w-[calc(100%-88px)] md:w-[min(70vw,500px)] lg:w-[min(75vw,800px)] xl:w-[1079.975px] max-w-full overflow-hidden whitespace-nowrap">
+      <div className="-translate-y-1/2 absolute flex flex-col font-bold h-[349px] justify-center leading-[0] left-[44px] not-italic text-[clamp(3rem,8vw,8rem)] md:text-[clamp(4rem,10vw,10rem)] lg:text-[clamp(5rem,12vw,12rem)] xl:text-[clamp(7rem,16vw,18rem)] text-[#a2a2a2] top-[218.5px] w-[calc(100%-88px)] md:w-[min(70vw,500px)] lg:w-[min(75vw,800px)] xl:w-[1079.975px] max-w-full overflow-hidden whitespace-nowrap">
         <p className="leading-[normal] truncate">IOARTS</p>
       </div>
       <DivAbsolute />

@@ -8,48 +8,26 @@ interface TitleProps {
 }
 
 export default function Title({ title, className = '', showFree = false, priceLabel }: TitleProps) {
+  const detailLabel = showFree ? 'FREE' : priceLabel;
+
   return (
-    <h1
-      className={`font-bold uppercase text-[#a2a2a2] tracking-[5.4px] leading-[0.776] font-['Inter'] break-words text-[48px] md:text-[128px] ${className}`}
-      style={{ wordBreak: 'break-word' }}
-    >
-      {title}
-      {showFree && (
-        <span
-          className="inline-flex items-center gap-2 whitespace-nowrap text-[24px] md:text-[48px]"
-          style={{
-            fontWeight: 600,
-            letterSpacing: 'normal',
-            lineHeight: 1,
-            verticalAlign: 'bottom',
-            paddingBottom: '0.05em',
-          }}
-        >
+    <div className="flex flex-col gap-2">
+      <h1
+        className={`font-bold uppercase text-[#a2a2a2] tracking-[5.4px] leading-[0.776] break-words text-[48px] md:text-[128px] ${className}`}
+        style={{ wordBreak: 'break-word' }}
+      >
+        {title}
+      </h1>
+
+      {detailLabel && (
+        <div className="inline-flex items-center gap-2 text-[24px] font-semibold leading-none tracking-normal text-[#a2a2a2] md:text-[48px]">
           <span
-            className="inline-block bg-[#949494] flex-shrink-0"
+            className="inline-block shrink-0 bg-[#949494]"
             style={{ width: '34px', height: '2px' }}
           />
-          &thinsp;FREE
-        </span>
+          <span>{detailLabel}</span>
+        </div>
       )}
-      {!showFree && priceLabel && (
-        <span
-          className="inline-flex items-center gap-2 whitespace-nowrap text-[24px] md:text-[48px]"
-          style={{
-            fontWeight: 600,
-            letterSpacing: 'normal',
-            lineHeight: 1,
-            verticalAlign: 'bottom',
-            paddingBottom: '0.05em',
-          }}
-        >
-          <span
-            className="inline-block bg-[#949494] flex-shrink-0"
-            style={{ width: '34px', height: '2px' }}
-          />
-          &thinsp;{priceLabel}
-        </span>
-      )}
-    </h1>
+    </div>
   );
 }

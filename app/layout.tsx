@@ -1,15 +1,10 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Suspense } from 'react'
 import Footer from '@/components/footer'
 import Menu from '@/components/menu'
-import TopBar from '@/components/top-bar'
 import { CartProvider } from '@/lib/cart-context'
 import './globals.css'
-
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist', display: 'swap' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono', display: 'swap' })
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -93,7 +88,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${geistMono.variable} scroll-smooth`}
+      className="scroll-smooth"
       data-scroll-behavior="smooth"
     >
       <head>
@@ -107,10 +102,9 @@ export default function RootLayout({
           suppressHydrationWarning
         />
       </head>
-      <body className="font-sans antialiased bg-[#0F0F0F] text-foreground pt-6 overflow-x-hidden">
+      <body className="font-sans antialiased bg-[#0F0F0F] text-foreground overflow-x-hidden">
         <CartProvider>
-          <TopBar />
-          <aside className="fixed right-0 top-6 z-50 h-screen w-[58px] sm:w-[64px] lg:w-[58px] pointer-events-none">
+          <aside className="fixed right-0 top-0 z-50 h-screen w-[58px] sm:w-[64px] lg:w-[58px] pointer-events-none">
             <Suspense fallback={null}>
               <Menu />
             </Suspense>

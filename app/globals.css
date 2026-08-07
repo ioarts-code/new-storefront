@@ -76,8 +76,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist), 'Geist', 'Geist Fallback', 'Inter', 'Segoe UI', sans-serif;
-  --font-mono: var(--font-geist-mono), 'Geist Mono', 'Geist Mono Fallback', 'SFMono-Regular', Consolas, monospace;
+  --font-sans: 'Segoe UI', Arial, Helvetica, sans-serif;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
 
   /*
    * Breakpoints & Tailwind Shortcuts

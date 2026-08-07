@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const PRODUCTS_GRID_ID = 'products-grid';
+const TOP_BAR_VERTICAL_TEXT = 'BUY ME COFFEE / CART / CONTACT / COPYRIGHT';
 
 type AnimatedMenuIconProps = {
   isOpen: boolean;
@@ -281,6 +282,12 @@ export default function Menu() {
             </div>
           )}
         </div>
+
+        <div className="mt-[138px] flex h-[118px] w-[20px] items-start justify-center overflow-visible sm:mt-[138px] sm:h-[132px] sm:w-[22px]">
+          <p className="-rotate-90 whitespace-nowrap text-[8px] font-extrabold uppercase tracking-[0.12em] text-[#74D5FF] sm:text-[9px]">
+            {TOP_BAR_VERTICAL_TEXT}
+          </p>
+        </div>
       </div>
 
       <div className="hidden lg:block">
@@ -393,6 +400,12 @@ export default function Menu() {
               </Link>
             </div>
           )}
+        </div>
+
+        <div className="absolute left-1/2 top-[498px] flex h-[180px] w-[24px] -translate-x-1/2 items-start justify-center overflow-visible">
+          <p className="-rotate-90 whitespace-nowrap text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#74D5FF]">
+            {TOP_BAR_VERTICAL_TEXT}
+          </p>
         </div>
 
         <div className="absolute hidden lg:flex h-[144px] items-center justify-center left-[6px] top-[97px] w-[41px]">

@@ -14,7 +14,7 @@ export default function TermsOfSalePage() {
         {/* Header */}
         <div className="mb-16">
           <BackToHomeButton className="mb-8" />
-          <h1 className="font-['Inter:Bold',sans-serif] font-bold text-5xl md:text-7xl text-white uppercase tracking-tight mb-4">
+          <h1 className="font-bold text-5xl md:text-7xl text-white uppercase tracking-tight mb-4">
             Terms of Sale
           </h1>
           <p className="text-gray-400 text-lg md:text-xl">Last Updated: {lastUpdated}</p>

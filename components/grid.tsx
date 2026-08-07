@@ -78,14 +78,14 @@ function GridItem({ product }: GridItemProps) {
             <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px]" />
 
             {/* Product name */}
-            <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center items-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-[#a2a2a2] mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
+            <div className="flex flex-col font-bold justify-center items-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-[#a2a2a2] mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
               <p className="truncate text-center w-full">{truncatedName}</p>
             </div>
           </div>
 
           {primaryCategory ? (
             <div className="w-full mt-2 flex items-center gap-2">
-              <p className="font-['Inter:Bold',sans-serif] font-bold text-[16px] leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
+              <p className="font-bold text-[16px] leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
                 {primaryCategory}
               </p>
               <div aria-hidden="true" className="h-[2px] w-[58px] bg-[#a2a2a2] shrink-0" />
