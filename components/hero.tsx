@@ -80,9 +80,6 @@ function HeroBrandStripe() {
           <p className="max-w-[320px] text-[8px] font-bold uppercase leading-[1.35] tracking-[0.03em] text-[#d0d0d0] sm:max-w-[430px] sm:text-[9px] md:max-w-[520px] md:text-[10px] lg:max-w-[620px] lg:text-[11px]">
             LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
           </p>
-          <p className="pt-0.5 text-[12px] capitalize leading-none text-[#d5d5d5] sm:text-[13px] lg:text-[14px]">
-            Anders Altmann
-          </p>
         </div>
       </div>
     </div>
