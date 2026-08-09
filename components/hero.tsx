@@ -39,9 +39,9 @@ function getFeaturedBadgeLabel(product: Product) {
 }
 
 const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; wideScale?: number; translateX?: string; wideTranslateX?: string; backdrop?: boolean; slugs?: string[] }> = {
-  1: { scale: 1.0, wideScale: 1.0, translateX: '19%', wideTranslateX: '11%', slugs: ['t-shirt-queens'] },
-  2: { scale: 1.0, wideScale: 1.0, translateX: '19%', wideTranslateX: '11%', slugs: ['t-shirt-elden'] },
-  3: { scale: 1.0, wideScale: 1.0, translateX: '19%', wideTranslateX: '11%', slugs: ['for-the-horde'] },
+  1: { scale: 1.1, wideScale: 1.6, translateX: '19%', wideTranslateX: '15%', slugs: ['t-shirt-queens'] },
+  2: { scale: 1.1, wideScale: 1.6, translateX: '19%', wideTranslateX: '15%', slugs: ['t-shirt-elden'] },
+  3: { scale: 1.1, wideScale: 1.6, translateX: '19%', wideTranslateX: '15%', slugs: ['for-the-horde'] },
   4: { scale: 1.0, wideScale: 1.12, translateX: '1%', wideTranslateX: '3%', slugs: [] },
   5: { scale: 1.0, wideScale: 1.14, translateX: '-2%', wideTranslateX: '-5%', slugs: [] },
 };
@@ -86,49 +86,44 @@ function HeroBrandStripe() {
   );
 }
 
-export default function Hero() {
+function getHeroProductsFromSource(products: Product[]) {
+  const configSlugsMap = new Map<string, number>();
+  Object.entries(HERO_IMAGE_CONFIG_BY_SLIDE).forEach(([slideNum, config]) => {
+    config.slugs?.forEach((slug) => {
+      configSlugsMap.set(normalizeKey(slug), parseInt(slideNum));
+    });
+  });
+
+  return (products ?? [])
+    .filter((product) => configSlugsMap.has(normalizeKey(product.slug)))
+    .sort((a, b) => {
+      const slideA = configSlugsMap.get(normalizeKey(a.slug)) ?? Infinity;
+      const slideB = configSlugsMap.get(normalizeKey(b.slug)) ?? Infinity;
+      return slideA - slideB;
+    });
+}
+
+export default function Hero({ initialProducts = [] }: { initialProducts?: Product[] }) {
   const router = useRouter();
-  const [heroProducts, setHeroProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [heroProducts, setHeroProducts] = useState<Product[]>(() => getHeroProductsFromSource(initialProducts));
+  const [isLoading, setIsLoading] = useState(initialProducts.length === 0);
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [productSlideNumbers, setProductSlideNumbers] = useState<Map<string, number>>(new Map());
   const [isWideScreen, setIsWideScreen] = useState(false);
 
   useEffect(() => {
+    if (initialProducts.length > 0) {
+      setHeroProducts(getHeroProductsFromSource(initialProducts));
+      setIsLoading(false);
+      return;
+    }
+
     const fetchHeroProducts = async () => {
       try {
         const client = createHygraphClient();
         const data = await client.request<{ products: Product[] }>(GET_PRODUCTS);
-
-        // Build an ordered map of config slugs to their slide positions
-        const configSlugsMap = new Map<string, number>();
-        Object.entries(HERO_IMAGE_CONFIG_BY_SLIDE).forEach(([slideNum, config]) => {
-          config.slugs?.forEach((slug) => {
-            configSlugsMap.set(normalizeKey(slug), parseInt(slideNum));
-          });
-        });
-
-        // Filter and sort products based on config order
-        const products = (data?.products ?? [])
-          .filter((product) => configSlugsMap.has(normalizeKey(product.slug)))
-          .sort((a, b) => {
-            const slideA = configSlugsMap.get(normalizeKey(a.slug)) ?? Infinity;
-            const slideB = configSlugsMap.get(normalizeKey(b.slug)) ?? Infinity;
-            return slideA - slideB;
-          });
-
-        // Create a map of product slug to slide number from config
-        const slugToSlideMap = new Map<string, number>();
-        products.forEach((product) => {
-          const slideNum = configSlugsMap.get(normalizeKey(product.slug));
-          if (slideNum) {
-            slugToSlideMap.set(product.id, slideNum);
-          }
-        });
-
+        const products = getHeroProductsFromSource(data?.products ?? []);
         setHeroProducts(products);
-        setProductSlideNumbers(slugToSlideMap);
       } catch (error) {
         console.error('Failed to fetch product:', error);
       } finally {
@@ -137,7 +132,7 @@ export default function Hero() {
     };
 
     fetchHeroProducts();
-  }, []);
+  }, [initialProducts]);
 
   useEffect(() => {
     if (!carouselApi || heroProducts.length <= 1) {
@@ -232,7 +227,7 @@ export default function Hero() {
                             fill
                             priority
                             sizes="100vw"
-                            className="object-cover object-center pointer-events-none hover:opacity-90 transition-opacity"
+                            className="object-contain object-center pointer-events-none hover:opacity-90 transition-opacity"
                             style={{
                               backgroundColor: 'transparent',
                             }}

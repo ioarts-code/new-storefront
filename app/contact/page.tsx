@@ -4,6 +4,9 @@ import { BackToHomeButton } from '@/components/back-to-home-button';
 export const metadata = {
   title: 'Contact | IOARTS',
   description: 'Contact IOARTS for general support, copyright, and licensing inquiries.',
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 export default function ContactPage() {

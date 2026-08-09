@@ -4,6 +4,9 @@ import { BackToHomeButton } from '@/components/back-to-home-button';
 export const metadata = {
   title: 'Privacy Policy | IOARTS',
   description: 'Privacy policy for IOARTS digital art merchandise store. Learn how we handle your personal data.',
+  alternates: {
+    canonical: '/privacy-policy',
+  },
 };
 
 export default function PrivacyPolicy() {
