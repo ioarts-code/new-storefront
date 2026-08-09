@@ -15,14 +15,6 @@ const TOP_BAR_LINKS = [
     label: 'CART',
     href: '/cart',
   },
-  {
-    label: 'CONTACT',
-    href: '/contact',
-  },
-  {
-    label: 'COPYRIGHT',
-    href: '/copyright-attribution',
-  },
 ];
 
 type AnimatedMenuIconProps = {
@@ -301,13 +293,16 @@ export default function Menu() {
           )}
         </div>
 
-        <div className="mt-[138px] flex h-[118px] w-[20px] items-start justify-center overflow-visible sm:mt-[138px] sm:h-[132px] sm:w-[22px]">
+        <div className="mt-[118px] flex h-[118px] w-[20px] items-start justify-center overflow-visible sm:mt-[118px] sm:h-[132px] sm:w-[22px]">
           <nav
             aria-label="Top bar quick links"
-            className="-rotate-90 whitespace-nowrap text-[8px] font-extrabold uppercase tracking-[0.12em] text-[#74D5FF] sm:text-[9px]"
+            className="-rotate-90 flex items-center whitespace-nowrap text-[8px] font-extrabold uppercase tracking-[0.12em] text-[#74D5FF] sm:text-[9px]"
           >
             {TOP_BAR_LINKS.map((link, index) => (
-              <span key={link.label}>
+              <span
+                key={link.label}
+                className={index === 0 ? 'mr-8 sm:mr-10' : 'mr-3 sm:mr-4'}
+              >
                 {link.external ? (
                   <a
                     href={link.href}
@@ -325,7 +320,6 @@ export default function Menu() {
                     {link.label}
                   </Link>
                 )}
-                {index < TOP_BAR_LINKS.length - 1 ? ' / ' : ''}
               </span>
             ))}
           </nav>
@@ -444,13 +438,16 @@ export default function Menu() {
           )}
         </div>
 
-        <div className="absolute left-1/2 top-[498px] flex h-[180px] w-[24px] -translate-x-1/2 items-start justify-center overflow-visible">
+        <div className="absolute left-1/2 top-[468px] flex h-[180px] w-[24px] -translate-x-1/2 items-start justify-center overflow-visible">
           <nav
             aria-label="Top bar quick links"
-            className="-rotate-90 whitespace-nowrap text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#74D5FF]"
+            className="-rotate-90 flex items-center whitespace-nowrap text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#74D5FF]"
           >
             {TOP_BAR_LINKS.map((link, index) => (
-              <span key={link.label}>
+              <span
+                key={link.label}
+                className={index === 0 ? 'mr-10 lg:mr-12' : 'mr-4 lg:mr-5'}
+              >
                 {link.external ? (
                   <a
                     href={link.href}
@@ -468,7 +465,6 @@ export default function Menu() {
                     {link.label}
                   </Link>
                 )}
-                {index < TOP_BAR_LINKS.length - 1 ? ' / ' : ''}
               </span>
             ))}
           </nav>
