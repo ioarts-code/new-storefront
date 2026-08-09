@@ -5,11 +5,14 @@ export async function POST(request: NextRequest) {
   // Endpoint can be public for temporary keyless mode.
   const ENDPOINT =
     process.env.HYGRAPH_ENDPOINT || process.env.NEXT_PUBLIC_HYGRAPH_ENDPOINT;
+  const AUTH_TOKEN =
+    process.env.HYGRAPH_AUTH_TOKEN || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
 
-  // Log environment for debugging (first request only to avoid spam)
+  // Log environment for debugging (occasionally to avoid spam).
   if (Math.random() < 0.05) {
     console.log('[API] Hygraph config check:', {
-      endpoint: ENDPOINT ? '✓ Set' : '✗ Missing',
+      endpoint: ENDPOINT ? 'set' : 'missing',
+      authToken: AUTH_TOKEN ? 'set' : 'not set',
     });
   }
 
@@ -55,7 +58,12 @@ export async function POST(request: NextRequest) {
 
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
+      Accept: 'application/json',
     };
+
+    if (AUTH_TOKEN) {
+      headers.Authorization = `Bearer ${AUTH_TOKEN}`;
+    }
 
     const response = await fetch(ENDPOINT, {
       method: 'POST',
@@ -63,16 +71,17 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({ query, variables }),
     });
 
-    // Read response body once
+    // Read response body once.
     const responseBody = await response.text();
-    
+
     let data: any;
     try {
       data = responseBody ? JSON.parse(responseBody) : {};
-    } catch (parseError) {
+    } catch {
       console.error('[API] Failed to parse Hygraph response:', {
         status: response.status,
         statusText: response.statusText,
+        contentType: response.headers.get('content-type') || 'unknown',
         body: responseBody.slice(0, 500), // First 500 chars
         endpoint: ENDPOINT,
       });
@@ -84,13 +93,20 @@ export async function POST(request: NextRequest) {
     }
 
     if (!response.ok) {
+      const upstreamMessage = data?.errors?.[0]?.message || data?.error || data?.message || null;
+      const fallbackMessage = responseBody
+        ? `HTTP ${response.status}: ${responseBody.slice(0, 200)}`
+        : `HTTP ${response.status} ${response.statusText}`;
+
       console.error('[API] Hygraph returned error status:', {
         status: response.status,
         statusText: response.statusText,
-        data: data,
+        data,
+        endpoint: ENDPOINT,
       });
-      // Ensure we always return a proper error structure
-      const errors = data.errors || data.error || { message: `HTTP ${response.status}` };
+
+      // Ensure we always return a GraphQL-style error payload.
+      const errors = data?.errors || [{ message: upstreamMessage || fallbackMessage }];
       return NextResponse.json(
         { errors: Array.isArray(errors) ? errors : [{ message: String(errors) }] },
         { status: response.status }

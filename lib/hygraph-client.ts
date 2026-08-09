@@ -21,39 +21,43 @@ export function createHygraphClient() {
           ? window.location.origin
           : process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
-      const response = await fetch(`${origin}/api/hygraph`, {
+      const endpoint = `${origin}/api/hygraph`;
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, variables }),
       });
 
-      if (!response.ok) {
-        let errorData: any = {};
+      const responseText = await response.text();
+      let data: any = {};
+
+      if (responseText) {
         try {
-          errorData = await response.json();
+          data = JSON.parse(responseText);
         } catch {
-          errorData = { error: `HTTP ${response.status} - Could not parse error response` };
+          data = { raw: responseText };
         }
-        
-        const errorMessage = 
-          errorData?.errors?.[0]?.message || 
-          errorData?.error || 
-          errorData?.message || 
-          `API request failed with status ${response.status}`;
-        
-        console.error('[v0] GraphQL error response:', errorData);
+      }
+
+      if (!response.ok) {
+        const contentType = response.headers.get('content-type') || 'unknown';
+        const errorMessage =
+          data?.errors?.[0]?.message ||
+          data?.error ||
+          data?.message ||
+          (responseText ? `HTTP ${response.status}: ${responseText.slice(0, 200)}` : `API request failed with status ${response.status}`);
+
+        console.error('[v0] GraphQL error response:', data);
         console.error('[v0] Error details:', {
           status: response.status,
           statusText: response.statusText,
-          endpoint: origin + '/api/hygraph',
+          endpoint,
+          contentType,
           errorMessage,
-          fullResponse: JSON.stringify(errorData),
         });
-        
-        throw new Error(`GraphQL request failed: ${errorMessage}`);
-      }
 
-      const data = await response.json();
+        throw new Error(`GraphQL request failed (${response.status}): ${errorMessage}`);
+      }
 
       if (data.errors) {
         throw new Error(data.errors[0]?.message || 'GraphQL error');
@@ -82,9 +86,17 @@ export function createServerHygraphClient() {
         throw new Error('Hygraph endpoint must be configured');
       }
 
+      const authToken =
+        process.env.HYGRAPH_AUTH_TOKEN || process.env.NEXT_PUBLIC_HYGRAPH_AUTH_TOKEN;
+
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       };
+
+      if (authToken) {
+        headers.Authorization = `Bearer ${authToken}`;
+      }
 
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -93,7 +105,10 @@ export function createServerHygraphClient() {
       });
 
       if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`);
+        const errorText = await response.text();
+        throw new Error(
+          `API request failed with status ${response.status}${errorText ? `: ${errorText.slice(0, 200)}` : ''}`
+        );
       }
 
       const data = await response.json();

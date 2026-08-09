@@ -39,9 +39,9 @@ function getFeaturedBadgeLabel(product: Product) {
 }
 
 const HERO_IMAGE_CONFIG_BY_SLIDE: Record<number, { scale: number; wideScale?: number; translateX?: string; wideTranslateX?: string; backdrop?: boolean; slugs?: string[] }> = {
-  1: { scale: 1.3, wideScale: 1.0, translateX: '19%', wideTranslateX: '11%', slugs: ['flask-elden'] },
-  2: { scale: 1.0, wideScale: 1.08, translateX: '2%', wideTranslateX: '4%', slugs: [] },
-  3: { scale: 1.0, wideScale: 1.1, translateX: '-1%', wideTranslateX: '-4%', slugs: [] },
+  1: { scale: 1.3, wideScale: 1.0, translateX: '19%', wideTranslateX: '11%', slugs: ['t-shirt-queens'] },
+  2: { scale: 1.0, wideScale: 1.08, translateX: '2%', wideTranslateX: '11%', slugs: ['t-shirt-elden'] },
+  3: { scale: 1.0, wideScale: 1.1, translateX: '-1%', wideTranslateX: '11%', slugs: ['for-the-horde'] },
   4: { scale: 1.0, wideScale: 1.12, translateX: '1%', wideTranslateX: '3%', slugs: [] },
   5: { scale: 1.0, wideScale: 1.14, translateX: '-2%', wideTranslateX: '-5%', slugs: [] },
 };
@@ -60,25 +60,25 @@ function getHeroImageTransform(config: { scale: number; wideScale?: number; tran
 // bstripe divider
 function HeroBrandStripe() {
   return (
-    <div
-      className="relative w-full bg-[rgba(42,42,42,0.72)]"
-      data-name="Overlay"
-    >
-      <div className="mx-auto flex min-h-[72px] max-w-3xl flex-col items-center justify-center gap-3 px-4 py-4 sm:min-h-[82px] sm:px-6 sm:py-5 md:flex-row md:items-center md:justify-center md:gap-14 lg:min-h-[102px] lg:gap-20 lg:px-8">
-        <div className="flex shrink-0 justify-center">
-          <p
-            className="w-[52px] text-center text-[12px] font-black uppercase leading-[0.94] tracking-[0.38em] text-[#c8c8c8] sm:w-[60px] sm:text-[14px] lg:w-[68px] lg:text-[17px]"
-          >
-            {`FAN\nART\nGALL\nERY`}
-          </p>
-        </div>
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[rgba(255,255,255,0.2)] backdrop-blur-[2px]" data-name="Overlay">
+      <div className="mx-auto flex min-h-[132px] w-full max-w-6xl flex-col items-center justify-center gap-3 px-4 py-6 sm:min-h-[158px] sm:px-6 md:min-h-[182px] md:flex-row md:items-center md:justify-center md:gap-10 md:px-8 lg:min-h-[208px] lg:gap-14 lg:px-10">
+        <p className="w-[80px] whitespace-normal break-words text-justify font-black uppercase leading-[1.34] tracking-[0.14em] text-[#a2a2a2] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px]">
+          FANART GALLERY
+        </p>
 
         <div className="flex flex-col items-center gap-0.5 text-center">
-          <p className="max-w-[320px] text-[8px] font-bold uppercase leading-[1.35] tracking-[0.03em] text-[#d0d0d0] sm:max-w-[430px] sm:text-[9px] md:max-w-[520px] md:text-[10px] lg:max-w-[620px] lg:text-[11px]">
+          <p className="max-w-[620px] text-[9px] font-bold uppercase leading-[1.45] tracking-[0.05em] text-[#c8c8c8] sm:text-[10px] md:text-[11px] lg:text-[12px]">
             ILLUSTRATIONS THAT MAKE SENSE. FREE FANART FROM IOARTS AND IOARTSEU
           </p>
-          <p className="max-w-[320px] text-[8px] font-bold uppercase leading-[1.35] tracking-[0.03em] text-[#d0d0d0] sm:max-w-[430px] sm:text-[9px] md:max-w-[520px] md:text-[10px] lg:max-w-[620px] lg:text-[11px]">
+          <p className="max-w-[620px] text-[9px] font-bold uppercase leading-[1.45] tracking-[0.05em] text-[#c8c8c8] sm:text-[10px] md:text-[11px] lg:text-[12px]">
             LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
+          </p>
+
+          <p
+            className="pt-1 text-[16px] text-[#bbb]/90 sm:text-[18px] lg:text-[20px]"
+            style={{ fontFamily: 'var(--font-mr-dafoe), "Apple Chancery", "Brush Script MT", cursive' }}
+          >
+            Anders Altmann
           </p>
         </div>
       </div>
@@ -269,6 +269,8 @@ export default function Hero() {
                           View
                         </Link>
                       </div>
+
+                      <HeroBrandStripe />
                     </div>
                   </CarouselItem>
                 );
@@ -281,8 +283,6 @@ export default function Hero() {
             No hero products found
           </div>
         )}
-
-        <HeroBrandStripe />
       </div>
     </div>
 
