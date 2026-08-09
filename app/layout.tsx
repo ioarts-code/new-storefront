@@ -37,6 +37,7 @@ const structuredData = {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.ioarts.ink'),
   title: 'IOARTS | Digital Art Fanart & Illustration Gallery',
   description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Gallery featuring exclusive illustrated arts',
   keywords: ['digital art', 'Fanart', 'illustrations', 'art Gallery', 'exclusive designs'],
@@ -82,9 +83,6 @@ export const metadata: Metadata = {
     icon: '/favicon.svg',
     apple: '/favicon.svg',
   },
-  alternates: {
-    canonical: 'https://www.ioarts.ink',
-  },
 }
 
 export const viewport: Viewport = {
@@ -109,7 +107,6 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="theme-color" content="#0F0F0F" />
-        <link rel="canonical" href="https://www.ioarts.ink" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
