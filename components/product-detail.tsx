@@ -56,7 +56,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               title={product.name}
               showFree={!hasPrice}
               priceLabel={hasPrice ? `$${product.price || 0}` : undefined}
-              className={`max-w-[14ch] sm:max-w-[12ch] ${titleTextColorClass}`}
+              className={`max-w-[14ch] sm:max-w-[12ch] leading-[0.92] md:leading-[0.88] ${titleTextColorClass}`}
             />
           </div>
 
