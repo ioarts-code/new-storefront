@@ -42,6 +42,11 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const hasPhysicalProduct = items.some(
+      (item: { product?: { choice?: string | null } }) =>
+        item.product?.choice === 'physicalProduct'
+    );
+
     // Create line items for Stripe
     const lineItems = items.map((item: { product: { id: string; name: string; price: number }; quantity: number }) => ({
       price_data: {
@@ -63,7 +68,10 @@ export async function POST(req: NextRequest) {
       line_items: lineItems,
       mode: 'payment',
       billing_address_collection: 'required',
-      success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      metadata: {
+        productIds: items.map((item: { product: { id: string } }) => item.product.id).join(','),
+      },
+      success_url: `${baseUrl}/checkout/${hasPhysicalProduct ? 'thanks' : 'download'}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/cart`,
       customer_email: customerEmail,
     });

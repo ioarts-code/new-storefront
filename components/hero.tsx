@@ -22,12 +22,6 @@ function normalizeKey(value?: string | null) {
     .replace(/[_\s]+/g, '-');
 }
 
-// Helper function to truncate text to specified character length
-const truncateDescription = (text: string, maxLength: number = 60): string => {
-  if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength).trim() + '...';
-};
-
 function getFeaturedBadgeLabel(product: Product) {
   const heroCategory = product.categories?.find((category) => {
     const nameKey = normalizeKey(category.name);
@@ -251,11 +245,6 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
                         <h3 className="text-lg sm:text-2xl md:text-2xl lg:text-3xl font-bold text-[#a2a2a2] leading-tight line-clamp-2">
                           {product.name}
                         </h3>
-
-                        <p className="-mt-1 text-xs sm:text-sm text-[#a2a2a2] leading-tight line-clamp-2">
-                          <span className="block sm:hidden">{truncateDescription(product.description, 25)}</span>
-                          <span className="hidden sm:block">{truncateDescription(product.description, 85)}</span>
-                        </p>
 
                         <Link
                           href={`/products/${product.slug}`}

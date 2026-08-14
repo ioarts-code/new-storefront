@@ -17,7 +17,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const imageUrl = product.images?.[0]?.url || '';
   const tags = product.tags?.map((tag) => tag.name).join(', ') || 'No tags assigned';
   const copyright = product.copyright?.trim() || 'No copyright information provided';
-  const productType = product.productType?.trim() || 'No product type specified';
+  const choice = product.choice?.trim()
+    ? product.choice.trim().replace(/([a-z])([A-Z])/g, '$1 $2')
+    : 'No choice specified';
   const hasPrice = typeof product.price === 'number' && product.price > 0;
 
   const handleDownload = async () => {
@@ -59,11 +61,6 @@ export function ProductDetail({ product }: ProductDetailProps) {
               className={`max-w-[14ch] sm:max-w-[12ch] leading-[0.92] md:leading-[0.88] ${titleTextColorClass}`}
             />
           </div>
-
-          {/* Description */}
-          <p className={`font-sans font-normal text-sm sm:text-base ${titleTextColorClass} leading-[1.5] max-w-[640px]`}>
-            {product.description}
-          </p>
 
           {/* Download and Support Buttons - Hidden when price exists */}
           {!hasPrice && (
@@ -126,10 +123,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
             <div className="flex items-center gap-2">
               <span className={`font-sans font-bold text-xs sm:text-sm ${titleTextColorClass} tracking-tight lg:tracking-[-0.24px] leading-relaxed`}>
-                Product Type
+                Choice
               </span>
-              <div className="inline-flex min-h-[1.8rem] w-fit items-center justify-center rounded-full bg-[#a2a2a2] px-3.5 py-0.5 text-[10px] sm:px-4 sm:text-[11px] font-sans font-black uppercase leading-none tracking-wide text-black">
-                {productType}
+              <div className="inline-flex min-h-[1.8rem] w-fit items-center justify-center rounded-full bg-[#a2a2a2] px-3.5 py-0.5 text-[10px] sm:px-4 sm:text-[11px] font-sans font-black leading-none tracking-wide text-black">
+                {choice.charAt(0).toUpperCase() + choice.slice(1)}
               </div>
             </div>
           </div>

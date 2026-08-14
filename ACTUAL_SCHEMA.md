@@ -9,8 +9,8 @@ These are the fields your Product model currently has in Hygraph:
 ### Core Fields (Required)
 - **name** (Single line text) - Product name
 - **slug** (Slug) - URL-friendly identifier  
-- **description** (Markdown) - Full product description
 - **price** (Number/Int) - Product price
+- **choice** (Enumeration: `ProductTypeChoice`) - `digitalProduct` or `physicalProduct`
 
 ### Relationships (Multiple values)
 - **categories** (Two-way reference to Category) - Product categories
@@ -24,7 +24,7 @@ These are the fields your Product model currently has in Hygraph:
 
 The store app currently displays products with:
 - ✅ Product name and slug
-- ✅ Product description
+- ✅ Product choice
 - ✅ Product price (displayed in card)
 - ✅ Categories (shown below product name)
 - ✅ Images (displayed as gallery/carousel in card)
@@ -41,8 +41,8 @@ query GetProducts {
     id
     name
     slug
-    description
     price
+    choice
     categories {
       id
       name
@@ -64,8 +64,8 @@ query GetProductsByCategory($categoryId: ID!) {
     id
     name
     slug
-    description
     price
+    choice
     categories {
       id
       name
@@ -87,8 +87,8 @@ query SearchProducts($search: String!) {
     id
     name
     slug
-    description
     price
+    choice
     categories {
       id
       name

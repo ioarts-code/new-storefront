@@ -124,7 +124,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     return visibleProducts.filter((product) => {
       const searchableText = [
         product.name,
-        product.description,
+        product.choice,
         ...(product.tags ?? []).map((tag) => tag.name),
         ...(product.categories ?? []).map((category) => category.name),
       ]

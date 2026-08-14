@@ -2,10 +2,9 @@ export interface Product {
   id: string;
   name: string;
   slug: string;
-  description: string;
   price: number;
   copyright?: string | null;
-  productType?: string | null;
+  choice?: string | null;
   heroImage?: ProductImage | null;
   download?: {
     url: string;

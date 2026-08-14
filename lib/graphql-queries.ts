@@ -4,9 +4,8 @@ export const GET_PRODUCTS = /* GraphQL */ `
       id
       name
       slug
-      description
       price
-      productType
+      choice
       copyright
       heroImage {
         id
@@ -41,9 +40,8 @@ export const GET_PRODUCTS_BY_TAG = /* GraphQL */ `
       id
       name
       slug
-      description
       price
-      productType
+      choice
       copyright
       download {
         url
@@ -68,9 +66,8 @@ export const SEARCH_PRODUCTS = /* GraphQL */ `
       id
       name
       slug
-      description
       price
-      productType
+      choice
       copyright
       download {
         url
@@ -95,9 +92,8 @@ export const GET_PRODUCT_BY_SLUG = /* GraphQL */ `
       id
       name
       slug
-      description
       price
-      productType
+      choice
       copyright
       download {
         url
@@ -127,9 +123,8 @@ export const GET_PRODUCTS_BY_SLUGS = /* GraphQL */ `
       id
       name
       slug
-      description
       price
-      productType
+      choice
       copyright
       download {
         url
@@ -146,6 +141,20 @@ export const GET_PRODUCTS_BY_SLUGS = /* GraphQL */ `
       }
       images {
         id
+        url
+        fileName
+      }
+    }
+  }
+`;
+
+export const GET_PRODUCTS_BY_IDS = /* GraphQL */ `
+  query GetProductsByIds($ids: [ID!]) {
+    products(where: { id_in: $ids }, first: 100) {
+      id
+      name
+      choice
+      download {
         url
         fileName
       }
