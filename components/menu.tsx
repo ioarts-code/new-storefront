@@ -126,19 +126,6 @@ export default function Menu() {
   };
 
   useEffect(() => {
-    if (!isSearchOpen) return;
-
-    const timer = window.setTimeout(() => {
-      const target = getSearchTarget(searchInput.trim());
-      router.replace(target);
-    }, 250);
-
-    return () => {
-      window.clearTimeout(timer);
-    };
-  }, [searchInput, isSearchOpen, pathname, router, searchParams]);
-
-  useEffect(() => {
     const handleClickOutside = (event: PointerEvent) => {
       const target = event.target as Node;
       const clickedMenu =
@@ -214,7 +201,8 @@ export default function Menu() {
               <button
                 type="button"
                 onClick={applySearch}
-                className="h-7 px-2 rounded border border-[#a2a2a2]/35 text-[9px] font-semibold uppercase text-[#a2a2a2] hover:bg-[#a2a2a2]/15 hover:border-[#a2a2a2] hover:text-[#a2a2a2]"
+                className="h-7 px-2 rounded border border-[#a2a2a2]/35 text-[9px] font-semibold uppercase text-[#a2a2a2]"
+                data-no-topbar-hover="true"
               >
                 Search
               </button>
@@ -375,7 +363,8 @@ export default function Menu() {
               <button
                 type="button"
                 onClick={applySearch}
-                className="h-9 px-3 rounded border border-[#a2a2a2]/35 text-xs font-semibold uppercase text-[#a2a2a2] hover:bg-[#a2a2a2]/15 hover:border-[#a2a2a2] hover:text-[#a2a2a2]"
+                className="h-9 px-3 rounded border border-[#a2a2a2]/35 text-xs font-semibold uppercase text-[#a2a2a2]"
+                data-no-topbar-hover="true"
               >
                 Search
               </button>
