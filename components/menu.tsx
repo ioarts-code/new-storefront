@@ -28,13 +28,13 @@ function AnimatedMenuIcon({ isOpen, compact = false }: AnimatedMenuIconProps) {
   return (
     <span className="relative block size-full -scale-x-100 transform-gpu" aria-hidden="true">
       <span
-        className={`absolute right-0 ${thickness} rounded-full bg-[#a2a2a2] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 rotate-45' : 'top-[1px] w-full rotate-0'}`}
+        className={`absolute right-0 ${thickness} rounded-full bg-[#a2a2a2] group-hover:bg-[#74D5FF] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 rotate-45' : 'top-[1px] w-full rotate-0'}`}
       />
       <span
-        className={`absolute right-0 top-1/2 ${thickness} w-[56%] rounded-full bg-[#a2a2a2] -translate-y-1/2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'opacity-0 translate-x-2 scale-x-0' : 'opacity-100 translate-x-0 scale-x-100'}`}
+        className={`absolute right-0 top-1/2 ${thickness} w-[56%] rounded-full bg-[#a2a2a2] group-hover:bg-[#74D5FF] -translate-y-1/2 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'opacity-0 translate-x-2 scale-x-0' : 'opacity-100 translate-x-0 scale-x-100'}`}
       />
       <span
-        className={`absolute right-0 ${thickness} rounded-full bg-[#a2a2a2] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 -rotate-45' : 'bottom-[1px] w-[86%] rotate-0'}`}
+        className={`absolute right-0 ${thickness} rounded-full bg-[#a2a2a2] group-hover:bg-[#74D5FF] transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu ${isOpen ? 'top-1/2 w-full -translate-y-1/2 -rotate-45' : 'bottom-[1px] w-[86%] rotate-0'}`}
       />
     </span>
   );
@@ -229,7 +229,7 @@ export default function Menu() {
         <div ref={mobileDropdownRef} className="relative mt-1" data-name="menu">
           <button
             type="button"
-            className="relative h-[16px] w-[15px]"
+            className="group relative h-[16px] w-[15px]"
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
@@ -246,13 +246,6 @@ export default function Menu() {
                 className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Home
-              </Link>
-              <Link
-                href="/products"
-                onClick={() => setIsOpen(false)}
-                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
-              >
-                All Products
               </Link>
               <a
                 href="https://buymeacoffee.com"
@@ -276,6 +269,27 @@ export default function Menu() {
                 className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Contact
+              </Link>
+              <Link
+                href="/terms-of-sale"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
+              >
+                Terms of Sale
+              </Link>
+              <Link
+                href="/privacy-policy"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/copyright-attribution"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
+              >
+                Copyright & Attribution
               </Link>
             </div>
           )}
@@ -375,7 +389,7 @@ export default function Menu() {
         <div ref={desktopDropdownRef} className="absolute left-[16px] top-[284px]" data-name="menu">
           <button
             type="button"
-            className="relative h-[26px] w-[25px]"
+            className="group relative h-[26px] w-[25px]"
             onClick={() => setIsOpen((prev) => !prev)}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
@@ -392,13 +406,6 @@ export default function Menu() {
                 className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Home
-              </Link>
-              <Link
-                href="/products"
-                onClick={() => setIsOpen(false)}
-                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
-              >
-                All Products
               </Link>
               <a
                 href="https://buymeacoffee.com"
@@ -422,6 +429,27 @@ export default function Menu() {
                 className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
               >
                 Contact
+              </Link>
+              <Link
+                href="/terms-of-sale"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
+              >
+                Terms of Sale
+              </Link>
+              <Link
+                href="/privacy-policy"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/copyright-attribution"
+                onClick={() => setIsOpen(false)}
+                className="block rounded px-3 py-2 text-sm font-semibold uppercase tracking-wide text-[#a2a2a2] hover:bg-[#a2a2a2]/15"
+              >
+                Copyright & Attribution
               </Link>
             </div>
           )}
