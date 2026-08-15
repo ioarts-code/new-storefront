@@ -51,7 +51,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       {/* Left Column */}
       <div className="relative z-10 flex min-w-0 flex-col justify-between w-full lg:flex-1 bg-transparent">
         {/* Product Content */}
-        <div className="flex flex-col gap-4 mt-8 sm:mt-10 lg:mt-14">
+        <div className="flex flex-col gap-4 mt-0 sm:mt-1 lg:mt-4">
           {/* Title and Price */}
           <div className="flex flex-col gap-0">
             <Title
@@ -61,6 +61,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
               className={`max-w-[14ch] sm:max-w-[12ch] leading-[0.92] md:leading-[0.88] ${titleTextColorClass}`}
             />
           </div>
+
+          {product.description?.trim() && (
+            <p className="max-w-2xl text-sm font-medium leading-relaxed text-[#c8c8c8] sm:text-base">
+              {product.description}
+            </p>
+          )}
 
           {/* Download and Support Buttons - Hidden when price exists */}
           {!hasPrice && (
@@ -89,7 +95,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-5">
               <button
                 onClick={() => {
-                  window.location.href = `/checkout?product=${product.id}`;
+                  dispatch({ type: 'ADD_TO_CART', payload: product, quantity: 1 });
+                  router.push('/checkout');
                 }}
                 className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
                 aria-label={`Buy ${product.name} now`}

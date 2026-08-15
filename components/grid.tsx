@@ -38,6 +38,12 @@ function isExcludedProduct(product: Product) {
   return hasExcludedTag || hasExcludedCategory;
 }
 
+function formatProductType(choice?: string | null) {
+  return choice?.trim()
+    ? choice.trim().replace(/([a-z])([A-Z])/g, '$1 $2')
+    : null;
+}
+
 interface GridItemProps {
   product: Product;
 }
@@ -46,6 +52,12 @@ function GridItem({ product }: GridItemProps) {
   const imageSrc = product.images?.[0]?.url;
   const [imageError, setImageError] = useState(false);
   const primaryCategory = product.categories?.[0]?.name;
+  const productType = formatProductType(product.choice);
+  const productPrice = typeof product.price === 'number'
+    ? product.price === 0
+      ? 'FREE'
+      : `$${product.price.toFixed(2)}`
+    : null;
 
   // Truncate product name if too long (max 40 chars, with ellipsis)
   const truncatedName = product.name.length > 40 
@@ -83,12 +95,29 @@ function GridItem({ product }: GridItemProps) {
             </div>
           </div>
 
-          {primaryCategory ? (
+          {primaryCategory || productPrice || productType ? (
             <div className="w-full mt-2 flex items-center gap-2">
-              <p className="font-bold text-[16px] leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
-                {primaryCategory}
-              </p>
-              <div aria-hidden="true" className="h-[2px] w-[58px] bg-[#a2a2a2] shrink-0" />
+              {primaryCategory && (
+                <p className="font-bold text-[16px] capitalize leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
+                  {primaryCategory}
+                </p>
+              )}
+              {primaryCategory && (productPrice || productType) && (
+                <div aria-hidden="true" className="h-[2px] w-[29px] bg-[#a2a2a2] shrink-0" />
+              )}
+              {productPrice && (
+                <p className="font-bold text-[16px] capitalize leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
+                  {productPrice}
+                </p>
+              )}
+              {productPrice && productType && (
+                <div aria-hidden="true" className="h-[2px] w-[29px] bg-[#a2a2a2] shrink-0" />
+              )}
+              {productType && (
+                <p className="font-bold text-[16px] capitalize leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
+                  {productType}
+                </p>
+              )}
             </div>
           ) : null}
         </div>
@@ -109,6 +138,8 @@ interface GridProps {
 
 export function Grid({ products, isLoading = false, isEmpty = false, groupByCategoryOnLoad = false, itemsPerCategory = 3, showProducts = true, searchQuery = '' }: GridProps) {
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
+  const [freeOnly, setFreeOnly] = useState(false);
+  const [selectedProductTypes, setSelectedProductTypes] = useState<string[]>([]);
   const normalizedSearchQuery = searchQuery.trim().toLowerCase();
 
   const visibleProducts = useMemo(
@@ -149,15 +180,19 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     return Array.from(tagMap.values());
   }, [searchFilteredProducts]);
 
-  const filteredProducts = useMemo(
-    () =>
-      selectedTagIds.length > 0
-        ? searchFilteredProducts.filter((product) =>
-            (product.tags ?? []).some((tag) => selectedTagIds.includes(tag.id))
-          )
-        : searchFilteredProducts,
-    [searchFilteredProducts, selectedTagIds]
-  );
+  const filteredProducts = useMemo(() => {
+    return searchFilteredProducts.filter((product) => {
+      const matchesTags =
+        selectedTagIds.length === 0 ||
+        (product.tags ?? []).some((tag) => selectedTagIds.includes(tag.id));
+      const matchesPrice = !freeOnly || product.price === 0;
+      const matchesProductType =
+        selectedProductTypes.length === 0 ||
+        selectedProductTypes.includes(product.choice ?? '');
+
+      return matchesTags && matchesPrice && matchesProductType;
+    });
+  }, [freeOnly, searchFilteredProducts, selectedProductTypes, selectedTagIds]);
 
   useEffect(() => {
     if (typeof window === 'undefined' || isLoading || window.location.hash !== `#${PRODUCTS_GRID_ID}`) {
@@ -177,7 +212,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     return () => {
       window.cancelAnimationFrame(frame);
     };
-  }, [filteredProducts.length, isLoading, normalizedSearchQuery, selectedTagIds.length]);
+  }, [filteredProducts.length, isLoading, normalizedSearchQuery, selectedProductTypes.length, selectedTagIds.length, freeOnly]);
 
   if (isLoading) {
     return (
@@ -193,19 +228,58 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
 
   return (
     <div id={PRODUCTS_GRID_ID} className="content-stretch flex flex-col items-start px-8 md:px-10 lg:px-12 relative size-full pt-16 pb-32 tablet:pb-40 desktop:pb-48 gap-16 bg-transparent">
-      {/* Tag Filter */}
+      {/* Product and tag filters */}
       <div className="w-full flex justify-center mb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 justify-center items-center max-w-4xl w-full px-4 sm:px-0">
+        <div className="grid w-full max-w-4xl grid-cols-2 items-center gap-3 px-4 sm:grid-cols-3 sm:px-0">
           <button
-            onClick={() => setSelectedTagIds([])}
-            className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
-              selectedTagIds.length === 0
+            type="button"
+            onClick={() => {
+              setSelectedTagIds([]);
+              setFreeOnly(false);
+              setSelectedProductTypes([]);
+            }}
+            className={`min-h-11 w-full px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all ${
+              selectedTagIds.length === 0 && !freeOnly && selectedProductTypes.length === 0
                 ? 'bg-[#a2a2a2] !text-black border-2 border-[#a2a2a2]'
                 : 'text-[#a2a2a2] border-2 border-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
             }`}
           >
             All
           </button>
+          <button
+            type="button"
+            onClick={() => setFreeOnly((current) => !current)}
+            className={`flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md sm:rounded-lg border-2 px-3 py-1.5 text-center text-xs font-bold transition-all sm:px-4 sm:py-2 sm:text-sm ${
+            freeOnly
+              ? 'border-[#a2a2a2] bg-[#a2a2a2] !text-black'
+              : 'border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
+          }`}
+          >
+            FREE only
+          </button>
+          {[
+            { value: 'physicalProduct', label: 'Physical product' },
+            { value: 'digitalProduct', label: 'Digital product' },
+          ].map((productType) => (
+            <button
+              key={productType.value}
+              type="button"
+              onClick={() =>
+                setSelectedProductTypes((current) =>
+                  current.includes(productType.value)
+                    ? current.filter((value) => value !== productType.value)
+                    : [...current, productType.value]
+                )
+              }
+              className={`flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md sm:rounded-lg border-2 px-3 py-1.5 text-center text-xs font-bold transition-all sm:px-4 sm:py-2 sm:text-sm ${
+              selectedProductTypes.includes(productType.value)
+                ? 'border-[#a2a2a2] bg-[#a2a2a2] !text-black'
+                : 'border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
+              }`}
+            >
+              {productType.label}
+            </button>
+          ))}
           {allTags.map((tag) => (
             <button
               key={tag.id}
@@ -216,7 +290,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
                     : [...current, tag.id]
                 )
               }
-              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all w-full ${
+              className={`min-h-11 w-full px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all ${
                 selectedTagIds.includes(tag.id)
                   ? 'bg-[#a2a2a2] !text-black border-2 border-[#a2a2a2]'
                   : 'text-[#a2a2a2] border-2 border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
@@ -229,7 +303,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
       </div>
 
       {!showProducts ? null : filteredProducts.length === 0 ? (
-        selectedTagIds.length > 0 || normalizedSearchQuery ? (
+        selectedTagIds.length > 0 || normalizedSearchQuery || freeOnly || selectedProductTypes.length > 0 ? (
           <div className="text-center py-20 w-full">
             <h3 className="text-lg font-semibold text-[#a2a2a2] mb-2">No products found</h3>
             <p className="text-gray-400">Try a different search term, tag, or clear the filter.</p>

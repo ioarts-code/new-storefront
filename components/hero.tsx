@@ -246,6 +246,12 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
                           {product.name}
                         </h3>
 
+                        {product.description?.trim() && (
+                          <p className="mt-1 line-clamp-3 text-xs font-medium leading-relaxed text-[#c8c8c8] sm:mt-2 sm:text-sm">
+                            {product.description}
+                          </p>
+                        )}
+
                         <Link
                           href={`/products/${product.slug}`}
                           className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-[#74D5FF] hover:font-bold font-bold text-xs sm:text-sm uppercase"
