@@ -242,7 +242,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
               setFreeOnly(false);
               setSelectedProductTypes([]);
             }}
-            className={`min-h-11 w-full px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all ${
+            className={`min-h-11 w-full px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold lowercase text-xs sm:text-sm transition-all ${
               selectedTagIds.length === 0 && !freeOnly && selectedProductTypes.length === 0
                 ? 'bg-[#a2a2a2] !text-black border-2 border-[#a2a2a2]'
                 : 'text-[#a2a2a2] border-2 border-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
@@ -253,7 +253,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
           <button
             type="button"
             onClick={() => setFreeOnly((current) => !current)}
-            className={`flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md sm:rounded-lg border-2 px-3 py-1.5 text-center text-xs font-bold transition-all sm:px-4 sm:py-2 sm:text-sm ${
+            className={`flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md sm:rounded-lg border-2 px-3 py-1.5 text-center text-xs font-bold lowercase transition-all sm:px-4 sm:py-2 sm:text-sm ${
             freeOnly
               ? 'border-[#a2a2a2] bg-[#a2a2a2] !text-black'
               : 'border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
@@ -275,7 +275,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
                     : [...current, productType.value]
                 )
               }
-              className={`flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md sm:rounded-lg border-2 px-3 py-1.5 text-center text-xs font-bold transition-all sm:px-4 sm:py-2 sm:text-sm ${
+              className={`flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md sm:rounded-lg border-2 px-3 py-1.5 text-center text-xs font-bold lowercase transition-all sm:px-4 sm:py-2 sm:text-sm ${
               selectedProductTypes.includes(productType.value)
                 ? 'border-[#a2a2a2] bg-[#a2a2a2] !text-black'
                 : 'border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
@@ -294,7 +294,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
                     : [...current, tag.id]
                 )
               }
-              className={`min-h-11 w-full px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold text-xs sm:text-sm transition-all ${
+              className={`min-h-11 w-full px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold lowercase text-xs sm:text-sm transition-all ${
                 selectedTagIds.includes(tag.id)
                   ? 'bg-[#a2a2a2] !text-black border-2 border-[#a2a2a2]'
                   : 'text-[#a2a2a2] border-2 border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
