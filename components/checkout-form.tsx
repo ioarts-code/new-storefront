@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { useCart } from '@/lib/cart-context';
 
@@ -44,8 +45,6 @@ export function CheckoutForm() {
         throw new Error('Missing Stripe checkout URL');
       }
 
-      // Clear cart before redirecting to the hosted Stripe checkout page.
-      dispatch({ type: 'CLEAR_CART' });
       window.location.assign(sessionUrl);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -71,14 +70,14 @@ export function CheckoutForm() {
                   <span>
                     {item.product.name} x {item.quantity}
                   </span>
-                  <span>${(item.product.price * item.quantity).toFixed(2)}</span>
+                  <span>{(item.product.price * item.quantity).toFixed(2)} SEK</span>
                 </div>
               ))}
             </div>
 
             <div className="flex justify-between items-center mb-6">
               <span className="text-lg font-bold text-white">Total</span>
-              <span className="text-2xl font-bold text-white">${state.total.toFixed(2)}</span>
+              <span className="text-2xl font-bold text-white">{state.total.toFixed(2)} SEK</span>
             </div>
           </>
         )}
@@ -93,7 +92,19 @@ export function CheckoutForm() {
             </div>
           )}
 
+          <div className="space-y-2 border-y border-gray-700 py-5">
+            <h2 className="text-lg font-bold text-white">Endast för svenska kunder.</h2>
+            <p className="text-gray-400">
+              <Link href="/checkout/swish" className="text-[#74D5FF] hover:text-white transition-colors">
+                Betala med Swish
+              </Link>
+            </p>
+          </div>
+
           <div>
+            <h2 className="text-lg font-bold text-white mb-2">
+              Kortbetalning är för närvarande stängd
+            </h2>
             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
               Email Address
             </label>
@@ -102,7 +113,7 @@ export function CheckoutForm() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder="brevduva999@proton.me"
               className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white"
               required
             />
@@ -117,7 +128,7 @@ export function CheckoutForm() {
           </button>
 
           <p className="text-sm text-gray-400 text-center">
-            Secure checkout supports cards, PayPal, Klarna, Apple Pay, and Google Pay (availability depends on your Stripe account and buyer device/browser).
+            Secure checkout accepts card payments.
           </p>
         </form>
       )}

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
+import { useCart } from '@/lib/cart-context';
 
 type DownloadProduct = {
   id: string;
@@ -16,6 +17,7 @@ type DownloadProduct = {
 function DownloadContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get('session_id');
+  const { dispatch } = useCart();
   const [products, setProducts] = useState<DownloadProduct[]>([]);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -34,12 +36,13 @@ function DownloadContent() {
           throw new Error(data.error || 'Unable to load your downloads');
         }
         setProducts(data.products ?? []);
+        dispatch({ type: 'CLEAR_CART' });
       })
       .catch((downloadError) => {
         setError(downloadError instanceof Error ? downloadError.message : 'Unable to load your downloads');
       })
       .finally(() => setIsLoading(false));
-  }, [sessionId]);
+  }, [dispatch, sessionId]);
 
   return (
     <main className="min-h-screen bg-[#0F0F0F]">

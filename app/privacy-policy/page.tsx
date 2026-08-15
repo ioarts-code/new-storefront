@@ -145,7 +145,7 @@ export default function PrivacyPolicy() {
               <li>Right to data portability</li>
             </ul>
             <p className="text-gray-300 leading-relaxed mt-4">
-              To exercise any of these rights, please contact us at privacy@ioarts.ink
+              To exercise any of these rights, please contact us at brevduva999@proton.me
             </p>
           </section>
 
@@ -181,7 +181,7 @@ export default function PrivacyPolicy() {
             </p>
             <div className="mt-4 p-4 bg-white/5 border border-gray-700 rounded-lg">
               <p className="text-white font-semibold">IOARTS</p>
-              <p className="text-gray-300">Email: privacy@ioarts.ink</p>
+              <p className="text-gray-300">Email: brevduva999@proton.me</p>
               <p className="text-gray-300">Website: ioarts.ink</p>
             </div>
           </section>

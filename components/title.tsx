@@ -20,12 +20,10 @@ export default function Title({ title, className = '', showFree = false, priceLa
       </h1>
 
       {detailLabel && (
-        <div className="inline-flex items-center gap-2 text-[24px] font-semibold leading-none tracking-normal text-[#a2a2a2] md:text-[48px]">
-          <span
-            className="inline-block shrink-0 bg-[#949494]"
-            style={{ width: '34px', height: '2px' }}
-          />
-          <span>{detailLabel}</span>
+        <div className="inline-flex items-center text-[24px] font-semibold leading-none tracking-normal text-[#a2a2a2] md:text-[48px]">
+          <span className="border-b-[4px] border-[#949494] pb-1">
+            {detailLabel}
+          </span>
         </div>
       )}
     </div>

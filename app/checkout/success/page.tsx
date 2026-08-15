@@ -92,7 +92,7 @@ function SuccessContent() {
             <div>
               <h2 className="text-lg font-bold text-white mb-2">Need Help?</h2>
               <p className="text-gray-400">
-                If you have any questions about your order, please contact us at support@ioarts.ink
+                If you have any questions about your order, please contact us at brevduva999@proton.me
               </p>
             </div>
           </div>

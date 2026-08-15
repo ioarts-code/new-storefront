@@ -85,7 +85,7 @@ Contact & QuestionsIf you have questions about my work, attribution practices, o
                 We operate under the understanding that fan creators contribute to vibrant communities around beloved franchises. Our merchandise is produced in limited quantities for passionate fans and collectors.
               </p>
               <p>
-                If you are the copyright holder of any content featured on IOARTS and have concerns about its use, please contact us immediately at <span className="font-semibold">support@ioarts.ink</span> to discuss the matter.
+                If you are the copyright holder of any content featured on IOARTS and have concerns about its use, please contact us immediately at <span className="font-semibold">brevduva999@proton.me</span> to discuss the matter.
               </p>
             </div>
           </section>
@@ -111,7 +111,7 @@ Contact & QuestionsIf you have questions about my work, attribution practices, o
             <h2 className="text-2xl md:text-3xl font-bold text-white">Licensing Information</h2>
             <div className="bg-white/5 border border-gray-700 rounded-lg p-6 space-y-4 text-gray-300">
               <p>
-                For inquiries regarding licensing, commercial use, or permission to reproduce any IOARTS content, please reach out to us at <span className="font-semibold">licensing@ioarts.ink</span>.
+                For inquiries regarding licensing, commercial use, or permission to reproduce any IOARTS content, please reach out to us at <span className="font-semibold">brevduva999@proton.me</span>.
               </p>
               <p>
                 We are open to partnerships, collaborations, and licensing opportunities with businesses and creators who share our values.
@@ -124,7 +124,7 @@ Contact & QuestionsIf you have questions about my work, attribution practices, o
             <h2 className="text-2xl md:text-3xl font-bold text-white">DMCA & Takedown Notices</h2>
             <div className="bg-white/5 border border-gray-700 rounded-lg p-6 space-y-4 text-gray-300">
               <p>
-                If you believe your copyright has been infringed upon by content on this website, please send a detailed DMCA notice to our designated agent at <span className="font-semibold">copyright@ioarts.ink</span>.
+                If you believe your copyright has been infringed upon by content on this website, please send a detailed DMCA notice to our designated agent at <span className="font-semibold">brevduva999@proton.me</span>.
               </p>
               <p>
                 Include the following information in your notice:
@@ -165,9 +165,9 @@ Contact & QuestionsIf you have questions about my work, attribution practices, o
                 If you have any questions about copyright, attribution, or intellectual property matters, we&apos;re here to help. Contact us at:
               </p>
               <div className="space-y-2">
-                <p><span className="text-white font-semibold">General Inquiries:</span> support@ioarts.ink</p>
-                <p><span className="text-white font-semibold">Copyright Issues:</span> copyright@ioarts.ink</p>
-                <p><span className="text-white font-semibold">Licensing:</span> licensing@ioarts.ink</p>
+                <p><span className="text-white font-semibold">General Inquiries:</span> brevduva999@proton.me</p>
+                <p><span className="text-white font-semibold">Copyright Issues:</span> brevduva999@proton.me</p>
+                <p><span className="text-white font-semibold">Licensing:</span> brevduva999@proton.me</p>
               </div>
             </div>
           </section>

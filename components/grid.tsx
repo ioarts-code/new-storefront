@@ -56,7 +56,7 @@ function GridItem({ product }: GridItemProps) {
   const productPrice = typeof product.price === 'number'
     ? product.price === 0
       ? 'FREE'
-      : `$${product.price.toFixed(2)}`
+      : `${product.price.toFixed(2)} SEK`
     : null;
 
   // Truncate product name if too long (max 40 chars, with ellipsis)
@@ -96,25 +96,29 @@ function GridItem({ product }: GridItemProps) {
           </div>
 
           {primaryCategory || productPrice || productType ? (
-            <div className="w-full mt-2 flex items-center gap-2">
+            <div className="w-full mt-3 flex items-center gap-2">
               {primaryCategory && (
-                <p className="font-bold text-[16px] capitalize leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
+                <p className="font-bold text-[12px] uppercase leading-[1.2] tracking-[0.3px] text-[#a2a2a2] group-hover:text-[#74D5FF] truncate">
                   {primaryCategory}
                 </p>
               )}
               {primaryCategory && (productPrice || productType) && (
-                <div aria-hidden="true" className="h-[2px] w-[29px] bg-[#a2a2a2] shrink-0" />
+                <span aria-hidden="true" className="shrink-0 text-[12px] font-bold leading-[1.2] text-[#a2a2a2] group-hover:text-[#74D5FF]">
+                  /
+                </span>
               )}
               {productPrice && (
-                <p className="font-bold text-[16px] capitalize leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
+                <p className="font-bold text-[12px] uppercase leading-[1.2] tracking-[0.3px] text-[#a2a2a2] group-hover:text-[#74D5FF] truncate">
                   {productPrice}
                 </p>
               )}
               {productPrice && productType && (
-                <div aria-hidden="true" className="h-[2px] w-[29px] bg-[#a2a2a2] shrink-0" />
+                <span aria-hidden="true" className="shrink-0 text-[12px] font-bold leading-[1.2] text-[#a2a2a2] group-hover:text-[#74D5FF]">
+                  /
+                </span>
               )}
               {productType && (
-                <p className="font-bold text-[16px] capitalize leading-[1.2] tracking-[0.3px] text-[#a2a2a2] truncate">
+                <p className="font-bold text-[12px] uppercase leading-[1.2] tracking-[0.3px] text-[#a2a2a2] group-hover:text-[#74D5FF] truncate">
                   {productType}
                 </p>
               )}

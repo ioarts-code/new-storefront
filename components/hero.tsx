@@ -62,10 +62,7 @@ function HeroBrandStripe() {
 
         <div className="flex flex-col items-center gap-0.5 text-center">
           <p className="max-w-[620px] text-[9px] font-bold uppercase leading-[1.45] tracking-[0.05em] text-[#c8c8c8] sm:text-[10px] md:text-[11px] lg:text-[12px]">
-            ILLUSTRATIONS THAT MAKE SENSE. FREE FANART FROM IOARTS AND IOARTSEU
-          </p>
-          <p className="max-w-[620px] text-[9px] font-bold uppercase leading-[1.45] tracking-[0.05em] text-[#c8c8c8] sm:text-[10px] md:text-[11px] lg:text-[12px]">
-            LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
+            ILLUSTRATIONS THAT MAKE SENSE. FREE FANART FROM IOARTS AND IOARTSEU. LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
           </p>
 
           <p
@@ -236,7 +233,7 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
                       <div className="absolute inset-x-0 bottom-0 h-[42%] pointer-events-none" />
 
                       <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-transparent gap-1 sm:gap-2 z-50">
-                        <div className="flex items-center px-3 py-1 sm:px-4 border-2 border-[#a2a2a2] rounded-full mb-2 sm:mb-3">
+                        <div className="flex items-center px-3 py-1.5 sm:px-4 border-2 border-[#a2a2a2] rounded-full mb-2 sm:mb-3">
                           <span className="text-[10px] sm:text-xs font-bold text-[#a2a2a2] uppercase tracking-tight">
                             {getFeaturedBadgeLabel(product)}
                           </span>
@@ -247,7 +244,7 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
                         </h3>
 
                         {product.description?.trim() && (
-                          <p className="mt-1 line-clamp-3 text-xs font-medium leading-relaxed text-[#c8c8c8] sm:mt-2 sm:text-sm">
+                          <p className="mt-0 line-clamp-3 text-xs font-medium leading-relaxed text-[#c8c8c8] sm:mt-0 sm:text-sm">
                             {product.description}
                           </p>
                         )}

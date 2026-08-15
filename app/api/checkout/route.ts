@@ -42,15 +42,40 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const hasPhysicalProduct = items.some(
+    const normalizedItems = items.map((item: {
+      product: { id: string; name: string; price: number | string };
+      quantity?: number | string;
+    }) => ({
+      ...item,
+      quantity: Number(item.quantity ?? 1),
+      product: {
+        ...item.product,
+        price: Number(item.product.price),
+      },
+    }));
+
+    const totalAmount = normalizedItems.reduce(
+      (total: number, item: { product: { price: number }; quantity: number }) =>
+        total + item.product.price * item.quantity,
+      0
+    );
+
+    if (!Number.isFinite(totalAmount) || totalAmount < 3) {
+      return NextResponse.json(
+        { error: 'The minimum checkout total is 3.00 SEK.' },
+        { status: 400 }
+      );
+    }
+
+    const hasPhysicalProduct = normalizedItems.some(
       (item: { product?: { choice?: string | null } }) =>
         item.product?.choice === 'physicalProduct'
     );
 
     // Create line items for Stripe
-    const lineItems = items.map((item: { product: { id: string; name: string; price: number }; quantity: number }) => ({
+    const lineItems = normalizedItems.map((item: { product: { id: string; name: string; price: number }; quantity: number }) => ({
       price_data: {
-        currency: 'usd',
+        currency: 'sek',
         product_data: {
           name: item.product.name,
           metadata: {
@@ -64,12 +89,13 @@ export async function POST(req: NextRequest) {
 
     // Create checkout session
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'paypal', 'klarna'],
+      payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
       billing_address_collection: 'required',
       metadata: {
-        productIds: items.map((item: { product: { id: string } }) => item.product.id).join(','),
+        productIds: normalizedItems.map((item: { product: { id: string } }) => item.product.id).join(','),
+        hasPhysicalProduct: String(hasPhysicalProduct),
       },
       success_url: `${baseUrl}/checkout/${hasPhysicalProduct ? 'thanks' : 'download'}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/cart`,

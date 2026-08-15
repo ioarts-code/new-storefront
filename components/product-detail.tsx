@@ -21,6 +21,8 @@ export function ProductDetail({ product }: ProductDetailProps) {
     ? product.choice.trim().replace(/([a-z])([A-Z])/g, '$1 $2')
     : 'No choice specified';
   const hasPrice = typeof product.price === 'number' && product.price > 0;
+  const etsyLink = product.linkToEtsy?.trim() || '';
+  const hasEtsyLink = Boolean(etsyLink);
 
   const handleDownload = async () => {
     if (!product.download?.url) {
@@ -57,7 +59,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <Title
               title={product.name}
               showFree={!hasPrice}
-              priceLabel={hasPrice ? `$${product.price || 0}` : undefined}
+              priceLabel={hasPrice ? `${product.price || 0} SEK` : undefined}
               className={`max-w-[14ch] sm:max-w-[12ch] leading-[0.92] md:leading-[0.88] ${titleTextColorClass}`}
             />
           </div>
@@ -69,7 +71,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           )}
 
           {/* Download and Support Buttons - Hidden when price exists */}
-          {!hasPrice && (
+          {!hasEtsyLink && !hasPrice && (
             <div className="mt-4 lg:mt-[10px] flex flex-col sm:flex-row gap-4 sm:gap-5">
               <button
                 onClick={handleDownload}
@@ -91,7 +93,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           )}
 
           {/* Buy Now button shown only when Price exists */}
-          {hasPrice && (
+          {!hasEtsyLink && hasPrice && (
             <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-5">
               <button
                 onClick={() => {
@@ -115,6 +117,19 @@ export function ProductDetail({ product }: ProductDetailProps) {
               >
                 Add to cart
               </button>
+            </div>
+          )}
+
+          {hasEtsyLink && (
+            <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-5">
+              <a
+                href={etsyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
+              >
+                Buy on Etsy
+              </a>
             </div>
           )}
 

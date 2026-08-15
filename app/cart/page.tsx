@@ -84,14 +84,10 @@ export default function CartPage() {
                                 paddingBottom: '0.05em',
                               }}
                             >
-                              FREE
-                              <span
-                                className="inline-block bg-[#949494] flex-shrink-0"
-                                style={{ width: '22px', height: '2px' }}
-                              />
+                              <span className="border-b-[3px] border-[#949494] pb-1">FREE</span>
                             </span>
                           ) : (
-                            `$${item.product.price.toFixed(2)}`
+                            `${item.product.price.toFixed(2)} SEK`
                           )}
                         </p>
                       </div>
@@ -129,7 +125,7 @@ export default function CartPage() {
                     {/* Line Total */}
                     <div className="text-right">
                       <p className="text-white font-bold">
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        {(item.product.price * item.quantity).toFixed(2)} SEK
                       </p>
                     </div>
                   </div>
@@ -145,7 +141,7 @@ export default function CartPage() {
                 <div className="space-y-4 mb-6 pb-6 border-b border-gray-700">
                   <div className="flex justify-between text-gray-400">
                     <span>Subtotal</span>
-                    <span>${state.total.toFixed(2)}</span>
+                    <span>{state.total.toFixed(2)} SEK</span>
                   </div>
                   <div className="flex justify-between text-gray-400">
                     <span>Shipping</span>
@@ -160,7 +156,7 @@ export default function CartPage() {
                 <div className="flex justify-between items-center mb-6">
                   <span className="text-lg font-bold text-white">Total</span>
                   <span className="text-2xl font-bold text-white">
-                    ${state.total.toFixed(2)}
+                    {state.total.toFixed(2)} SEK
                   </span>
                 </div>
 

@@ -32,6 +32,9 @@ const structuredData = {
   ],
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'Loviselundsvägen 27',
+    postalCode: '16559',
+    addressLocality: 'Hässelby',
     addressCountry: 'SE',
   },
 }

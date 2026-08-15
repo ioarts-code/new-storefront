@@ -1,6 +1,65 @@
-import Link from 'next/link';
+'use client';
 
-export default function Thanks() {
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
+import { useCart } from '@/lib/cart-context';
+
+function ThanksContent() {
+  const searchParams = useSearchParams();
+  const sessionId = searchParams.get('session_id');
+  const { dispatch } = useCart();
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (!sessionId) {
+      setError('The payment session is missing.');
+      setIsLoading(false);
+      return;
+    }
+
+    fetch(`/api/checkout/status?session_id=${encodeURIComponent(sessionId)}`)
+      .then(async (response) => {
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || 'Unable to verify your payment');
+        }
+
+        if (!data.hasPhysicalProduct) {
+          throw new Error('This payment does not contain a physical product order');
+        }
+
+        dispatch({ type: 'CLEAR_CART' });
+      })
+      .catch((paymentError) => {
+        setError(paymentError instanceof Error ? paymentError.message : 'Unable to verify your payment');
+      })
+      .finally(() => setIsLoading(false));
+  }, [dispatch, sessionId]);
+
+  if (isLoading) {
+    return (
+      <main className="min-h-screen bg-[#0F0F0F]">
+        <p className="py-20 text-center text-gray-400">Verifying your payment...</p>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className="min-h-screen bg-[#0F0F0F]">
+        <div className="max-w-2xl mx-auto px-4 py-20 text-center">
+          <h1 className="font-bold text-4xl text-white uppercase tracking-tight mb-4">Payment not verified</h1>
+          <p className="text-red-400 mb-8">{error}</p>
+          <Link href="/cart" className="inline-flex px-8 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors">
+            Return to Cart
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-[#0F0F0F]">
       <div className="max-w-2xl mx-auto px-4 py-12 md:py-20">
@@ -41,7 +100,7 @@ export default function Thanks() {
             <div>
               <h2 className="text-lg font-bold text-white mb-2">Need help?</h2>
               <p className="text-gray-400">
-                Contact us at support@ioarts.ink if you have any questions about your order.
+                Contact us at brevduva999@proton.me if you have any questions about your order.
               </p>
             </div>
           </div>
@@ -63,5 +122,13 @@ export default function Thanks() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function Thanks() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#0F0F0F]" />}>
+      <ThanksContent />
+    </Suspense>
   );
 }

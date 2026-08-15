@@ -95,6 +95,7 @@ export const GET_PRODUCT_BY_SLUG = /* GraphQL */ `
       name
       slug
       price
+      linkToEtsy
       description
       choice
       copyright

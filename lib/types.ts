@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   slug: string;
   price: number;
+  linkToEtsy?: string | null;
   description?: string | null;
   copyright?: string | null;
   choice?: string | null;

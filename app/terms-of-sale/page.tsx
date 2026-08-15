@@ -241,7 +241,7 @@ Support is handled via our official support channels during ioarts‘ standard 
               <strong>Digital Products:</strong> Digital downloads are final sales and are non-refundable. Once you have accessed or downloaded a digital product, no refund is available.
             </p>
             <p>
-              To initiate a return, please contact us at support@ioarts.ink with your order number and reason for return.
+              To initiate a return, please contact us at brevduva999@proton.me with your order number and reason for return.
             </p>
           </section>
 
@@ -288,7 +288,7 @@ Support is handled via our official support channels during ioarts‘ standard 
             </p>
             <div className="bg-white/5 border border-gray-700 rounded-lg p-6 mt-4">
               <p className="font-semibold text-white">IOARTS</p>
-              <p className="text-gray-400">Email: support@ioarts.ink</p>
+              <p className="text-gray-400">Email: brevduva999@proton.me</p>
             </div>
           </section>
         </div>

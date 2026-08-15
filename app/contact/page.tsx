@@ -31,7 +31,7 @@ export default function ContactPage() {
                 For order help, product questions, or website support, email us at:
               </p>
               <p>
-                <span className="text-white font-semibold">support@ioarts.ink</span>
+                <span className="text-white font-semibold">brevduva999@proton.me</span>
               </p>
             </div>
           </section>
@@ -43,7 +43,7 @@ export default function ContactPage() {
                 For copyright concerns, takedown requests, or legal matters, contact:
               </p>
               <p>
-                <span className="text-white font-semibold">copyright@ioarts.ink</span>
+                <span className="text-white font-semibold">brevduva999@proton.me</span>
               </p>
             </div>
           </section>
@@ -55,8 +55,15 @@ export default function ContactPage() {
                 For licensing and collaboration opportunities, email:
               </p>
               <p>
-                <span className="text-white font-semibold">licensing@ioarts.ink</span>
+                <span className="text-white font-semibold">brevduva999@proton.me</span>
               </p>
+            </div>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Address</h2>
+            <div className="bg-white/5 border border-gray-700 rounded-lg p-6 text-gray-300">
+              <address className="not-italic">Loviselundsvägen 27<br />16559 Hässelby<br />Sweden</address>
             </div>
           </section>
         </div>
