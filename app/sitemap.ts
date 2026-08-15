@@ -1,7 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { createServerHygraphClient } from '@/lib/hygraph-client'
+import { SITE_URL } from '@/lib/site-info'
 
-const BASE_URL = 'https://www.ioarts.ink'
+const BASE_URL = SITE_URL
 
 type ProductSlugResult = {
   products: Array<{ slug: string }>

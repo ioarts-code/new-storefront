@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { BackToHomeButton } from '@/components/back-to-home-button';
+import { CONTACT_ADDRESS_LINES } from '@/lib/site-info';
 
 export const metadata = {
-  title: 'Contact | IOARTS',
-  description: 'Contact IOARTS for general support, copyright, and licensing inquiries.',
+  title: 'Contact IOARTS in Hässelby, Sweden',
+  description: 'Contact IOARTS in Hässelby, Sweden for general support, copyright, and licensing inquiries.',
   alternates: {
     canonical: '/contact',
   },
@@ -63,7 +64,11 @@ export default function ContactPage() {
           <section className="space-y-4">
             <h2 className="text-2xl md:text-3xl font-bold text-white">Address</h2>
             <div className="bg-white/5 border border-gray-700 rounded-lg p-6 text-gray-300">
-              <address className="not-italic">Loviselundsvägen 27<br />16559 Hässelby<br />Sweden</address>
+              <address className="not-italic">
+                {CONTACT_ADDRESS_LINES.map((line) => (
+                  <span key={line} className="block">{line}</span>
+                ))}
+              </address>
             </div>
           </section>
         </div>

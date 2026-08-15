@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { SITE_URL } from '@/lib/site-info'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,9 +7,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/admin/'],
+        disallow: ['/api/', '/_next/', '/admin/', '/cart', '/checkout'],
       },
     ],
-    sitemap: 'https://www.ioarts.ink/sitemap.xml',
+    sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }

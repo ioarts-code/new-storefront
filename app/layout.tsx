@@ -5,6 +5,7 @@ import { Inter, Mr_Dafoe } from 'next/font/google'
 import Footer from '@/components/footer'
 import Menu from '@/components/menu'
 import { CartProvider } from '@/lib/cart-context'
+import { CONTACT_ADDRESS, SITE_URL } from '@/lib/site-info'
 import './globals.css'
 
 const inter = Inter({
@@ -22,31 +23,46 @@ const mrDafoe = Mr_Dafoe({
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'IOARTS',
-  description: 'Digital Arts Fanart & Illustrations',
-  url: 'https://www.ioarts.ink',
-  logo: 'https://www.ioarts.ink/favicon.svg',
-  sameAs: [
-    'https://www.deviantart.com',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'IOARTS',
+      description: 'Swedish digital art fanart and illustration gallery',
+      url: SITE_URL,
+      logo: `${SITE_URL}/favicon.svg`,
+      email: 'brevduva999@proton.me',
+      sameAs: ['https://www.deviantart.com'],
+      address: {
+        '@type': 'PostalAddress',
+        ...CONTACT_ADDRESS,
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      name: 'IOARTS',
+      url: SITE_URL,
+      inLanguage: 'en',
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${SITE_URL}/products?q={search_term_string}`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
   ],
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'Loviselundsvägen 27',
-    postalCode: '16559',
-    addressLocality: 'Hässelby',
-    addressCountry: 'SE',
-  },
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.ioarts.ink'),
+  metadataBase: new URL(SITE_URL),
   title: 'IOARTS | Digital Art Fanart & Illustration Gallery',
   description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Gallery featuring exclusive illustrated arts',
   keywords: ['digital art', 'Fanart', 'illustrations', 'art Gallery', 'exclusive designs'],
   authors: [{ name: 'Anders Altmann' }],
   creator: 'Anders Altmann',
   publisher: 'IOARTS',
+  category: 'Digital art gallery',
   robots: {
     index: true,
     follow: true,
@@ -61,7 +77,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.ioarts.ink',
+    url: SITE_URL,
     siteName: 'IOARTS',
     title: 'IOARTS | Digital Art Fanart & Illustration Gallery',
     description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Gallery featuring exclusive illustrated arts',
