@@ -55,12 +55,16 @@ function getHeroImageTransform(config: { scale: number; wideScale?: number; tran
 function HeroBrandStripe() {
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[rgba(255,255,255,0.2)] backdrop-blur-[2px]" data-name="Overlay">
-      <div className="mx-auto flex min-h-[132px] w-full max-w-6xl flex-col items-center justify-center gap-3 px-4 py-6 sm:min-h-[158px] sm:px-6 md:min-h-[182px] md:flex-row md:items-center md:justify-center md:gap-10 md:px-8 lg:min-h-[208px] lg:gap-14 lg:px-10">
-        <p className="w-auto whitespace-normal break-words text-center md:w-[80px] md:text-justify font-black uppercase leading-[1.34] tracking-[0.14em] text-[#a2a2a2] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px]">
+      <div className="mx-auto flex min-h-[132px] w-full max-w-6xl flex-col items-center justify-center gap-3 px-4 py-6 sm:min-h-[158px] sm:px-6 md:min-h-[182px] md:flex-row md:items-center md:justify-[...]
+        <p className="w-auto whitespace-normal break-words text-center md:w-[80px] md:text-justify font-black uppercase leading-[1.34] tracking-[0.14em] text-[#a2a2a2] text-[18px] sm:text-[20px] md:te[...]
           FANART GALLERY
         </p>
 
         <div className="flex flex-col items-center gap-0.5 text-center">
+          <h1 className="text-[24px] font-bold uppercase text-[#a2a2a2] sm:text-[28px] md:text-[32px]">
+            ioarts
+          </h1>
+
           <p className="max-w-[620px] text-[9px] font-bold uppercase leading-[1.45] tracking-[0.05em] text-[#c8c8c8] sm:text-[10px] md:text-[11px] lg:text-[12px]">
             ILLUSTRATIONS THAT MAKE SENSE. FREE FANART FROM IOARTS AND IOARTSEU. LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
           </p>
@@ -195,7 +199,7 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
 
                 return (
                   <CarouselItem key={product.id} className="pl-0">
-                    <div className="relative h-[540px] md:h-[800px] lg:h-[1040px] flex items-center justify-center overflow-hidden w-full max-w-full cursor-pointer" onClick={() => router.push(`/products/${product.slug}`)}>
+                    <div className="relative h-[540px] md:h-[800px] lg:h-[1040px] flex items-center justify-center overflow-hidden w-full max-w-full cursor-pointer" onClick={() => router.push(`/produc[...]
                       {imageUrl && showBackdropImage && (
                         <div
                           aria-hidden="true"
@@ -232,7 +236,7 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
 
                       <div className="absolute inset-x-0 bottom-0 h-[42%] pointer-events-none" />
 
-                      <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-transparent gap-1 sm:gap-2 z-50">
+                      <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 b[...]
                         <div className="flex items-center px-3 py-1.5 sm:px-4 border-2 border-[#a2a2a2] rounded-full mb-2 sm:mb-3">
                           <span className="text-[10px] sm:text-xs font-bold text-[#a2a2a2] uppercase tracking-tight">
                             {getFeaturedBadgeLabel(product)}
@@ -251,7 +255,7 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
 
                         <Link
                           href={`/products/${product.slug}`}
-                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-[#74D5FF] hover:font-bold font-bold text-xs sm:text-sm uppercase"
+                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shado[...]
                         >
                           View
                         </Link>
