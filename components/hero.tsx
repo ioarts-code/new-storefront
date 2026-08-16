@@ -56,11 +56,7 @@ function HeroBrandStripe() {
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[rgba(255,255,255,0.2)] backdrop-blur-[2px]" data-name="Overlay">
       <div className="mx-auto flex min-h-[132px] w-full max-w-6xl flex-col items-center justify-center gap-3 px-4 py-6 sm:min-h-[158px] sm:px-6 md:min-h-[182px] md:flex-row md:items-center md:justify-between">
-        <p className="w-auto whitespace-normal break-words text-center md:w-[80px] md:text-justify font-black uppercase leading-[1.34] tracking-[0.14em] text-[#a2a2a2] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px]">
-          FANART GALLERY
-        </p>
-
-        <div className="flex flex-col items-center gap-0.5 text-center">
+        <div className="flex flex-col items-center gap-0.5 text-center md:order-2">
           <h1 className="text-[24px] font-bold uppercase text-[#a2a2a2] sm:text-[28px] md:text-[32px]">
             ioarts
           </h1>
@@ -76,6 +72,10 @@ function HeroBrandStripe() {
             Anders Altmann
           </p>
         </div>
+
+        <p className="w-auto whitespace-normal break-words text-center font-black uppercase leading-[1.34] tracking-[0.14em] text-[#a2a2a2] text-[18px] sm:text-[20px] md:w-[80px] md:text-justify md:order-1 md:text-[22px] lg:text-[24px]">
+          FANART GALLERY
+        </p>
       </div>
     </div>
   );
