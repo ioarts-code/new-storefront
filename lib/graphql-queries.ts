@@ -6,7 +6,7 @@ export const GET_PRODUCTS = /* GraphQL */ `
       slug
       price
       description
-      choice
+      productType
       copyright
       heroImage {
         id
@@ -43,7 +43,7 @@ export const GET_PRODUCTS_BY_TAG = /* GraphQL */ `
       slug
       price
       description
-      choice
+      productType
       copyright
       download {
         url
@@ -69,7 +69,7 @@ export const SEARCH_PRODUCTS = /* GraphQL */ `
       name
       slug
       price
-      choice
+      productType
       copyright
       download {
         url
@@ -97,7 +97,7 @@ export const GET_PRODUCT_BY_SLUG = /* GraphQL */ `
       price
       linkToEtsy
       description
-      choice
+      productType
       copyright
       download {
         url
@@ -128,7 +128,7 @@ export const GET_PRODUCTS_BY_SLUGS = /* GraphQL */ `
       name
       slug
       price
-      choice
+      productType
       copyright
       download {
         url
@@ -157,7 +157,7 @@ export const GET_PRODUCTS_BY_IDS = /* GraphQL */ `
     products(where: { id_in: $ids }, first: 100) {
       id
       name
-      choice
+      productType
       download {
         url
         fileName

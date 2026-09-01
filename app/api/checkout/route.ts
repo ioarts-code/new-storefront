@@ -68,8 +68,8 @@ export async function POST(req: NextRequest) {
     }
 
     const hasPhysicalProduct = normalizedItems.some(
-      (item: { product?: { choice?: string | null } }) =>
-        item.product?.choice === 'physicalProduct'
+      (item: { product?: { productType?: string | null } }) =>
+        item.product?.productType === 'physicalProduct'
     );
 
     // Create line items for Stripe

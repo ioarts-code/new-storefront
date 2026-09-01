@@ -55,14 +55,18 @@ function getHeroImageTransform(config: { scale: number; wideScale?: number; tran
 function HeroBrandStripe() {
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[rgba(255,255,255,0.2)] backdrop-blur-[2px]" data-name="Overlay">
-      <div className="mx-auto flex min-h-[132px] w-full max-w-6xl flex-col items-center justify-center gap-3 px-4 py-6 sm:min-h-[158px] sm:px-6 md:min-h-[182px] md:flex-row md:items-center md:justify-between">
-        <div className="flex flex-col items-center gap-0.5 text-center md:order-2">
+      <div className="mx-auto flex min-h-[132px] w-full max-w-6xl flex-col items-center justify-center px-4 py-6 sm:min-h-[158px] sm:px-6 md:min-h-[182px]">
+        <div className="flex flex-col items-center gap-0.5 text-center">
           <h1 className="text-[24px] font-bold uppercase text-[#a2a2a2] sm:text-[28px] md:text-[32px]">
             ioarts
           </h1>
 
-          <p className="max-w-[620px] text-[9px] font-bold uppercase leading-[1.45] tracking-[0.05em] text-[#c8c8c8] sm:text-[10px] md:text-[11px] lg:text-[12px]">
-            ILLUSTRATIONS THAT MAKE SENSE. FREE FANART FROM IOARTS AND IOARTSEU. LET&apos;S MAKE EVERY PRODUCT YOURS FOR REAL.
+          <p className="mb-1 text-[10px] font-black uppercase leading-[1.34] tracking-[0.6em] text-[#a2a2a2] sm:text-[11px] md:text-[12px]">
+            FANART GALLERY
+          </p>
+
+          <p className="max-w-[620px] text-[9px] font-bold leading-[1.45] tracking-[0.05em] text-[#c8c8c8] sm:text-[10px] md:text-[11px] lg:text-[12px]">
+            Illustrations that make sense. Free fanart from ioarts and ioartseu. Let&apos;s make every product yours for real.
           </p>
 
           <p
@@ -72,10 +76,6 @@ function HeroBrandStripe() {
             Anders Altmann
           </p>
         </div>
-
-        <p className="w-auto whitespace-normal break-words text-center font-black uppercase leading-[1.34] tracking-[0.14em] text-[#a2a2a2] text-[18px] sm:text-[20px] md:w-[80px] md:text-justify md:order-1 md:text-[22px] lg:text-[24px]">
-          FANART GALLERY
-        </p>
       </div>
     </div>
   );
@@ -236,8 +236,8 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
 
                       <div className="absolute inset-x-0 bottom-0 h-[42%] pointer-events-none" />
 
-                      <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] flex flex-col items-start p-4 sm:p-6 md:p-7 lg:p-8 w-56 sm:w-72 md:w-80 lg:w-96 bg-black/25 backdrop-blur-[1px] rounded-2xl border border-white/5 shadow-2xl">
-                        <div className="flex items-center px-3 py-1.5 sm:px-4 border-2 border-[#a2a2a2] rounded-full mb-2 sm:mb-3">
+                      <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] flex w-56 flex-col items-start sm:w-72 md:w-80 lg:w-96">
+                        <div className="mb-1 flex items-center sm:mb-2">
                           <span className="text-[10px] sm:text-xs font-bold text-[#a2a2a2] uppercase tracking-tight">
                             {getFeaturedBadgeLabel(product)}
                           </span>
@@ -248,7 +248,7 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
                         </h3>
 
                         {product.description?.trim() && (
-                          <p className="mt-0 line-clamp-3 text-xs font-medium leading-relaxed text-[#c8c8c8] sm:mt-0 sm:text-sm">
+                          <p className="mt-0 line-clamp-3 text-[11px] font-medium leading-relaxed text-[#c8c8c8] sm:mt-0 sm:text-sm">
                             {product.description}
                           </p>
                         )}

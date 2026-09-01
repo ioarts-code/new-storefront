@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
     });
 
     const products = (data.products ?? [])
-      .filter((product) => product.choice === 'digitalProduct' && product.download?.url)
+      .filter((product) => product.productType === 'digitalProduct' && product.download?.url)
       .map((product) => ({
         id: product.id,
         name: product.name,

@@ -1,3 +1,6 @@
 User-agent: *
 
+Allow: /images/
+Disallow: /downloads/*.svg$
+
 Sitemap: https://www.ioarts.ink/sitemap.xml

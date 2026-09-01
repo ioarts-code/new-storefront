@@ -38,9 +38,9 @@ function isExcludedProduct(product: Product) {
   return hasExcludedTag || hasExcludedCategory;
 }
 
-function formatProductType(choice?: string | null) {
-  return choice?.trim()
-    ? choice.trim().replace(/([a-z])([A-Z])/g, '$1 $2')
+function formatProductType(productType?: string | null) {
+  return productType?.trim()
+    ? productType.trim().replace(/([a-z])([A-Z])/g, '$1 $2')
     : null;
 }
 
@@ -52,7 +52,7 @@ function GridItem({ product }: GridItemProps) {
   const imageSrc = product.images?.[0]?.url;
   const [imageError, setImageError] = useState(false);
   const primaryCategory = product.categories?.[0]?.name;
-  const productType = formatProductType(product.choice);
+  const productType = formatProductType(product.productType);
   const productPrice = typeof product.price === 'number'
     ? product.price === 0
       ? 'FREE'
@@ -71,7 +71,7 @@ function GridItem({ product }: GridItemProps) {
           {imageSrc && !imageError ? (
             <Image
               alt={product.name}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 min-[1921px]:object-contain min-[1921px]:group-hover:scale-100"
               src={imageSrc}
               width={800}
               height={1200}
@@ -159,7 +159,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
     return visibleProducts.filter((product) => {
       const searchableText = [
         product.name,
-        product.choice,
+        product.productType,
         ...(product.tags ?? []).map((tag) => tag.name),
         ...(product.categories ?? []).map((category) => category.name),
       ]
@@ -192,7 +192,7 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
       const matchesPrice = !freeOnly || product.price === 0;
       const matchesProductType =
         selectedProductTypes.length === 0 ||
-        selectedProductTypes.includes(product.choice ?? '');
+        selectedProductTypes.includes(product.productType ?? '');
 
       return matchesTags && matchesPrice && matchesProductType;
     });

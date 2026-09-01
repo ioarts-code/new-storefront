@@ -62,11 +62,41 @@ function ShopOnPinterest() {
   );
 }
 
+function FacebookIcon() {
+  return (
+    <div className="relative shrink-0" data-name="FacebookIcon">
+      <svg
+        viewBox="0 0 24 24"
+        className="h-6 w-6 fill-[#a2a2a2]"
+        aria-hidden="true"
+      >
+        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.235 2.686.235v2.97h-1.513c-1.49 0-1.956.93-1.956 1.885v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+      </svg>
+    </div>
+  );
+}
+
+function VisitFacebook() {
+  return (
+    <a
+      className="group content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
+      href="https://www.facebook.com/"
+      target="_blank"
+      rel="noreferrer"
+      data-name="Facebook"
+    >
+      <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8)] transition-shadow" />
+      <FacebookIcon />
+    </a>
+  );
+}
+
 function DivAbsolute() {
   return (
     <div className="absolute content-stretch cursor-pointer flex gap-[8px] items-start right-[44px] top-[31px]" data-name="div.absolute">
       <VisitDeviantArt />
       <ShopOnPinterest />
+      <VisitFacebook />
     </div>
   );
 }

@@ -6,7 +6,7 @@ export interface Product {
   linkToEtsy?: string | null;
   description?: string | null;
   copyright?: string | null;
-  choice?: string | null;
+  productType?: string | null;
   heroImage?: ProductImage | null;
   download?: {
     url: string;
