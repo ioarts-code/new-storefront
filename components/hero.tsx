@@ -61,20 +61,20 @@ function HeroBrandStripe() {
             ioarts
           </h1>
 
-          <p className="mb-1 text-[10px] font-black uppercase leading-[1.34] tracking-[0.6em] text-[#a2a2a2] sm:text-[11px] md:text-[12px]">
+          <h2 className="mb-1 text-[10px] font-black uppercase leading-[1.34] tracking-[0.6em] text-[#a2a2a2] sm:text-[11px] md:text-[12px]">
             FANART GALLERY
-          </p>
+          </h2>
 
           <p className="max-w-[620px] text-[9px] font-bold leading-[1.45] tracking-[0.05em] text-[#c8c8c8] sm:text-[10px] md:text-[11px] lg:text-[12px]">
             Illustrations that make sense. Free fanart from ioarts and ioartseu. Let&apos;s make every product yours for real.
           </p>
 
-          <p
+          <h3
             className="pt-1 text-[16px] text-[#bbb]/90 sm:text-[18px] lg:text-[20px]"
             style={{ fontFamily: 'var(--font-mr-dafoe), "Apple Chancery", "Brush Script MT", cursive' }}
           >
             Anders Altmann
-          </p>
+          </h3>
         </div>
       </div>
     </div>
