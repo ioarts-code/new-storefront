@@ -8,7 +8,7 @@ const PRODUCTS_GRID_ID = 'products-grid';
 const TOP_BAR_LINKS = [
   {
     label: 'BUY ME COFFEE',
-    href: 'https://buymeacoffee.com',
+    href: 'https://buymeacoffee.com/ioartseu',
     external: true,
   },
   {
@@ -248,7 +248,7 @@ export default function Menu() {
                 Home
               </Link>
               <a
-                href="https://buymeacoffee.com"
+                href="https://buymeacoffee.com/ioartseu"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
@@ -408,7 +408,7 @@ export default function Menu() {
                 Home
               </Link>
               <a
-                href="https://buymeacoffee.com"
+                href="https://buymeacoffee.com/ioartseu"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
