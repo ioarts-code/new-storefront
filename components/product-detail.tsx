@@ -128,7 +128,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                   Download
                 </button>
                 <a
-                  href="https://buymeacoffee.com/"
+                  href="https://buymeacoffee.com/ioartseu"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-10 items-center justify-center rounded-full border-2 border-[#a2a2a2] px-5 py-2 text-xs font-bold uppercase text-[#a2a2a2] transition-colors hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black"
