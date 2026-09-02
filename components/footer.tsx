@@ -80,7 +80,7 @@ function VisitFacebook() {
   return (
     <a
       className="group content-stretch flex items-center justify-center p-[3px] relative rounded-[6px] shrink-0 size-[48px]"
-      href="https://www.facebook.com/"
+      href="https://www.facebook.com/ioartseu"
       target="_blank"
       rel="noreferrer"
       data-name="Facebook"
