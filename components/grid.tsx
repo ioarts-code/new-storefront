@@ -50,6 +50,7 @@ interface GridItemProps {
 
 function GridItem({ product }: GridItemProps) {
   const imageSrc = product.images?.[0]?.url;
+  const backgroundImageSrc = product.images?.[1]?.url;
   const [imageError, setImageError] = useState(false);
   const primaryCategory = product.categories?.[0]?.name;
   const productType = formatProductType(product.productType);
@@ -66,12 +67,24 @@ function GridItem({ product }: GridItemProps) {
 
   return (
     <Link href={`/products/${product.slug}`} className="group block">
-      <div className="content-stretch flex flex-col aspect-[3/4] tablet:aspect-auto tablet:h-[450px] desktop:h-[650px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-visible pb-[10%] tablet:pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer">
+      <div className="content-stretch flex flex-col aspect-[3/4] tablet:aspect-auto tablet:h-[450px] desktop:h-[650px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-visible pb-[22%] tablet:pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {backgroundImageSrc && (
+            <Image
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+              src={backgroundImageSrc}
+              width={800}
+              height={1200}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1366px) 50vw, 33vw"
+              priority={false}
+            />
+          )}
           {imageSrc && !imageError ? (
             <Image
               alt={product.name}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 min-[1921px]:object-contain min-[1921px]:group-hover:scale-100"
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out min-[1921px]:object-contain ${backgroundImageSrc ? 'group-hover:opacity-0' : ''}`}
               src={imageSrc}
               width={800}
               height={1200}
@@ -87,10 +100,10 @@ function GridItem({ product }: GridItemProps) {
         <div className="content-stretch flex flex-col items-center w-[90%] relative shrink-1 z-10">
           {/* Product name + action container */}
           <div className="bg-transparent mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] desktop-wide:h-[90px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] desktop-wide:min-h-[90px] relative rounded-[6px] shrink-0 w-full flex items-center justify-center px-4 desktop:px-6 desktop-wide:px-8">
-            <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px]" />
+            <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] group-hover:border-[#74D5FF] inset-0 pointer-events-none rounded-[6px] transition-colors duration-300" />
 
             {/* Product name */}
-            <div className="flex flex-col font-bold justify-center items-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-[#a2a2a2] mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
+            <div className="flex flex-col font-bold justify-center items-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-[#a2a2a2] group-hover:text-[#74D5FF] transition-colors duration-300 mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
               <p className="truncate text-center w-full">{truncatedName}</p>
             </div>
           </div>
