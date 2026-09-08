@@ -28,7 +28,7 @@ const structuredData = {
       '@type': 'Organization',
       '@id': `${SITE_URL}/#organization`,
       name: 'IOARTS',
-      description: 'Swedish digital art fanart and illustration gallery',
+      description: 'Swedish digital art Games Fanart and illustration gallery',
       url: SITE_URL,
       logo: `${SITE_URL}/favicon.svg`,
       email: 'brevduva999@proton.me',
@@ -56,9 +56,9 @@ const structuredData = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'IOARTS | Digital Art Fanart & Illustration Gallery',
-  description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Gallery featuring exclusive illustrated arts',
-  keywords: ['digital art', 'Fanart', 'illustrations', 'art Gallery', 'exclusive designs'],
+  title: 'IOARTS | Digital Art Games Fanart & Illustration Gallery',
+  description: 'Discover unique digital art Games Fanart and illustrations. Official IOARTS Gallery featuring exclusive illustrated arts',
+  keywords: ['digital art', 'Games Fanart', 'illustrations', 'art Gallery', 'exclusive designs'],
   authors: [{ name: 'Anders Altmann' }],
   creator: 'Anders Altmann',
   publisher: 'IOARTS',
@@ -79,8 +79,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: SITE_URL,
     siteName: 'IOARTS',
-    title: 'IOARTS | Digital Art Fanart & Illustration Gallery',
-    description: 'Discover unique digital art Fanart and illustrations. Official IOARTS Gallery featuring exclusive illustrated arts',
+    title: 'IOARTS | Digital Art Games Fanart & Illustration Gallery',
+    description: 'Discover unique digital art Games Fanart and illustrations. Official IOARTS Gallery featuring exclusive illustrated arts',
     images: [
       {
         url: '/favicon.svg',
@@ -93,8 +93,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'IOARTS | Digital Art Fanart & Illustration Gallery',
-    description: 'Discover unique digital art Fanart and illustrations.',
+    title: 'IOARTS | Digital Art Games Fanart & Illustration Gallery',
+    description: 'Discover unique digital art Games Fanart and illustrations.',
     creator: '@ioarts',
     images: ['/favicon.svg'],
   },

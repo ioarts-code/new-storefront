@@ -29,6 +29,10 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   return {
     title,
     description,
+    robots: {
+      index: true,
+      follow: true,
+    },
     alternates: {
       canonical: `/products/${slug}`,
     },

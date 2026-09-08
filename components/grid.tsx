@@ -252,7 +252,11 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
           </button>
           <button
             type="button"
-            onClick={() => setFreeOnly((current) => !current)}
+            onClick={() => {
+              setFreeOnly((current) => !current);
+              setSelectedTagIds([]);
+              setSelectedProductTypes([]);
+            }}
             className={`flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md sm:rounded-lg border-2 px-3 py-1.5 text-center text-xs font-bold lowercase transition-all sm:px-4 sm:py-2 sm:text-sm ${
             freeOnly
               ? 'border-[#a2a2a2] bg-[#a2a2a2] !text-black'
@@ -268,13 +272,13 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
             <button
               key={productType.value}
               type="button"
-              onClick={() =>
+              onClick={() => {
                 setSelectedProductTypes((current) =>
-                  current.includes(productType.value)
-                    ? current.filter((value) => value !== productType.value)
-                    : [...current, productType.value]
-                )
-              }
+                  current.includes(productType.value) ? [] : [productType.value]
+                );
+                setSelectedTagIds([]);
+                setFreeOnly(false);
+              }}
               className={`flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md sm:rounded-lg border-2 px-3 py-1.5 text-center text-xs font-bold lowercase transition-all sm:px-4 sm:py-2 sm:text-sm ${
               selectedProductTypes.includes(productType.value)
                 ? 'border-[#a2a2a2] bg-[#a2a2a2] !text-black'
@@ -284,16 +288,16 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
               {productType.label}
             </button>
           ))}
-          {allTags.map((tag) => (
+          {allTags.filter((tag) => normalizeFilterKey(tag.name) !== 'gaming').map((tag) => (
             <button
               key={tag.id}
-              onClick={() =>
+              onClick={() => {
                 setSelectedTagIds((current) =>
-                  current.includes(tag.id)
-                    ? current.filter((id) => id !== tag.id)
-                    : [...current, tag.id]
-                )
-              }
+                  current.includes(tag.id) ? [] : [tag.id]
+                );
+                setSelectedProductTypes([]);
+                setFreeOnly(false);
+              }}
               className={`min-h-11 w-full px-3 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg font-bold lowercase text-xs sm:text-sm transition-all ${
                 selectedTagIds.includes(tag.id)
                   ? 'bg-[#a2a2a2] !text-black border-2 border-[#a2a2a2]'

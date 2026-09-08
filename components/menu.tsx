@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const PRODUCTS_GRID_ID = 'products-grid';
-const TOP_BAR_LINKS = [
+const BlueLinks = [
   {
     label: 'BUY ME COFFEE',
     href: 'https://buymeacoffee.com/ioartseu',
@@ -295,12 +295,12 @@ export default function Menu() {
           )}
         </div>
 
-        <div className="mt-[118px] flex h-[118px] w-[20px] items-start justify-center overflow-visible sm:mt-[118px] sm:h-[132px] sm:w-[22px]">
+        <div className="mt-[60px] flex h-[118px] w-[20px] items-start justify-center overflow-visible sm:mt-[96px] sm:h-[132px] sm:w-[22px]">
           <nav
             aria-label="Top bar quick links"
             className="-rotate-90 flex items-center whitespace-nowrap text-[8px] font-extrabold uppercase tracking-[0.12em] text-[#74D5FF] sm:text-[9px]"
           >
-            {TOP_BAR_LINKS.map((link, index) => (
+            {BlueLinks.map((link, index) => (
               <span
                 key={link.label}
                 className={index === 0 ? 'mr-8 sm:mr-10' : 'mr-3 sm:mr-4'}
@@ -455,12 +455,12 @@ export default function Menu() {
           )}
         </div>
 
-        <div className="absolute left-1/2 top-[468px] flex h-[180px] w-[24px] -translate-x-1/2 items-start justify-center overflow-visible">
+        <div className="absolute left-1/2 top-[435px] flex h-[180px] w-[24px] -translate-x-1/2 items-start justify-center overflow-visible">
           <nav
             aria-label="Top bar quick links"
             className="-rotate-90 flex items-center whitespace-nowrap text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#74D5FF]"
           >
-            {TOP_BAR_LINKS.map((link, index) => (
+            {BlueLinks.map((link, index) => (
               <span
                 key={link.label}
                 className={index === 0 ? 'mr-10 lg:mr-12' : 'mr-4 lg:mr-5'}

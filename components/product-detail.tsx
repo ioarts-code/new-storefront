@@ -101,7 +101,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
               >
-                Search
+                Search Store
               </a>
             </div>
           )}

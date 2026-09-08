@@ -62,7 +62,7 @@ function HeroBrandStripe() {
           </h1>
 
           <h2 className="mb-1 text-[10px] font-black uppercase leading-[1.34] tracking-[0.6em] text-[#a2a2a2] sm:text-[11px] md:text-[12px]">
-            FANART GALLERY
+           GAMES FANART GALLERY
           </h2>
 
           <p className="max-w-[620px] text-[9px] font-bold leading-[1.45] tracking-[0.05em] text-[#c8c8c8] sm:text-[10px] md:text-[11px] lg:text-[12px]">
