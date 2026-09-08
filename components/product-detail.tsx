@@ -72,7 +72,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <div className="flex flex-col gap-0">
             <Title
               title={product.name}
-              showFree={!hasPrice}
+              showFree={false}
               priceLabel={hasPrice ? `${product.price || 0} SEK` : undefined}
               className={`max-w-[14ch] sm:max-w-[12ch] leading-[1.05] md:leading-[0.88] ${titleTextColorClass}`}
             />
@@ -86,23 +86,14 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
           {/* Download and Support Buttons - Hidden when price exists */}
           {!hasEtsyLink && !hasPrice && (
-            <div className="mt-4 lg:mt-[10px] flex flex-col sm:flex-row gap-4 sm:gap-5">
+            <div className="mt-2 lg:mt-[6px] flex flex-col sm:flex-row gap-4 sm:gap-5">
               <button
                 onClick={() => setIsDownloadDialogOpen(true)}
                 disabled={!product.download?.url}
-                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center mt-1 sm:mt-2 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Download SVG
               </button>
-              {/* Search Store */}
-              <a
-                href="https://www.google.com/maps/search/t-shirt+printing+near+me"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
-              >
-                Search Store
-              </a>
             </div>
           )}
 
@@ -141,13 +132,13 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
           {/* Buy Now button shown only when Price exists */}
           {!hasEtsyLink && hasPrice && (
-            <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-5">
+            <div className="mt-2 flex flex-col sm:flex-row gap-4 sm:gap-5">
               <button
                 onClick={() => {
                   dispatch({ type: 'ADD_TO_CART', payload: product, quantity: 1 });
                   router.push('/checkout');
                 }}
-                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
+                className="inline-flex items-center justify-center mt-1 sm:mt-2 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
                 aria-label={`Buy ${product.name} now`}
               >
                 Buy Now
@@ -159,7 +150,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                   dispatch({ type: 'ADD_TO_CART', payload: product, quantity: 1 });
                   router.push('/cart');
                 }}
-                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
+                className="inline-flex items-center justify-center mt-1 sm:mt-2 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-transparent hover:border-[#a2a2a2] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
                 aria-label={`Add ${product.name} to cart`}
               >
                 Add to cart
@@ -168,12 +159,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
           )}
 
           {hasEtsyLink && (
-            <div className="mt-4 flex flex-col sm:flex-row gap-4 sm:gap-5">
+            <div className="mt-2 flex flex-col sm:flex-row gap-4 sm:gap-5">
               <a
                 href={etsyLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
+                className="inline-flex items-center justify-center mt-1 sm:mt-2 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 min-w-[170px] text-center border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow duration-300 ease-out hover:shadow-none hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black hover:font-bold font-bold text-xs sm:text-sm uppercase"
               >
                 Buy on Etsy
               </a>

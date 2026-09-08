@@ -255,7 +255,7 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
 
                         <Link
                           href={`/products/${product.slug}`}
-                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-shadow hover:shadow-[0_0_0_2px_rgba(162,162,162,0.2)]"
+                          className="hidden sm:flex mt-2 sm:mt-4 px-6 sm:px-10 md:px-11 lg:px-12 py-2 sm:py-2.5 md:py-2.5 lg:py-3 border-3 border-[#a2a2a2] rounded-full text-[#a2a2a2] transition-colors hover:bg-[#74D5FF] hover:border-[#74D5FF] hover:text-black"
                         >
                           View
                         </Link>

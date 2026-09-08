@@ -263,21 +263,6 @@ export function Grid({ products, isLoading = false, isEmpty = false, groupByCate
           >
             All
           </button>
-          <button
-            type="button"
-            onClick={() => {
-              setFreeOnly((current) => !current);
-              setSelectedTagIds([]);
-              setSelectedProductTypes([]);
-            }}
-            className={`flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-md sm:rounded-lg border-2 px-3 py-1.5 text-center text-xs font-bold lowercase transition-all sm:px-4 sm:py-2 sm:text-sm ${
-            freeOnly
-              ? 'border-[#a2a2a2] bg-[#a2a2a2] !text-black'
-              : 'border-[#a2a2a2] text-[#a2a2a2] hover:bg-[#565656]/65 hover:border-[#a2a2a2] hover:text-black'
-          }`}
-          >
-            FREE only
-          </button>
           {[
             { value: 'physicalProduct', label: 'Physical product' },
             { value: 'digitalProduct', label: 'Digital product' },
