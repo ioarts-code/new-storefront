@@ -8,7 +8,7 @@ function Frame() {
       />
       <span
         aria-hidden="true"
-        className="absolute inset-0 size-full bg-[#a2a2a2] [mask-image:url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1051327-TAKDPK5fkufJGrn8AokBhu2Mh1iPnR.png')] [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center] [-webkit-mask-image:url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1051327-TAKDPK5fkufJGrn8AokBhu2Mh1iPnR.png')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] [-webkit-mask-position:center]"
+        className="absolute inset-0 size-full bg-[#a2a2a2] group-hover:bg-[#74D5FF] transition-colors [mask-image:url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1051327-TAKDPK5fkufJGrn8AokBhu2Mh1iPnR.png')] [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center] [-webkit-mask-image:url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1051327-TAKDPK5fkufJGrn8AokBhu2Mh1iPnR.png')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] [-webkit-mask-position:center]"
       />
     </div>
   );
@@ -25,7 +25,7 @@ function VisitDeviantArt() {
     >
       <div
         aria-hidden="true"
-        className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8),0px_4px_4px_0px_rgba(0,0,0,0.25)] transition-shadow"
+        className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]"
       />
       <Frame />
     </a>
@@ -37,7 +37,7 @@ function PinterestIcon() {
     <div className="relative shrink-0" data-name="PinterestIcon">
       <svg
         viewBox="0 0 24 24"
-        className="w-6 h-6 fill-[#a2a2a2]"
+        className="w-6 h-6 fill-[#a2a2a2] group-hover:fill-[#74D5FF] transition-colors"
         aria-hidden="true"
         role="img"
       >
@@ -56,7 +56,7 @@ function ShopOnPinterest() {
       rel="noreferrer"
       data-name="Pinterest"
     >
-      <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8)] transition-shadow" />
+      <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px]" />
       <PinterestIcon />
     </a>
   );
@@ -67,7 +67,7 @@ function FacebookIcon() {
     <div className="relative shrink-0" data-name="FacebookIcon">
       <svg
         viewBox="0 0 24 24"
-        className="h-6 w-6 fill-[#a2a2a2]"
+        className="h-6 w-6 fill-[#a2a2a2] group-hover:fill-[#74D5FF] transition-colors"
         aria-hidden="true"
       >
         <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.235 2.686.235v2.97h-1.513c-1.49 0-1.956.93-1.956 1.885v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
@@ -85,7 +85,7 @@ function VisitFacebook() {
       rel="noreferrer"
       data-name="Facebook"
     >
-      <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px] group-hover:shadow-[0px_0px_16px_rgba(255,255,255,0.8)] transition-shadow" />
+      <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px]" />
       <FacebookIcon />
     </a>
   );
@@ -157,7 +157,7 @@ function A3() {
 
 function DivAbsolute1() {
   return (
-    <div className="absolute content-stretch flex mobile:flex-wrap mobile:gap-y-2 tablet:gap-[16px] h-auto mobile:h-auto tablet:h-[20px] items-start left-[44px] mobile:top-[380px] tablet:top-[490px] mobile:w-[calc(100%-88px)] mobile:flex-col tablet:flex-row" data-name="div.absolute">
+    <div className="absolute content-stretch flex mobile:flex-wrap mobile:gap-y-2.5 tablet:gap-[20px] desktop:gap-[28px] h-auto mobile:h-auto tablet:h-[20px] items-start left-[44px] mobile:top-[380px] tablet:top-[490px] mobile:w-[calc(100%-88px)] mobile:flex-col tablet:flex-row" data-name="div.absolute">
       <A />
       <A1 />
       <A2 />
@@ -168,9 +168,9 @@ function DivAbsolute1() {
 
 function DivAbsolute2() {
   return (
-    <div className="absolute content-stretch flex flex-col items-end right-[44px] mobile:right-[32px] mobile:bottom-[24px] tablet:top-[480px] mobile:w-auto" data-name="div.absolute">
-      <div className="flex flex-col font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[14.8px] text-[#a2a2a2] tracking-[-0.24px] text-right mobile:rotate-90 mobile:origin-bottom-right">
-        <p className="leading-[19.2px]">2026© By Ioarts Websiates</p>
+    <div className="absolute content-stretch flex flex-col items-end right-[44px] mobile:right-[40px] mobile:bottom-[36px] tablet:top-[480px] mobile:w-auto" data-name="div.absolute">
+      <div className="flex flex-col font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[14.8px] text-[#a2a2a2] tracking-[0.4px] text-right mobile:rotate-90 mobile:origin-bottom-right">
+        <p className="leading-[19.2px] tracking-[0.05em] sm:tracking-[0.08em]">2026 © By Ioarts Websites</p>
       </div>
     </div>
   );
