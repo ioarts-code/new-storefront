@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
+import { RotateCw } from 'lucide-react';
 import { Product, Tag } from '@/lib/types';
 
 const PRODUCTS_GRID_ID = 'products-grid';
@@ -49,9 +50,17 @@ interface GridItemProps {
 }
 
 function GridItem({ product }: GridItemProps) {
-  const imageSrc = product.images?.[0]?.url;
-  const backgroundImageSrc = product.images?.[1]?.url;
+  const images = product.images ?? [];
+  const imageCount = images.length;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageError, setImageError] = useState(false);
+
+  const primaryImage = images[currentImageIndex] ?? images[0];
+  const nextImageIndex = imageCount > 1 ? (currentImageIndex + 1) % imageCount : 0;
+  const nextImage = imageCount > 1 ? images[nextImageIndex] : null;
+
+  const imageSrc = primaryImage?.url;
+  const backgroundImageSrc = nextImage?.url;
   const primaryCategory = product.categories?.[0]?.name;
   const productType = formatProductType(product.productType);
   const productPrice = typeof product.price === 'number'
@@ -65,14 +74,40 @@ function GridItem({ product }: GridItemProps) {
     ? product.name.substring(0, 37) + '...' 
     : product.name;
 
+  const handleCycleImage = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (imageCount > 1) {
+      setCurrentImageIndex((prev) => (prev + 1) % imageCount);
+    }
+  };
+
   return (
-    <Link href={`/products/${product.slug}`} className="block">
+    <Link href={`/products/${product.slug}`} className="group relative block">
       <div className="content-stretch flex flex-col aspect-[3/4] tablet:aspect-auto tablet:h-[450px] desktop:h-[650px] desktop-wide:h-[650px] items-center justify-end justify-self-stretch overflow-visible pb-[22%] tablet:pb-[5%] desktop:pb-[68px] desktop-wide:pb-[88px] relative shrink-0 cursor-pointer">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {backgroundImageSrc && (
+            <Image
+              key={`bg-${nextImageIndex}-${backgroundImageSrc}`}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-contain z-[1] scale-95 translate-x-5 -translate-y-4 sm:translate-x-7 sm:-translate-y-6 opacity-60 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu pointer-events-none group-hover:scale-100 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:z-[2]"
+              src={backgroundImageSrc}
+              width={800}
+              height={1200}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1366px) 50vw, (max-width: 2560px) 33vw, 25vw"
+              priority={false}
+            />
+          )}
           {imageSrc && !imageError ? (
             <Image
+              key={`main-${currentImageIndex}-${imageSrc}`}
               alt={product.name}
-              className="absolute inset-0 h-full w-full object-contain"
+              className={`absolute inset-0 h-full w-full object-contain z-[2] scale-100 translate-x-0 translate-y-0 opacity-100 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu pointer-events-none ${
+                backgroundImageSrc
+                  ? 'group-hover:scale-95 group-hover:translate-x-5 group-hover:-translate-y-4 sm:group-hover:translate-x-7 sm:group-hover:-translate-y-6 group-hover:opacity-60 group-hover:z-[1]'
+                  : ''
+              }`}
               src={imageSrc}
               width={800}
               height={1200}
@@ -85,13 +120,51 @@ function GridItem({ product }: GridItemProps) {
           )}
         </div>
 
+        {imageCount > 1 && (
+          <button
+            type="button"
+            onClick={handleCycleImage}
+            className="group/cycle pointer-events-auto absolute right-3 top-1/2 -translate-y-1/2 z-20 flex size-9 items-center justify-center rounded-full bg-black/80 text-[#a2a2a2] opacity-80 backdrop-blur-xs transition-all hover:bg-black hover:text-[#74D5FF] hover:opacity-100 active:scale-95 sm:hidden"
+            aria-label={`Cycle image for ${product.name}`}
+            title="Cycle image"
+          >
+            <svg
+              viewBox="0 0 40 40"
+              className="size-full overflow-visible transition-transform duration-700 ease-out group-hover/cycle:rotate-180"
+              fill="none"
+              stroke="currentColor"
+            >
+              {/* Circular arc with arrow head forming the outer ring */}
+              <circle
+                cx="20"
+                cy="20"
+                r="17.5"
+                strokeWidth="2"
+                strokeDasharray="92 20"
+                strokeDashoffset="10"
+                strokeLinecap="round"
+                className="transition-colors duration-300"
+              />
+              {/* Arrowhead at the end of the circular ring */}
+              <path
+                d="M 17 1 L 20 4.2 L 16.5 7"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+                className="transition-colors duration-300"
+              />
+            </svg>
+          </button>
+        )}
+
         <div className="content-stretch flex flex-col items-center w-[90%] relative shrink-1 z-10">
           {/* Product name + action container */}
           <div className="bg-transparent mobile:h-[55px] tablet:h-[65px] desktop:h-[75px] desktop-wide:h-[90px] mobile:min-h-[55px] tablet:min-h-[65px] desktop:min-h-[75px] desktop-wide:min-h-[90px] relative rounded-[6px] shrink-0 w-full flex items-center justify-center px-4 desktop:px-6 desktop-wide:px-8">
             <div aria-hidden="true" className="absolute border-3 border-solid border-[#a2a2a2] inset-0 pointer-events-none rounded-[6px]" />
 
             {/* Product name */}
-            <div className="flex flex-col font-bold justify-center items-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-[#a2a2a2] mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden">
+            <div className="flex flex-col font-bold justify-center items-center not-italic relative shrink-1 min-w-0 mobile:text-[14px] tablet:text-[16px] desktop:text-[20px] desktop-wide:text-[24px] text-[#a2a2a2] mobile:tracking-[0.2px] tablet:tracking-[0.3px] desktop:tracking-[0.5px] desktop-wide:tracking-[0.6px] whitespace-nowrap overflow-hidden [text-shadow:_0_1px_2px_rgba(0,0,0,0.3)]">
               <p className="truncate text-center w-full">{truncatedName}</p>
             </div>
           </div>

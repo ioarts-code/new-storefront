@@ -237,8 +237,8 @@ export default function Hero({ initialProducts = [] }: { initialProducts?: Produ
                       <div className="absolute inset-x-0 bottom-0 h-[42%] pointer-events-none" />
 
                       <div className="absolute top-16 md:top-24 lg:top-40 left-6 md:left-10 lg:left-[8%] xl:left-[14%] flex w-56 flex-col items-start sm:w-72 md:w-80 lg:w-96">
-                        <div className="mb-1 flex items-center sm:mb-2">
-                          <span className="text-[10px] sm:text-xs font-bold text-[#a2a2a2] uppercase tracking-tight">
+                        <div className="-mt-3 mb-2 flex items-center sm:mt-0 sm:mb-2">
+                          <span className="text-[10px] sm:text-xs font-bold text-[#a2a2a2] uppercase tracking-tight underline underline-offset-4 decoration-[#a2a2a2]">
                             {getFeaturedBadgeLabel(product)}
                           </span>
                         </div>
