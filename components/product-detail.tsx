@@ -61,13 +61,12 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
   return (
     <div
-      className="flex flex-col lg:flex-row w-full gap-6 lg:gap-0"
-
+      className="flex flex-col lg:flex-row lg:items-center w-full gap-6 lg:gap-0"
     >
       {/* Left Column */}
       <div className="relative z-10 flex min-w-0 flex-col justify-between w-full lg:flex-1 bg-transparent">
         {/* Product Content */}
-        <div className="flex flex-col gap-4 mt-0 sm:mt-1 lg:mt-4">
+        <div className="flex flex-col gap-4 mt-0 sm:mt-1 lg:mt-0">
           {/* Title and Price */}
           <div className="flex flex-col gap-0">
             <Title
@@ -220,7 +219,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
       </div>
 
       {/* Right Column - Product Image */}
-      <div className="relative z-0 order-first flex w-full items-center justify-center p-0 pointer-events-none sm:p-4 lg:order-last lg:basis-[45%] lg:shrink-0 lg:items-start lg:p-4 lg:pr-8 lg:pt-12 xl:basis-[50%] xl:pr-16 2xl:pr-0">
+      <div className="relative z-0 order-first flex w-full items-center justify-center p-0 pointer-events-none sm:p-4 lg:order-last lg:basis-[45%] lg:shrink-0 lg:items-center lg:p-4 lg:pr-8 lg:pt-0 xl:basis-[50%] xl:pr-16 2xl:pr-0">
         {imageUrl ? (
           <>
             <Image

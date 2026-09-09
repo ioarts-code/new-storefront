@@ -25,9 +25,9 @@ export default function ProductClientPage({ product }: ProductClientPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-[#0F0F0F]">
-      <div className="max-w-full lg:max-w-7xl mx-auto px-10 sm:px-10 md:px-10 lg:px-14 py-6 sm:py-10 md:py-12">
-        <BackToHomeButton className="mt-4 sm:mt-5 md:mt-6 mb-12 sm:mb-16 md:mb-20" />
+    <main className="min-h-screen bg-[#0F0F0F] flex flex-col justify-start lg:justify-center">
+      <div className="w-full max-w-full lg:max-w-7xl mx-auto px-10 sm:px-10 md:px-10 lg:px-14 py-8 sm:py-12 md:py-14 lg:pt-10 lg:pb-14 lg:my-auto lg:-translate-y-2 xl:-translate-y-6 2xl:-translate-y-8">
+        <BackToHomeButton className="mt-2 sm:mt-4 md:mt-6 mb-10 sm:mb-14 md:mb-16 lg:mt-0 lg:mb-8" />
         <ProductDetail product={product} />
       </div>
     </main>

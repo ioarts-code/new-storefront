@@ -5,7 +5,14 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const PRODUCTS_GRID_ID = 'products-grid';
-const BlueLinks = [
+
+type BlueLinkItem = {
+  label: string;
+  href: string;
+  external?: boolean;
+};
+
+const BLUE_LINKS: BlueLinkItem[] = [
   {
     label: 'BUY ME COFFEE',
     href: 'https://buymeacoffee.com/ioartseu',
@@ -16,6 +23,53 @@ const BlueLinks = [
     href: '/cart',
   },
 ];
+
+type BlueLinksProps = {
+  containerClassName?: string;
+  linkClassName?: string;
+  itemGapClass?: string;
+};
+
+function BlueLinksNav({
+  containerClassName = 'h-[140px] w-[20px] sm:h-[150px] sm:w-[22px]',
+  linkClassName = 'text-[9px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.14em]',
+  itemGapClass = 'gap-3 sm:gap-4',
+}: BlueLinksProps) {
+  return (
+    <div className={`flex items-center justify-center ${containerClassName}`}>
+      <div className="-rotate-90 flex-none">
+        <nav
+          aria-label="Quick links"
+          className={`flex items-center justify-center whitespace-nowrap font-extrabold uppercase text-[#74D5FF] select-none ${linkClassName}`}
+        >
+          <div className={`flex items-center ${itemGapClass}`}>
+            {BLUE_LINKS.map((link) => (
+              link.external ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pointer-events-auto transition-colors hover:text-[#a2a2a2]"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="pointer-events-auto transition-colors hover:text-[#a2a2a2]"
+                >
+                  {link.label}
+                </Link>
+              )
+            ))}
+          </div>
+        </nav>
+      </div>
+    </div>
+  );
+}
 
 type AnimatedMenuIconProps = {
   isOpen: boolean;
@@ -152,8 +206,10 @@ export default function Menu() {
 
   return (
     <div className="relative size-full pointer-events-auto">
-      <div className="flex h-full w-full flex-col items-end justify-start gap-4 pt-3 pb-2 pr-3 lg:hidden">
-        <div ref={mobileSearchRef} className="relative mr-1" data-name="icon">
+      {/* Mobile / Tablet vertical sidebar */}
+      <div className="flex h-full w-full flex-col items-center justify-start gap-6 sm:gap-7 pt-4 pb-4 translate-x-3 sm:translate-x-3.5 lg:translate-x-0 lg:hidden">
+        {/* Search */}
+        <div ref={mobileSearchRef} className="relative flex items-center justify-center" data-name="icon">
           <button
             type="button"
             className="overflow-clip size-[16px]"
@@ -210,6 +266,7 @@ export default function Menu() {
           )}
         </div>
 
+        {/* Logo */}
         <div className="flex h-[58px] w-[20px] items-center justify-center overflow-hidden sm:h-[64px] sm:w-[22px]">
           <div className="-rotate-90 flex-none">
             <div className="relative h-[20px] w-[58px] sm:h-[22px] sm:w-[64px]" data-name="17830404440764516789494914935528 2">
@@ -226,7 +283,8 @@ export default function Menu() {
           </div>
         </div>
 
-        <div ref={mobileDropdownRef} className="relative mt-1" data-name="menu">
+        {/* Menu Icon & Dropdown */}
+        <div ref={mobileDropdownRef} className="relative flex items-center justify-center" data-name="menu">
           <button
             type="button"
             className="group relative h-[16px] w-[15px]"
@@ -295,41 +353,13 @@ export default function Menu() {
           )}
         </div>
 
-        <div className="mt-[60px] flex h-[118px] w-[20px] items-start justify-center overflow-visible sm:mt-[96px] sm:h-[132px] sm:w-[22px]">
-          <nav
-            aria-label="Top bar quick links"
-            className="-rotate-90 flex items-center whitespace-nowrap text-[8px] font-extrabold uppercase tracking-[0.12em] text-[#74D5FF] sm:text-[9px]"
-          >
-            {BlueLinks.map((link, index) => (
-              <span
-                key={link.label}
-                className={index === 0 ? 'mr-8 sm:mr-10' : 'mr-3 sm:mr-4'}
-              >
-                {link.external ? (
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="pointer-events-auto hover:text-[#a2a2a2] transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className="pointer-events-auto hover:text-[#a2a2a2] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </span>
-            ))}
-          </nav>
-        </div>
+        {/* Quick links (BlueLinks) */}
+        <BlueLinksNav />
       </div>
 
-      <div className="hidden lg:block">
-        <div ref={desktopSearchRef} className="absolute left-[12px] top-[36px]" data-name="icon">
+      {/* Desktop vertical sidebar */}
+      <div className="hidden lg:flex h-full w-full flex-col items-center justify-start gap-8 pt-9 pb-8">
+        <div ref={desktopSearchRef} className="relative flex items-center justify-center" data-name="icon">
           <button
             type="button"
             className="overflow-clip size-[26px]"
@@ -386,7 +416,23 @@ export default function Menu() {
           )}
         </div>
 
-        <div ref={desktopDropdownRef} className="absolute left-[16px] top-[284px]" data-name="menu">
+        <div className="flex h-[144px] w-[41px] items-center justify-center">
+          <div className="-rotate-90 flex-none">
+            <div className="h-[41px] relative w-[144px]" data-name="17830404440764516789494914935528 2">
+              <img
+                alt=""
+                className="absolute inset-0 max-w-none object-cover pointer-events-none size-full opacity-65"
+                src="/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute inset-0 size-full bg-[#a2a2a2] [mask-image:url('/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png')] [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center] [-webkit-mask-image:url('/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] [-webkit-mask-position:center]"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div ref={desktopDropdownRef} className="relative flex items-center justify-center" data-name="menu">
           <button
             type="button"
             className="group relative h-[26px] w-[25px]"
@@ -455,53 +501,11 @@ export default function Menu() {
           )}
         </div>
 
-        <div className="absolute left-1/2 top-[435px] flex h-[180px] w-[24px] -translate-x-1/2 items-start justify-center overflow-visible">
-          <nav
-            aria-label="Top bar quick links"
-            className="-rotate-90 flex items-center whitespace-nowrap text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#74D5FF]"
-          >
-            {BlueLinks.map((link, index) => (
-              <span
-                key={link.label}
-                className={index === 0 ? 'mr-10 lg:mr-12' : 'mr-4 lg:mr-5'}
-              >
-                {link.external ? (
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="pointer-events-auto hover:text-[#a2a2a2] transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className="pointer-events-auto hover:text-[#a2a2a2] transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                )}
-              </span>
-            ))}
-          </nav>
-        </div>
-
-        <div className="absolute hidden lg:flex h-[144px] items-center justify-center left-[6px] top-[97px] w-[41px]">
-          <div className="-rotate-90 flex-none">
-            <div className="h-[41px] relative w-[144px]" data-name="17830404440764516789494914935528 2">
-              <img
-                alt=""
-                className="absolute inset-0 max-w-none object-cover pointer-events-none size-full opacity-65"
-                src="/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png"
-              />
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 size-full bg-[#a2a2a2] [mask-image:url('/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png')] [mask-repeat:no-repeat] [mask-size:contain] [mask-position:center] [-webkit-mask-image:url('/images/69f59a62-d447-416b-97ec-2c3fcc6ef91c.png')] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain] [-webkit-mask-position:center]"
-              />
-            </div>
-          </div>
-        </div>
+        <BlueLinksNav
+          containerClassName="h-[180px] 4k:h-[240px] w-[24px] 4k:w-[36px]"
+          linkClassName="text-[10px] 4k:text-[14px] tracking-[0.14em] 4k:tracking-[0.16em]"
+          itemGapClass="gap-5 lg:gap-6 4k:gap-8"
+        />
       </div>
     </div>
   );

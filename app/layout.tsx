@@ -134,7 +134,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${mrDafoe.variable} ${inter.className} antialiased bg-[#0F0F0F] text-foreground overflow-x-hidden`}>
         <CartProvider>
-          <aside className="fixed right-0 top-0 z-50 h-screen w-[58px] sm:w-[64px] lg:w-[58px] pointer-events-none">
+          <aside className="fixed right-0 top-0 z-50 h-screen w-[58px] 4k:w-[80px] pointer-events-none">
             <Suspense fallback={null}>
               <Menu />
             </Suspense>
